@@ -29,3 +29,9 @@
   .custom-text{
     color: #43D7C2;
   }
+
+  .custome-input{
+ outline: none;
+ border: none;
+
+  }
