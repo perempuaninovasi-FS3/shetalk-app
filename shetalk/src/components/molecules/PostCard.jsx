@@ -26,7 +26,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik,  }) => {
         </div>
         <div>
           {/* judul dan isi content */}
-          <h3 className="custom-text">{judul}</h3>
+          <h5 className="custom-text">{judul}</h5>
           <p>{konten}</p>
           {/* topik */}
           <a href="" className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2 rounded-2">
