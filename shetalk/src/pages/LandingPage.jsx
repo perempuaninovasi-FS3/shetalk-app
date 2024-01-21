@@ -1,14 +1,30 @@
-import { Link } from "react-router-dom";
+// LandingPage.jsx
+import React, { useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
+import CreateUserGeneral from '../components/molecules/CreateUserGeneral';
 
 function LandingPage() {
+    const [showModal, setShowModal] = useState(false);
+
+    const handleModalShow = () => setShowModal(true);
+    const handleModalClose = () => setShowModal(false);
+
     return (
         <>
-            <Link to={'/create-user-general'}>
-                <button>gabung</button>
-            </Link>
+            <Button variant="primary" onClick={handleModalShow}>
+                Gabung
+            </Button>
 
+            <Modal show={showModal} onHide={handleModalClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>User Registration</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <CreateUserGeneral closeModal={handleModalClose} />
+                </Modal.Body>
+            </Modal>
         </>
-    )
+    );
 }
 
 export default LandingPage;
