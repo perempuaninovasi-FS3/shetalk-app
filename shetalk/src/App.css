@@ -61,4 +61,23 @@
   color: grey;
 }
 
+/* avatar picks */
+.avatar-container {
+  margin: 10px;
+  text-align: center;
+  border: 2px solid #43d7c2;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.avatar-container.selected {
+  background-color: #43d7c2;
+}
+
+.avatar-container:hover {
+  background-color: #a9f1e7;
+}
+
 /* end */

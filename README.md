@@ -1,1 +1,0 @@
-# shetalk-app
