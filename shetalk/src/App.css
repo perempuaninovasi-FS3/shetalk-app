@@ -1,12 +1,9 @@
 .custome-color a:hover {
   color: #43d7c2 !important;
-
 }
-
 .custome-color a:active {
   color: #43d7c2 !important;
 }
-
 
 #listKonten {
   width: 100%;
@@ -18,19 +15,51 @@
   background-color: rgb(236, 236, 236);
 }
 
-
 .custom-btn {
   background-color: #43d7c2;
 }
-
 .custom-btn:hover {
   background-color: #62b4a8;
 }
 
 .custom-text {
-  color: #43D7C2;
+  color: #43d7c2;
 }
 
+.custome-input {
+  outline: none;
+  border: none;
+}
+
+/* modal style */
+
+.custom-text-a {
+  color: grey;
+}
+.custom-text-a a:hover {
+  color: #43d7c2;
+  border-bottom: 5px solid #43d7c2;
+}
+
+.custom-text-a a:active {
+  color: #43d7c2;
+  border-bottom: 5px solid #43d7c2;
+}
+
+.custom-text-a a:focus {
+  color: #43d7c2;
+  border-bottom: 5px solid #43d7c2;
+}
+
+.custome-bg-modal {
+  margin: 16px;
+  background-color: #47d0bd40;
+  border-radius: 8px;
+  padding: 4px;
+  padding-left: 3rem;
+  padding-top: 16px;
+  color: grey;
+}
 
 /* avatar picks */
 .avatar-container {
@@ -50,3 +79,5 @@
 .avatar-container:hover {
   background-color: #a9f1e7;
 }
+
+/* end */
