@@ -1,4 +1,3 @@
-// LandingPage.jsx
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import CreateUserGeneral from '../components/molecules/CreateUserGeneral';
@@ -17,7 +16,7 @@ function LandingPage() {
 
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>User Registration</Modal.Title>
+                    <Modal.Title>Avatar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <CreateUserGeneral closeModal={handleModalClose} />
