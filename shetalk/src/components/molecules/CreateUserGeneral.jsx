@@ -7,9 +7,11 @@ const CreateUserGeneral = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const profiles = [
-        { profile: 'https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg', username: 'roro jonggrang' },
-        { profile: 'https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg', username: 'nawang wulan' },
-        { profile: 'https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg', username: 'timun mas' },
+        { profile: 'https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg', username: 'Roro Jonggrang' },
+        { profile: 'https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg', username: 'Nawang Wulan' },
+        { profile: 'https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg', username: 'Timun Mas' },
+        { profile: 'https://i0.wp.com/catatanbunda.id/wp-content/uploads/2021/06/Sangkuriang-1.jpg?resize=1000%2C562&ssl=1', username: 'Dayang Sumbi' },
+        { profile: 'https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png', username: 'Keong Mas' },
     ];
 
     const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
