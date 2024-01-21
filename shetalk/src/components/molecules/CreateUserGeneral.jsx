@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser, sendUserToApi } from '../../redux/slice/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const CreateUserGeneral = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const profiles = [
         { profile: 'https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg', username: 'roro jonggrang' },
         { profile: 'https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg', username: 'nawang wulan' },
@@ -15,6 +17,7 @@ const CreateUserGeneral = () => {
     const handleProfileSelect = async () => {
         // Use the action creator to send user data to API
         await dispatch(sendUserToApi({ profile: selectedProfile.profile, username: selectedProfile.username, role: 'general' }));
+        navigate('/dashboard', { state: { selectedProfile } });
     };
 
     return (
