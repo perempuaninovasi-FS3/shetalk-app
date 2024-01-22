@@ -1,5 +1,6 @@
+require("dotenv").config();
+
 const fileType = require("file-type");
-// const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const { User } = require("../../database/models/");
