@@ -9,7 +9,7 @@ const edit_user_profile = async (req, res) => {
     const userId = req.user.id;
     const user = await User.findByPk(userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User tidak di temukan!" });
     }
 
     // Validation
@@ -19,7 +19,7 @@ const edit_user_profile = async (req, res) => {
     }
 
     // Check if the user already has a profile image
-    if (user.profile) {
+    if (user.profile != null) {
       // Delete the existing profile image
       const imagePath = path.join(
         __dirname,
@@ -34,13 +34,10 @@ const edit_user_profile = async (req, res) => {
       // Save the new profile image filename to the database
       user.profile = file.filename;
       await user.save();
-      console.log(req.user);
 
-      res.status(200).json({ message: "Profile image updated successfully" });
+      res.status(200).json({ message: "Profile sukses dirubah!" });
     } else {
-      return res
-        .status(400)
-        .json({ message: "Profile image size must be at least 10MB" });
+      return res.status(400).json({ message: "Ukuran minimal 10MB!" });
     }
   } catch (error) {
     return await res.status(500).json({
