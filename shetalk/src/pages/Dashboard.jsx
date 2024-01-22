@@ -7,6 +7,7 @@ import PostCard from '../components/molecules/PostCard';
 const Dashboard = () => {
   return (
     <>
+
       <Navbar />
 
       <div className="mx-md-3 ">
@@ -20,23 +21,23 @@ const Dashboard = () => {
 
           {/* tempat Postingan */}
           <div className="col-md-9 mt-5  ">
-       
-       <PostCard avatar={dummyAvatar} 
-       nama="anonim" 
-       tanggal="12/01/2024" 
-       judul="Berapa lama menstruasi yang normal?"
-       topik="menstruasi" />
-   
 
-     <PostCard
-         avatar={dummyAvatar}
-         nama="anonim"
-         tanggal="12/01/2024"
-         judul="Consent and Coercion: Examining Unwanted Sex Among Married Young Women in India"
-         konten="K.G Santhya bersama empat orang rekannya pernah melakukan sebuah penelitian yang diberi judul “Consent and Coercion: Examining Unwanted Sex Among Married Young Women in India”. selengkapnya.."
-         topik="menstruasi"
-       />
-</div>
+            <PostCard avatar={dummyAvatar}
+              nama="anonim"
+              tanggal="12/01/2024"
+              judul="Berapa lama menstruasi yang normal?"
+              topik="menstruasi" />
+
+
+            <PostCard
+              avatar={dummyAvatar}
+              nama="anonim"
+              tanggal="12/01/2024"
+              judul="Consent and Coercion: Examining Unwanted Sex Among Married Young Women in India"
+              konten="K.G Santhya bersama empat orang rekannya pernah melakukan sebuah penelitian yang diberi judul “Consent and Coercion: Examining Unwanted Sex Among Married Young Women in India”. selengkapnya.."
+              topik="menstruasi"
+            />
+          </div>
         </div>
       </div>
     </>
