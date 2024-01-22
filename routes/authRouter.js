@@ -1,0 +1,11 @@
+// const path = require("path");
+// const moduleAlias = require("module-alias");
+// // moduleAlias.addAlias("@models", path.join(__dirname, "../../src/models"));
+const authController = require("../controllers/Auth/authenticatedController");
+const express = require("express");
+const router = express.Router();
+const validator = require("../validators/");
+const verifyAuthMiddleware = require("../middlewares/verifyAuth");
+router.post(`/login`, validator.userValidator("login"), authController.login);
+router.post(`/logout`, verifyAuthMiddleware, authController.logout);
+module.exports = router;

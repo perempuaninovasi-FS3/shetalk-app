@@ -1,0 +1,11 @@
+// const path = require("path");
+// const moduleAlias = require("module-alias");
+// // moduleAlias.addAlias("@models", path.join(__dirname, "../../src/models"));
+const avatarController = require("../controllers/Avatars/avatarController");
+const express = require("express");
+const router = express.Router();
+const validator = require("../validators/");
+const verifyApiKey = require("../middlewares/verifyApiKey");
+router.get(`/avatars`, verifyApiKey, avatarController.index);
+router.get(`/avatar/:id`, verifyApiKey, avatarController.get);
+module.exports = router;
