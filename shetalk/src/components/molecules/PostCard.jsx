@@ -25,11 +25,11 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
         <div>
           {/* judul dan isi content */}
           <h5 className="custom-text fw-semibold">{judul}</h5>
-          <p>{konten}</p>
-          {/* topik */}
-          <a href="" className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2 rounded-2">
+          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2 rounded-2">
             {topik}
-          </a>
+          </span>
+          <span> {konten}</span>
+          {/* topik */}
         </div>
 
         <div className="d-flex mt-4 gap-2 justify-content-end">

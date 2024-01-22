@@ -17,8 +17,8 @@ const ModalComponent = () => {
 
   return (
     <>
-      
-      <Button onClick={handleShow} className='border-0 ' style={{ backgroundColor: '#43d7c2', marginBottom:'8px' }}>
+
+      <Button onClick={handleShow} className='border-0 ' style={{ backgroundColor: '#43d7c2', marginBottom: '8px' }}>
         Mulai Diskusi Baru
       </Button>
 
@@ -38,7 +38,7 @@ const ModalComponent = () => {
             </a>
           </div>
 
-    
+
           {/* form buat pertanyaan */}
           {activeLink === 'pertanyaan' && (
             <div>
@@ -50,7 +50,7 @@ const ModalComponent = () => {
               </div>
               <div className="m-3">
                 <Form.Group className="mb-3 " controlId="exampleForm.ControlTextarea1">
-                  <Form.Control as="textarea" placeholder="Tulis Pertanyaanmu disini.." rows={3}  className='border-0 outline-0'/>
+                  <Form.Control as="textarea" placeholder="Tulis Pertanyaanmu disini.." rows={3} className='border-0 outline-0' />
                 </Form.Group>
               </div>
             </div>
