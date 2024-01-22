@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-    user: null,
+    user: [],
 };
 
 export const userSlice = createSlice({
@@ -13,12 +13,19 @@ export const userSlice = createSlice({
             state.user = action.payload;
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchUsers.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.user = action.payload;
+            });
+    },
 });
 
 export const { setUser } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
 
-// Action creator for sending user data to API
+// sending user data to API
 export const sendUserToApi = (userData) => async (dispatch) => {
     try {
         const { profile, username, role } = userData;
@@ -35,5 +42,11 @@ export const sendUserToApi = (userData) => async (dispatch) => {
         console.error('Error registering user:', error);
     }
 };
+
+// get all users
+export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
+    const response = await axios.get(`https://65a89524219bfa3718673e13.mockapi.io/user`);
+    return response.data;
+});
 
 export default userSlice.reducer;
