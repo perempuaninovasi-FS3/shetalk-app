@@ -8,6 +8,7 @@ const CreateUserGeneral = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const profiles = [
         {
             profile: 'https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg',
@@ -32,14 +33,22 @@ const CreateUserGeneral = () => {
     ];
 
     const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
+    const [loading, setLoading] = useState(false);
 
     const handleProfileSelect = async () => {
-        await dispatch(sendUserToApi({
-            profile: selectedProfile.profile,
-            username: selectedProfile.username,
-            role: 'general'
-        }));
-        navigate('/dashboard', { state: { selectedProfile } });
+        try {
+            setLoading(true);
+            await dispatch(sendUserToApi({
+                profile: selectedProfile.profile,
+                username: selectedProfile.username,
+                role: 'general'
+            }));
+            navigate('/dashboard', { state: { selectedProfile } });
+        } catch (error) {
+            console.error('Error registering user:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -78,6 +87,7 @@ const CreateUserGeneral = () => {
 
             <div style={{ width: '95%' }}>
                 <Button
+                    className='btn-picks-avatar'
                     style={{
                         backgroundColor: '#43d7c2',
                         border: 'none',
@@ -85,15 +95,22 @@ const CreateUserGeneral = () => {
                         marginTop: '20px',
                         padding: '10px',
                         width: '100%',
+                        transition: 'transform 0.3s',
                     }}
-                    onClick={() => handleProfileSelect()}>
-                    <span>Lanjut sebagai </span>
-                    <span>{selectedProfile.username} </span>
-                    <img
-                        src={selectedProfile.profile}
-                        alt="Selected Profile"
-                        style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%' }}
-                    />
+                    onClick={() => handleProfileSelect()}
+                    disabled={loading}
+                >
+                    {loading ? 'Loading...' : (
+                        <>
+                            <span>Lanjut sebagai </span>
+                            <span>{selectedProfile.username} </span>
+                            <img
+                                src={selectedProfile.profile}
+                                alt="Selected Profile"
+                                style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%' }}
+                            />
+                        </>
+                    )}
                 </Button>
             </div>
 
