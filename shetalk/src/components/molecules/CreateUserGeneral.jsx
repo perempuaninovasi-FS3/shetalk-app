@@ -34,7 +34,11 @@ const CreateUserGeneral = () => {
     const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
 
     const handleProfileSelect = async () => {
-        await dispatch(sendUserToApi({ profile: selectedProfile.profile, username: selectedProfile.username, role: 'general' }));
+        await dispatch(sendUserToApi({
+            profile: selectedProfile.profile,
+            username: selectedProfile.username,
+            role: 'general'
+        }));
         navigate('/dashboard', { state: { selectedProfile } });
     };
 
