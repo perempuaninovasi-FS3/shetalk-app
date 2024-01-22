@@ -18,7 +18,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
           <img src={avatar} alt="Profile" className="rounded-circle" style={{ width: '50px', height: '50px', objectFit: 'cover', }} />
           <div>
             {/* nama, tanggal */}
-            <p className="mb-0 fw-bold custom-text ">{nama}</p>
+            <h5 className="mb-0 fw-bold custom-text ">{nama}</h5>
             <p className="mb-0 text-muted">{tanggal}</p>
           </div>
         </div>
