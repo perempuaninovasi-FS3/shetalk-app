@@ -15,7 +15,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
       <div className="p-4 rounded-3 mb-3" id="listKonten">
         <div className="d-flex align-items-center gap-3 mb-3" id="postCard">
           {/* Image */}
-          <img src={avatar} alt="Profile" className="rounded-circle" style={{ width: '50px', height: '50px' }} />
+          <img src={avatar} alt="Profile" className="rounded-circle" style={{ width: '50px', height: '50px', objectFit: 'cover', }} />
           <div>
             {/* nama, tanggal */}
             <p className="mb-0 fw-bold custom-text ">{nama}</p>
