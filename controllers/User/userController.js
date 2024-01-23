@@ -63,6 +63,7 @@ const get_user_ = async (req, res) => {
     });
   } catch (error) {
     return await res.status(500).json({
+      success: false,
       message: error?.message || "Server error!",
     });
   }
