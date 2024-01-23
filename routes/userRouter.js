@@ -32,6 +32,7 @@ const upload = multer({
   },
 });
 
+// [api/user/profile/edit] 
 router.put(
   "/profile/edit",
   [upload.single("profile"), verifyAuthMiddleware],
