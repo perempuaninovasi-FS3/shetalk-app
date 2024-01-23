@@ -1,11 +1,12 @@
-const authController = require("../controllers/Auth/authenticatedController");
 const express = require("express");
+const router = express.Router();
+
 const fs = require("fs");
 const multer = require("multer");
 const path = require("path");
+
 const userController = require("../controllers/User/userController");
 const verifyAuthMiddleware = require("../middlewares/verifyAuth");
-const router = express.Router();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/profiles");
@@ -32,11 +33,20 @@ const upload = multer({
   },
 });
 
-// [api/user/profile/edit] 
+// [api/user/profile/edit]
 router.put(
   "/profile/edit",
   [upload.single("profile"), verifyAuthMiddleware],
 
   userController.edit_user_profile
 );
+
+// [api/user/me]
+router
+  .route("/me")
+  .post(verifyAuthMiddleware, userController.get_user_)
+  .get(verifyAuthMiddleware, userController.get_user_);
+
+// [api/user/edit]
+router.put("/edit", verifyAuthMiddleware, userController.edit_user_);
 module.exports = router;
