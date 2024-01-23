@@ -25,19 +25,20 @@ const ModalComponent = () => {
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
+
           <div className="d-flex justify-content-between  mx-3 mx-sm-5 mb-4 active fw-semibold custom-text-a">
-            <a href="#" className={`d-flex text-decoration-none fs-md-5  align-items-center custom-text-a ${activeLink === 'pertanyaan' ? 'active' : ''}`} onClick={() => handleLink('pertanyaan')}>
+            <div
+              className={`tab d-flex text-decoration-none fs-md-5  align-items-center custom-text-a ${activeLink === 'pertanyaan' ? 'active' : ''}`}
+              onClick={() => handleLink('pertanyaan')}>
               Tambah Pertanyaan
-            </a>
-            <a
-              href="#"
-              className={`d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeLink === 'kiriman' ? 'active' : ''}`}
+            </div>
+            <div
+              className={`tab d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeLink === 'kiriman' ? 'active' : ''}`}
               onClick={() => handleLink('kiriman')}
             >
               Buat Kiriman
-            </a>
+            </div>
           </div>
-
 
           {/* form buat pertanyaan */}
           {activeLink === 'pertanyaan' && (
