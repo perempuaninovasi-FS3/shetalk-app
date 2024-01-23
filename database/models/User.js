@@ -1,5 +1,5 @@
 "use strict";
-require('dotenv').config();
+require("dotenv").config();
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Comment, {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      User.hasMany(models.Post, {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   User.init(
@@ -24,7 +34,9 @@ module.exports = (sequelize, DataTypes) => {
       profiles: {
         type: DataTypes.VIRTUAL,
         get() {
-          return this.profile == null?`${process.env.APP_URL}/image/no-profile.png`:`${process.env.APP_URL}/image/${this.profile}`
+          return this.profile == null
+            ? `${process.env.APP_URL}/image/no-profile.png`
+            : `${process.env.APP_URL}/image/${this.profile}`;
         },
       },
     },
