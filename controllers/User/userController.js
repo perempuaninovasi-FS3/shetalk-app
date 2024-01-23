@@ -48,9 +48,21 @@ const edit_user_profile = async (req, res) => {
 };
 const get_user_ = async (req, res) => {
   try {
+    const user = await User.findOne({ where: { token: req.token } });
+    return await res.status(200).json({
+      success: true,
+      message: "Login Sukses!",
+      data: {
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+        role: req.user.role,
+        profile: req.user.profiles,
+        sertifikat: req.user.sertifikat,
+      },
+    });
   } catch (error) {
     return await res.status(500).json({
-      success: false,
       message: error?.message || "Server error!",
     });
   }

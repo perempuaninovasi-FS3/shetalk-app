@@ -65,7 +65,27 @@ const login = async (req, res) => {
     });
   }
 };
-const user_info = async (req, res) => {};
+// const me = async (req, res) => {
+//   try {
+//     const user = await User.findOne({ where: { token: req.token } });
+//     return await res.status(200).json({
+//       success: true,
+//       message: "Login Sukses!",
+//       data: {
+//         id: req.user.id,
+//         name: req.user.name,
+//         email: req.user.email,
+//         role: req.user.role,
+//         profile: req.user.profiles,
+//         sertifikat: req.user.sertifikat,
+//       },
+//     });
+//   } catch (error) {
+//     return await res.status(500).json({
+//       message: error?.message || "Server error!",
+//     });
+//   }
+// };
 const logout = async (req, res) => {
   try {
     const logout = await User.update(
@@ -88,5 +108,5 @@ const logout = async (req, res) => {
     });
   }
 };
-const exported_modules = { login, user_info, logout };
+const exported_modules = { login, logout };
 module.exports = exported_modules;
