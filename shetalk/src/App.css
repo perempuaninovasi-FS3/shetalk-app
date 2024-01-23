@@ -46,9 +46,15 @@
   position: relative;
 }
 
-.custom-text-a a:hover {
-  color: #43d7c2;
-  border-bottom: 5px solid #43d7c2;
+.custom-text-a .tab::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: 2.5px;
+  width: 0;
+  background-color: #43d7c2;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .custom-text-a .tab::before {
