@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Comment, {
         foreignKey: "user_id",
+        as: "Comment",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
@@ -37,6 +38,16 @@ module.exports = (sequelize, DataTypes) => {
           return this.profile == null
             ? `${process.env.APP_URL}/image/no-profile.png`
             : `${process.env.APP_URL}/image/${this.profile}`;
+        },
+      },
+      total_answered: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          if (this.Comment && this.Comment.length) {
+            return this.Comment.length;
+          } else {
+            return 0;
+          }
         },
       },
     },
