@@ -23,7 +23,7 @@ const NavbarAhli = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item href="/profile-ahli">Profile</Dropdown.Item>
                         <Dropdown.Item href="#/certificates">Sertifikat</Dropdown.Item>
                         <Dropdown.Item href="#/logout">Keluar</Dropdown.Item>
                     </Dropdown.Menu>
