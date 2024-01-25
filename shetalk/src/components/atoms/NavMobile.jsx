@@ -10,7 +10,7 @@ function NavMobile() {
 
 
   return (
-    <Nav variant="underline" defaultActiveKey="#home" className="d-md-none mx-4">
+    <Nav variant="underline" defaultActiveKey="#home" className="d-md-none mx-4 h-50">
       <Nav.Item>
         <Nav.Link href="#home" style={navLinkStyle} >
           Beranda
