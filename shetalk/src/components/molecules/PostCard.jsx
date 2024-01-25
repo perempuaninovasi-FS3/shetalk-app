@@ -15,21 +15,21 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
       <div className="p-4 rounded-3 mb-3" id="listKonten">
         <div className="d-flex align-items-center gap-3 mb-3" id="postCard">
           {/* Image */}
-          <img src={avatar} alt="Profile" className="rounded-circle" style={{ width: '50px', height: '50px' }} />
+          <img src={avatar} alt="Profile" className="rounded-circle" style={{ width: '50px', height: '50px', objectFit: 'cover', }} />
           <div>
             {/* nama, tanggal */}
-            <p className="mb-0 fw-bold custom-text ">{nama}</p>
+            <h5 className="mb-0 fw-bold custom-text ">{nama}</h5>
             <p className="mb-0 text-muted">{tanggal}</p>
           </div>
         </div>
         <div>
           {/* judul dan isi content */}
           <h5 className="custom-text fw-semibold">{judul}</h5>
-          <p>{konten}</p>
-          {/* topik */}
-          <a href="" className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2 rounded-2">
+          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2 rounded-2">
             {topik}
-          </a>
+          </span>
+          <span> {konten}</span>
+          {/* topik */}
         </div>
 
         <div className="d-flex mt-4 gap-2 justify-content-end">

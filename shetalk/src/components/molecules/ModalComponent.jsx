@@ -17,28 +17,29 @@ const ModalComponent = () => {
 
   return (
     <>
-      
-      <Button onClick={handleShow} className='border-0 ' style={{ backgroundColor: '#43d7c2', marginBottom:'8px' }}>
+
+      <Button onClick={handleShow} className='border-0 ' style={{ backgroundColor: '#43d7c2', marginBottom: '8px' }}>
         Mulai Diskusi Baru
       </Button>
 
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
+
           <div className="d-flex justify-content-between  mx-3 mx-sm-5 mb-4 active fw-semibold custom-text-a">
-            <a href="#" className={`d-flex text-decoration-none fs-md-5  align-items-center custom-text-a ${activeLink === 'pertanyaan' ? 'active' : ''}`} onClick={() => handleLink('pertanyaan')}>
+            <div
+              className={`tab d-flex text-decoration-none fs-md-5  align-items-center custom-text-a ${activeLink === 'pertanyaan' ? 'active' : ''}`}
+              onClick={() => handleLink('pertanyaan')}>
               Tambah Pertanyaan
-            </a>
-            <a
-              href="#"
-              className={`d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeLink === 'kiriman' ? 'active' : ''}`}
+            </div>
+            <div
+              className={`tab d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeLink === 'kiriman' ? 'active' : ''}`}
               onClick={() => handleLink('kiriman')}
             >
               Buat Kiriman
-            </a>
+            </div>
           </div>
 
-    
           {/* form buat pertanyaan */}
           {activeLink === 'pertanyaan' && (
             <div>
@@ -50,7 +51,7 @@ const ModalComponent = () => {
               </div>
               <div className="m-3">
                 <Form.Group className="mb-3 " controlId="exampleForm.ControlTextarea1">
-                  <Form.Control as="textarea" placeholder="Tulis Pertanyaanmu disini.." rows={3}  className='border-0 outline-0'/>
+                  <Form.Control as="textarea" placeholder="Tulis Pertanyaanmu disini.." rows={3} className='border-0 outline-0' />
                 </Form.Group>
               </div>
             </div>
