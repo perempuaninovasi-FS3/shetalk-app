@@ -6,8 +6,8 @@ function SelectTopics() {
   return (
     <Form>
       <Form.Select>
-        <option value="      Semua Orang">
-        Semua Orang
+        <option value="Semua Topik">
+        Semua Topik
         </option>
         <option value="Menstruation">
         Menstruation
