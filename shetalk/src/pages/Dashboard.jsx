@@ -21,20 +21,20 @@ const Dashboard = () => {
 
   return (
     <>
- 
+
       <Navbar />
 
       <div className="mx-md-3 ">
         <div className="row mx-4">
           {/* sidebar */}
-          <div className="col-md-3 mb-5  z-1">
+          <div className="col-md-3 mb-5">
             <div className="position-fixed">
               <SideBar />
             </div>
           </div>
 
           {/* tempat Postingan */}
-          <div className="col-md-9  mt-md-0 mt-5 ">
+          <div className="col-md-9 mt-5  ">
             {posts ? (
               posts.map((post) => {
                 const user = Array.isArray(users) ? users.find((user) => user.id === post.user_id) : null;
