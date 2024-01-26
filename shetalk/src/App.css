@@ -183,5 +183,45 @@
   margin: 0;
 }
 
+/*Landing page - home*/
 
+.container-fluid {
+  background-image: url(./assets/img/bg.svg);
+  background-repeat: repeat-x;
+  background-color: white;
+}
+.blockquote {
+  margin-top: 8rem;
+}
+.text1 {
+ color:  #FF6565;
+ padding-bottom: 2rem;
+}
+.text2 {
+  color: white;
+}
+.text3 {
+  color:  #FF6565;
+}
 
+/*Landing page - promo*/
+
+.col-sm {
+  margin: 2rem;
+  padding: 2rem;
+  border:black;
+}
+.text4 {
+  color:  #FF6565;
+  padding-bottom: 8rem;
+ }
+.text5 {
+  color:  #FF6565;
+}
+.text6 {
+  color: #888888;
+}
+.col-md {
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
