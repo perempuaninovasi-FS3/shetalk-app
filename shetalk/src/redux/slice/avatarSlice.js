@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const API_URL = 'http://localhost:8000/api/avatars';
+const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
 export const fetchAvatars = createAsyncThunk('avatars/fetchAvatars', async (_, thunkAPI) => {
-    const API_KEY = 'key_test';
     const response = await fetch(API_URL, {
         headers: {
-            'API_KEY': `${API_KEY}`,
+            'API_KEY': API_KEY,
             'Content-Type': 'application/json',
         },
     });
