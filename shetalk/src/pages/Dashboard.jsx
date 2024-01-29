@@ -19,19 +19,16 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className=''>
-        <div className="sticky-top  ">
+      <div className="">
+        <div className="sticky-top">
           <Navbar />
         </div>
         <div className="container">
-          <div >
+          <div>
             <div className="row flex justify-content-between">
-              {/* sidebar */}
               <div className="col-md-3 mb-3  sidebar-desktop">
                 <SideBar />
               </div>
-
-              {/* tempat Postingan */}
               <div className="col-md-9 post-desktop">
                 {posts ? (
                   posts.map((post) => {

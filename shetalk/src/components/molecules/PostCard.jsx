@@ -1,13 +1,14 @@
 import CommentInput from '../atoms/CommentInput';
 import { useState } from 'react';
-import Comment from '../atoms/Comment';
-import { IconTersimpan, dummyAvatar } from '../../assets';
+import { useNavigate } from 'react-router-dom';
 
-const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
-  const [showComment, setShowComment] = useState(false);
+const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) => {
 
+  const [showCommentLocal, setShowCommentLocal] = useState(showComment);
+  
+  const navigate = useNavigate();
   const toggleComment = () => {
-    setShowComment(!showComment);
+    setShowCommentLocal(!showCommentLocal);
   };
   return (
     <>
@@ -15,20 +16,25 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
       <div className="p-4  mx-auto   rounded-3 mb-3" id="listKonten">
         <div className="d-flex align-items-center gap-3 mb-3" id="postCard">
           {/* Image */}
-          <img src={avatar} alt="Profile" className="rounded-circle " style={{ width: '50px', height: '50px', objectFit: 'cover', }} />
+          <img src={avatar} alt="Profile" className="rounded-circle " style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
           <div>
             {/* nama, tanggal */}
             <h5 className="mb-0 fw-bold fs-md-3 fs-6 custom-text ">{nama}</h5>
-            <p className="mb-0 text-muted " style={{fontSize:'13px'}}>{tanggal}</p>
+            <p className="mb-0 text-muted " style={{ fontSize: '13px' }}>
+              {tanggal}
+            </p>
           </div>
         </div>
         <div>
           {/* judul dan isi content */}
-          <h5 className="custom-text judul-post fw-bold">{judul}</h5>
-          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{fontSize: "14px"}}>
-            {topik}
-          </span>
-          <p className='pt-3  text-content'> {konten}</p>
+          <div onClick={() => navigate('/detail-post')}>
+            <h5 className="custom-text judul-post fw-bold">{judul}</h5>
+            <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{ fontSize: '14px' }}>
+              {topik}
+            </span>
+
+            <p className="pt-md-3  text-content"> {konten}</p>
+          </div>
           {/* topik */}
         </div>
 
@@ -63,11 +69,10 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
         </div>
       </div>
 
-      {/* tampilan komentar */}
-      {showComment && (
-        <div id="comment" className='my-4'>
+      {/* tampilan input komentar */}
+      {showCommentLocal && (
+        <div id="comment" className="my-4">
           <CommentInput />
-        
         </div>
       )}
     </>
@@ -76,8 +81,8 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
 
 export default PostCard;
 
-
-{/* <Comment
+{
+  /* <Comment
 avatar={dummyAvatar}
 nama="anonim"
 time=" 30 menit yang lalu"
@@ -85,4 +90,5 @@ textComment="
 Lama menstruasi yang dianggap normal bervariasi antara setiap individu. Secara umum, siklus menstruasi normal berkisar antara 21 hingga 35 hari, dan durasi menstruasi sendiri biasanya berlangsung selama 2 hingga 7 hari"
 />
 <Comment avatar={dummyAvatar} nama="anonim" time="10 menit yang lalu" textComment="Normalnya 7 hari" />
-<Comment avatar={dummyAvatar} nama="anonim" time="15 menit yang lalu" textComment="3 hari mungkin" /> */}
+<Comment avatar={dummyAvatar} nama="anonim" time="15 menit yang lalu" textComment="3 hari mungkin" /> */
+}
