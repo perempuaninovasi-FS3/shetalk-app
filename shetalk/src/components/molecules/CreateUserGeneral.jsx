@@ -1,53 +1,30 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { sendUserToApi } from '../../redux/slice/userSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAvatars, setSelectedAvatar, setLoggedInUser, selectAvatars, selectSelectedAvatar } from '../../redux/slice/avatarSlice';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 const CreateUserGeneral = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const profiles = [
-        {
-            profile: 'https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg',
-            username: 'Roro Jonggrang'
-        },
-        {
-            profile: 'https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg',
-            username: 'Nawang Wulan'
-        },
-        {
-            profile: 'https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg',
-            username: 'Timun Mas'
-        },
-        {
-            profile: 'https://i0.wp.com/catatanbunda.id/wp-content/uploads/2021/06/Sangkuriang-1.jpg?resize=1000%2C562&ssl=1',
-            username: 'Dayang Sumbi'
-        },
-        {
-            profile: 'https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png',
-            username: 'Keong Mas'
-        },
-    ];
+    const avatars = useSelector(selectAvatars);
+    const selectedAvatar = useSelector(selectSelectedAvatar);
 
-    const [selectedProfile, setSelectedProfile] = useState(profiles[0]);
     const [loading, setLoading] = useState(false);
 
-    const handleProfileSelect = async () => {
-        try {
-            setLoading(true);
-            await dispatch(sendUserToApi({
-                profile: selectedProfile.profile,
-                username: selectedProfile.username,
-                role: 'general'
-            }));
-            navigate('/dashboard', { state: { selectedProfile } });
-        } catch (error) {
-            console.error('Error registering user:', error);
-        } finally {
-            setLoading(false);
+    useEffect(() => {
+        dispatch(fetchAvatars());
+    }, [dispatch]);
+
+    const handleProfileSelect = (avatar) => {
+        dispatch(setSelectedAvatar(avatar));
+    };
+
+    const handleLogin = () => {
+        if (selectedAvatar) {
+            dispatch(setLoggedInUser(selectedAvatar));
+            navigate('/dashboard');
         }
     };
 
@@ -57,34 +34,38 @@ const CreateUserGeneral = () => {
             <div>
                 <h5 style={{ marginBottom: '20px', marginTop: '10px' }}>Pilih avatar sebelum lanjut ke halaman diskusi</h5>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    {profiles.map((profile, index) => (
-                        <div key={index}
-                            onClick={() => setSelectedProfile(profile)}
-                            className="avatar-container"
-                            style={{
-                                margin: '10px',
-                                textAlign: 'center',
-                                border: `2px solid ${profile.borderColor || '#43d7c2'}`,
-                                padding: '10px',
-                                borderRadius: '10px'
-                            }}>
-                            <img
-                                src={profile.profile}
-                                alt={`Profile ${index + 1}`}
+                    {
+                        avatars.map((avatar, id) => (
+                            <div
+                                key={id}
+                                onClick={() => handleProfileSelect(avatar)}
+                                className={`avatar-container ${selectedAvatar === avatar ? 'selected' : ''}`}
                                 style={{
-                                    width: '100px',
-                                    height: '100px',
-                                    objectFit: 'cover',
-                                    borderRadius: '50%',
-                                    cursor: 'pointer'
+                                    margin: '10px',
+                                    textAlign: 'center',
+                                    border: `2px solid ${avatar.borderColor || '#43d7c2'}`,
+                                    padding: '10px',
+                                    borderRadius: '10px',
+                                    cursor: 'pointer',
                                 }}
-                            />
-                            <p style={{ marginTop: '10px' }}>{profile.username}</p>
-                        </div>
-                    ))}
+                            >
+                                <img
+                                    src={avatar.avatar_img}
+                                    alt={`Profile ${id + 1}`}
+                                    style={{
+                                        width: '100px',
+                                        height: '100px',
+                                        objectFit: 'cover',
+                                        borderRadius: '50%',
+                                        cursor: 'pointer',
+                                    }}
+                                />
+                                <p style={{ marginTop: '10px' }}>{avatar.avatar_name}</p>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
-
             <div style={{ width: '95%' }}>
                 <Button
                     className='btn-picks-avatar'
@@ -96,24 +77,30 @@ const CreateUserGeneral = () => {
                         padding: '10px',
                         width: '100%',
                         transition: 'transform 0.3s',
+                        cursor: 'pointer',
                     }}
-                    onClick={() => handleProfileSelect()}
+                    onClick={handleLogin}
                     disabled={loading}
                 >
                     {loading ? 'Loading...' : (
                         <>
-                            <span>Lanjut sebagai </span>
-                            <span>{selectedProfile.username} </span>
-                            <img
-                                src={selectedProfile.profile}
-                                alt="Selected Profile"
-                                style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%' }}
-                            />
+                            {selectedAvatar ? (
+                                <>
+                                    <span>Lanjut sebagai </span>
+                                    <span>{selectedAvatar.avatar_name} </span>
+                                    <img
+                                        src={selectedAvatar.avatar_img}
+                                        alt="Selected Profile"
+                                        style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%' }}
+                                    />
+                                </>
+                            ) : (
+                                <span>Pilih dengan 'klik' pada avatar yang kamu sukai</span>
+                            )}
                         </>
                     )}
                 </Button>
             </div>
-
         </div>
     );
 };
