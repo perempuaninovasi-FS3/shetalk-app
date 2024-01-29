@@ -9,7 +9,7 @@ import NavMobile from '../atoms/NavMobile';
 const SideBar = () => {
   return (
     <>
-      <div className="d-flex gap-2 ">
+      <div className="d-flex justify-content-md-start   justify-content-center gap-2   ">
         <div>
           <ModalComponent />
         </div>
@@ -17,16 +17,19 @@ const SideBar = () => {
           <SelectTopics />
         </div>
       </div>
- <div>
+ <div className='mt-2 '>
   <NavMobile />
  </div>
-      <div className="d-flex flex-md-column d-none d-md-block  ">
+
+ {/* untuk layar desktop */}
+      <div className="d-flex flex-md-column  d-none d-md-block  ">
         <Menu img={IconBeranda} title="Beranda" />
         <Menu img={IconJawabPertanyaan} title="Jawab Pertanyaan" />
         <Menu img={IconTersimpan} title="Tersimpan" />
       </div>
 
-      <div  className='d-none d-md-block mt-5'>
+
+      <div  className='d-none d-md-block mt-5 '>
         <h2 className="fs-5 mb-4">Topics</h2>
         <Topics fillColor="#FF6565" title="Menstruation" />
         <Topics fillColor="#FC65FF" title="HIV/AIDS" />
