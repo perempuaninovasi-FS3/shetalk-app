@@ -1,3 +1,8 @@
+body{
+  font-family: "Inter", sans-serif;
+
+}
+
 .custome-color a:hover {
   color: #43d7c2 !important;
 }
@@ -184,4 +189,36 @@
 }
 
 
+.text-content{
+  color: grey;
+}
+/* layar mobile */
+
+@media only screen and (max-width: 600px) {
+  .judul-post{
+    font-size: 18px;
+  }
+  .container{
+    padding: 10px;
+  }
+  .text-content{
+font-size: 14px;
+color: grey;
+  }
+  #listKonten{
+
+    width: 95%;
+  }
+}
+
+
+/* layar desktop */
+@media (min-width: 992px) {
+  .sidebar-desktop{
+position: fixed;
+  }
+  .post-desktop{
+    margin-left: 270px;
+  }
+}
 

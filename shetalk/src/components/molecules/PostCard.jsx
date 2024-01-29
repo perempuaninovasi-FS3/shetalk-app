@@ -12,23 +12,23 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
   return (
     <>
       {/* tampilan postingan */}
-      <div className="p-4 rounded-3 mb-3" id="listKonten">
+      <div className="p-4  mx-auto   rounded-3 mb-3" id="listKonten">
         <div className="d-flex align-items-center gap-3 mb-3" id="postCard">
           {/* Image */}
           <img src={avatar} alt="Profile" className="rounded-circle " style={{ width: '50px', height: '50px', objectFit: 'cover', }} />
           <div>
             {/* nama, tanggal */}
-            <h5 className="mb-0 fw-bold custom-text ">{nama}</h5>
-            <p className="mb-0 text-muted">{tanggal}</p>
+            <h5 className="mb-0 fw-bold fs-md-3 fs-6 custom-text ">{nama}</h5>
+            <p className="mb-0 text-muted " style={{fontSize:'13px'}}>{tanggal}</p>
           </div>
         </div>
         <div>
           {/* judul dan isi content */}
-          <h5 className="custom-text fw-semibold">{judul}</h5>
-          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2 rounded-2">
+          <h5 className="custom-text judul-post fw-bold">{judul}</h5>
+          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{fontSize: "14px"}}>
             {topik}
           </span>
-          <span> {konten}</span>
+          <p className='pt-3  text-content'> {konten}</p>
           {/* topik */}
         </div>
 
@@ -65,17 +65,9 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
 
       {/* tampilan komentar */}
       {showComment && (
-        <div id="comment">
+        <div id="comment" className='my-4'>
           <CommentInput />
-          <Comment
-            avatar={dummyAvatar}
-            nama="anonim"
-            time=" 30 menit yang lalu"
-            textComment="
-          Lama menstruasi yang dianggap normal bervariasi antara setiap individu. Secara umum, siklus menstruasi normal berkisar antara 21 hingga 35 hari, dan durasi menstruasi sendiri biasanya berlangsung selama 2 hingga 7 hari"
-          />
-          <Comment avatar={dummyAvatar} nama="anonim" time="10 menit yang lalu" textComment="Normalnya 7 hari" />
-          <Comment avatar={dummyAvatar} nama="anonim" time="15 menit yang lalu" textComment="3 hari mungkin" />
+        
         </div>
       )}
     </>
@@ -83,3 +75,14 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik }) => {
 };
 
 export default PostCard;
+
+
+{/* <Comment
+avatar={dummyAvatar}
+nama="anonim"
+time=" 30 menit yang lalu"
+textComment="
+Lama menstruasi yang dianggap normal bervariasi antara setiap individu. Secara umum, siklus menstruasi normal berkisar antara 21 hingga 35 hari, dan durasi menstruasi sendiri biasanya berlangsung selama 2 hingga 7 hari"
+/>
+<Comment avatar={dummyAvatar} nama="anonim" time="10 menit yang lalu" textComment="Normalnya 7 hari" />
+<Comment avatar={dummyAvatar} nama="anonim" time="15 menit yang lalu" textComment="3 hari mungkin" /> */}

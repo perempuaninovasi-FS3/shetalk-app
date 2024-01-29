@@ -18,7 +18,7 @@ const ModalComponent = () => {
   return (
     <>
 
-      <Button onClick={handleShow} className='border-0 ' style={{ backgroundColor: '#43d7c2', marginBottom: '8px' }}>
+      <Button onClick={handleShow} className='border-0 fw-bold py-2' style={{ backgroundColor: '#43d7c2', marginBottom: '8px', fontSize: '80%'}}>
         Mulai Diskusi Baru
       </Button>
 
@@ -26,10 +26,10 @@ const ModalComponent = () => {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
 
-          <div className="d-flex justify-content-between  mx-3 mx-sm-5 mb-4 active fw-semibold custom-text-a">
+          <div className="d-flex justify-content-between   mx-sm-5 mb-4 active fw-semibold custom-text-a">
             <div
-              className={`tab d-flex text-decoration-none fs-md-5  align-items-center custom-text-a ${activeLink === 'pertanyaan' ? 'active' : ''}`}
-              onClick={() => handleLink('pertanyaan')}>
+              className={`tab d-flex text-decoration-none fs-md-5   align-items-center custom-text-a ${activeLink === 'pertanyaan' ? 'active' : ''}`}
+              onClick={() => handleLink('pertanyaan')} >
               Tambah Pertanyaan
             </div>
             <div
@@ -44,7 +44,7 @@ const ModalComponent = () => {
           {activeLink === 'pertanyaan' && (
             <div>
               <div className="custome-bg-modal p-3 m-3">
-                <p>
+                <p >
                   Kiat untuk mendapatkan jawaban yang baik dengan cepat <br />
                   1.Pastikan pertanyaan kamu belum pernah diajukan sebelumnya <br /> 2.Pastikan pertanyaan kamu singkat, padat, dan lugas
                 </p>

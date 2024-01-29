@@ -10,7 +10,7 @@ const Navbar = () => {
   const selectedProfile = location.state?.selectedProfile;
 
   return (
-    <div className="d-flex justify-content-between align-items-center shadow-sm  px-md-5 py-md-2 px-4 py-2 bg-body-tertiary rounded mb-4 ">
+    <div className="d-flex justify-content-center justify-content-md-start align-items-center shadow-sm  px-md-5 py-md-2 px-4 py-2 bg-body-tertiary rounded mb-md-4 mb-2 ">
       <Logo />
       {/* <a href="#"> */}
       {selectedProfile && (
