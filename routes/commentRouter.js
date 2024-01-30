@@ -5,8 +5,10 @@
 const express = require("express");
 const router = express.Router();
 
-const verifyApiKeyMiddleware = require("../services/verifyTokenService");
+const verifyApiKeyMiddleware = require("../middlewares/verifyApiKey");
 
 // [api/posts?page=1{for paginate}]
-router.get("/", function (req, res) {});
+router.get("/", function (req, res) {
+  
+});
 module.exports = router;
