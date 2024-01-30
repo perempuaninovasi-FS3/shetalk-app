@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAvatars, setSelectedAvatar, selectAvatars, selectSelectedAvatar } from '../../redux/slice/avatarSlice';
+import { setSelectedAvatar, selectAvatars, selectSelectedAvatar } from '../../redux/slice/avatarSlice';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
@@ -12,10 +12,6 @@ const AvatarPick = () => {
     const selectedAvatar = useSelector(selectSelectedAvatar);
 
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        dispatch(fetchAvatars());
-    }, [dispatch]);
 
     const handleProfileSelect = (avatar) => {
         dispatch(setSelectedAvatar(avatar));
