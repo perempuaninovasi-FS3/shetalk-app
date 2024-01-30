@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) => {
 
   const [showCommentLocal, setShowCommentLocal] = useState(showComment);
-  
+
   const navigate = useNavigate();
   const toggleComment = () => {
     setShowCommentLocal(!showCommentLocal);
@@ -33,7 +33,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
               {topik}
             </span>
 
-            <p className="pt-md-3  text-content"> {konten}</p>
+            <span className="pt-md-3  text-content"> {konten}</span>
           </div>
           {/* topik */}
         </div>
