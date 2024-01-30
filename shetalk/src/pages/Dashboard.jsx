@@ -24,9 +24,9 @@ const Dashboard = () => {
           <Navbar />
         </div>
         <div className="container">
-          <div>
+          <div className='content-dashboard'>
             <div className="row flex justify-content-between">
-              <div className="col-md-3 mb-3  sidebar-desktop">
+              <div className="col-md-3 mb-3 sidebar-desktop">
                 <SideBar />
               </div>
               <div className="col-md-9 post-desktop">
