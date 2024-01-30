@@ -19,16 +19,12 @@ const avatarSlice = createSlice({
     initialState: {
         avatars: [],
         selectedAvatar: null,
-        loggedInUser: null,
         status: 'idle',
         error: null,
     },
     reducers: {
         setSelectedAvatar: (state, action) => {
             state.selectedAvatar = action.payload;
-        },
-        setLoggedInUser: (state, action) => {
-            state.loggedInUser = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -51,6 +47,5 @@ export const { setSelectedAvatar, setLoggedInUser } = avatarSlice.actions;
 
 export const selectAvatars = (state) => state.avatars.avatars;
 export const selectSelectedAvatar = (state) => state.avatars.selectedAvatar;
-export const selectLoggedInUser = (state) => state.avatars.loggedInUser;
 
 export default avatarSlice.reducer;
