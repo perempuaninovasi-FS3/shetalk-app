@@ -25,8 +25,8 @@ const SideBar = () => {
       {/* untuk layar desktop */}
       <div className="d-flex flex-md-column  d-none d-md-block  ">
         <Link to={'/dashboard'} style={{ textDecoration: 'none' }}><Menu img={IconBeranda} title="Beranda" /></Link>
-        <Menu img={IconJawabPertanyaan} title="Jawab Pertanyaan" />
-        <Menu img={IconTersimpan} title="Tersimpan" />
+        <Link to={'/dashboard'} style={{ textDecoration: 'none' }}><Menu img={IconJawabPertanyaan} title="Jawab Pertanyaan" /></Link>
+        <Link to={'/dashboard'} style={{ textDecoration: 'none' }}><Menu img={IconTersimpan} title="Tersimpan" /></Link>
       </div>
 
 
