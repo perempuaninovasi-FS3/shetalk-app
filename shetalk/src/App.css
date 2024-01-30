@@ -8,11 +8,11 @@ body {
   margin-top: 20px;
 }
 
-.custome-color a:hover {
+.custome-color .menu-sidebar:hover {
   color: #43d7c2 !important;
 }
 
-.custome-color a:active {
+.custome-color .menu-sidebar:active {
   color: #43d7c2 !important;
 }
 
