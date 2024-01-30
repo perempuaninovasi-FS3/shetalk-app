@@ -42,7 +42,7 @@ const SideBar = () => {
       <div className='d-none d-md-block mt-5 '>
         <h2 className="fs-5 mb-4">Topics</h2>
         {topics
-          .filter((topic) => topic.id !== '1') // Filter topik dengan id '1'
+          .filter((topic) => topic.id !== '1')
           .map((topic, index) => (
             <Topics key={topic.slug} fillColor={getTopicColor(index)} title={topic.name} />
           ))}
