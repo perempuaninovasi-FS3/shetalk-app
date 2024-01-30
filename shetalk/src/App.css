@@ -8,6 +8,10 @@ body {
   margin-top: 20px;
 }
 
+.menu-sidebar {
+  cursor: pointer;
+}
+
 .custome-color .menu-sidebar:hover {
   color: #43d7c2 !important;
 }
