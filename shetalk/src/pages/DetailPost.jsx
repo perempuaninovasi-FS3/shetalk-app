@@ -25,7 +25,7 @@ const DetailPost = () => {
               <div className="col-md-9 post-desktop">
                 <div className="p-3 mx-md-5">
                   {/* tombol kembali ke beranda */}
-                  <div className="mb-4">
+                  {/* <div className="mb-4">
                     <a href="#" onClick={() => navigate('/dashboard')}>
                       <svg width="30" height="30" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                         <title>ionicons-v5-a</title>
@@ -33,7 +33,7 @@ const DetailPost = () => {
                         <line x1="120" y1="256" x2="412" y2="256" fill="none" stroke="#43D7C2" strokeLinecap="round" strokeLinejoin="round" strokeWidth={48} />
                       </svg>
                     </a>
-                  </div>
+                  </div> */}
 
                   {/* isi detail post */}
                   <PostCard
