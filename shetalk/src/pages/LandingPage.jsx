@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import CreateUserGeneral from '../components/molecules/CreateUserGeneral';
+import AvatarPick from '../components/molecules/AvatarPick';
 
 function LandingPage() {
     const [showModal, setShowModal] = useState(false);
@@ -19,7 +19,7 @@ function LandingPage() {
                     <Modal.Title>Avatar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <CreateUserGeneral closeModal={handleModalClose} />
+                    <AvatarPick closeModal={handleModalClose} />
                 </Modal.Body>
             </Modal>
         </>

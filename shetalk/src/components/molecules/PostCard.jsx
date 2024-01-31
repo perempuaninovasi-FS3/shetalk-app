@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) => {
 
   const [showCommentLocal, setShowCommentLocal] = useState(showComment);
-  
+
   const navigate = useNavigate();
   const toggleComment = () => {
     setShowCommentLocal(!showCommentLocal);
@@ -13,7 +13,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
   return (
     <>
       {/* tampilan postingan */}
-      <div className="p-4  mx-auto   rounded-3 mb-3" id="listKonten">
+      <div className="p-4  mx-auto   rounded-3 mb-3" id="listKonten" style={{ cursor: 'pointer' }}>
         <div className="d-flex align-items-center gap-3 mb-3" id="postCard">
           {/* Image */}
           <img src={avatar} alt="Profile" className="rounded-circle " style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
@@ -33,7 +33,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
               {topik}
             </span>
 
-            <p className="pt-md-3  text-content"> {konten}</p>
+            <span className="pt-md-3  text-content"> {konten}</span>
           </div>
           {/* topik */}
         </div>
