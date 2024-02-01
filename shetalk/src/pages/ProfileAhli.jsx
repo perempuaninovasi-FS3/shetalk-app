@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import NavAhli from '../components/molecules/NavAhli';
+import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { fetchPosts } from '../redux/slice/postSlice';
@@ -33,8 +33,9 @@ const ProfileAhli = () => {
 
     return (
         <>
-            <NavAhli />
-
+            <div className="sticky-top">
+                <Navbar />
+            </div>
             <div className="mx-md-3">
                 <div className="row mx-4">
                     {/* Sidebar */}
