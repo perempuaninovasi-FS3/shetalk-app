@@ -16,8 +16,15 @@ const login = async (req, res) => {
     }
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email: email } });
+    if (!user) {
+      return await res.status(404).json({
+        success: false,
+        message: "Login gagal!, email tidak di temukan!",
+        data: [],
+      });
+    }
     if (user.token != null || user.token != undefined) {
-      return res.status(403).json({
+      return await res.status(403).json({
         success: false,
         message: "Login gagal!, karena telah melakukan login sebelumnya!",
         data: {
