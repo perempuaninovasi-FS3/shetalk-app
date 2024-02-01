@@ -9,10 +9,7 @@ const Navbar = () => {
   const location = useLocation();
   const selectedAvatar = useSelector(selectSelectedAvatar);
 
-  const loggedInUser = {
-    username: 'JohnDoe',
-    avatar: 'path/to/user-avatar.jpg',
-  };
+  const loggedInUser = false;
 
   return (
     <div className="d-flex justify-content-between align-items-center shadow-sm px-md-5 py-md-2 px-4 py-2 bg-body-tertiary rounded mb-md-4 mb-2">
