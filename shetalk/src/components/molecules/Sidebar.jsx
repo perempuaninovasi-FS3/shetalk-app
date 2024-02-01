@@ -40,7 +40,7 @@ const SideBar = () => {
       </div>
 
       <div className='d-none d-md-block mt-5 '>
-        <h2 className="fs-5 mb-4">Topics</h2>
+        <h4 className="mb-4" style={{ color: 'rgb(70, 70, 70)' }}>Topics</h4>
         {topics
           .filter((topic) => topic.id !== '1')
           .map((topic, index) => (
