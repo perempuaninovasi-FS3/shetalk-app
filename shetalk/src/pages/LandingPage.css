@@ -1,0 +1,71 @@
+/*Landing page*/
+/*part 1*/
+.container-fluid {
+    background-image: url(../assets/img/bg.svg);
+    background-repeat: repeat-x;
+    background-color: white;
+}
+
+.blockquote {
+    margin-top: 8rem;
+}
+
+.text1 {
+    color: #FF6565;
+    padding-bottom: 2rem;
+}
+
+.text2 {
+    color: white;
+}
+
+.text3 {
+    color: #FF6565;
+}
+
+/*Part 2*/
+
+.col-sm {
+    margin: 2rem;
+    padding: 2rem;
+    border: black;
+}
+
+.text4 {
+    color: #FF6565;
+    padding-bottom: 8rem;
+}
+
+.text5 {
+    color: #FF6565;
+}
+
+.text6 {
+    color: #888888;
+}
+
+.col-md {
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
+
+.card-img {
+    margin: 12px;
+    padding: 4px;
+}
+
+.card {
+    background-image: url(../assets/img/footer.svg);
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+}
+
+.fs-5 {
+    color: #888888;
+    margin: 2rem;
+    padding: 4rex;
+}
+
+.fs-2 {
+    color: white;
+}

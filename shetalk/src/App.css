@@ -1,8 +1,22 @@
-.custome-color a:hover {
+body {
+  font-family: "Inter", sans-serif;
+
+}
+
+.content-dashboard {
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.menu-sidebar {
+  cursor: pointer;
+}
+
+.custome-color .menu-sidebar:hover {
   color: #43d7c2 !important;
 }
 
-.custome-color a:active {
+.custome-color .menu-sidebar:active {
   color: #43d7c2 !important;
 }
 
@@ -183,62 +197,46 @@
   margin: 0;
 }
 
-/*Landing page*/
-/*part 1*/
-.container-fluid {
-  background-image: url(./assets/img/bg.svg);
-  background-repeat: repeat-x;
-  background-color: white;
-}
-.blockquote {
-  margin-top: 8rem;
-}
-.text1 {
- color:  #FF6565;
- padding-bottom: 2rem;
-}
-.text2 {
-  color: white;
-}
-.text3 {
-  color:  #FF6565;
+
+.text-content {
+  color: grey;
 }
 
-/*Part 2*/
+/* layar mobile */
 
-.col-sm {
-  margin: 2rem;
-  padding: 2rem;
-  border:black;
+@media only screen and (max-width: 600px) {
+  .judul-post {
+    font-size: 17px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .content-dashboard {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .text-content {
+    font-size: 14px;
+    color: grey;
+  }
+
+  #listKonten {
+
+    width: 95%;
+  }
 }
-.text4 {
-  color:  #FF6565;
-  padding-bottom: 8rem;
- }
-.text5 {
-  color:  #FF6565;
-}
-.text6 {
-  color: #888888;
-}
-.col-md {
-  margin-top: 2rem;
-  padding-top: 2rem;
-}
-.card-img {
-  margin: 12px;
-  padding: 4px;
-}
-.card {
-  background-image: url(./assets/img/footer.svg);
-  margin-top: 2rem;
-  margin-bottom: 8rem;
-}
-.fs-5 {
-  color: #888888;
-  margin: 2rem;
-  padding: 4rex;
-}
-.fs-2 {
-  color: white;
+
+
+/* layar desktop */
+@media (min-width: 992px) {
+  .sidebar-desktop {
+    position: fixed;
+  }
+
+  .post-desktop {
+    margin-left: 300px;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Navbar, Card, Col, Row, Container, Image } from 'react-bootstrap';
+import './LandingPage.css';
 import AvatarPick from '../components/molecules/AvatarPick';
 import Logo from '../components/atoms/Logo';
 import tagbrand from '../assets/img/tag-brand.svg';
