@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "user_id",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        as: "user",
       });
       Post.hasMany(models.Comment, {
         foreignKey: "post_id",
@@ -23,11 +24,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "avatar_id",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        as: "avatar",
       });
       Post.belongsTo(models.Topic, {
         foreignKey: "topic_id",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        as: "topic",
       });
     }
   }
