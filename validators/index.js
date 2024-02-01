@@ -10,3 +10,11 @@ exports.userValidator = (method) => {
     ];
   }
 };
+exports.postValidator = (method) => {
+  if (method == "create") {
+    return [
+      body("title", "Title tidak boleh kosong!").not().isEmpty(),
+      body("topic_id", "Topik tidak boleh kosong!").not().isEmpty(),
+    ];
+  }
+};
