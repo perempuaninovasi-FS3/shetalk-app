@@ -43,56 +43,56 @@ function LandingPage() {
                 </div>
 
                 {/*Promo*/}
-                <figure class="text-center">
-                    <blockquote class="blockquote">
-                    <h1 class="text4">Mengapa SheTalk?</h1>
+                <figure className="text-center">
+                    <blockquote className="blockquote">
+                    <h1 className="text4">Mengapa SheTalk?</h1>
                     </blockquote> 
                 </figure>
 
-                <div class="row align-items-start text-center " style={{margin: '1rem', padding:'1rem'}}>
-                    <div class="col-sm border rounded" data-aos="fade-left">
-                        <h5 class="text5">Anonim dan Aman</h5>
-                        <p class="text6">Privasimu adalah prioritas kami. Berdiskusi tanpa perlu khawatir tentang identitas terungkap.</p>
+                <div className="row align-items-start text-center " style={{margin: '1rem', padding:'1rem'}}>
+                    <div className="col-sm border rounded" data-aos="fade-left">
+                        <h5 className="text5">Anonim dan Aman</h5>
+                        <p className="text6">Privasimu adalah prioritas kami. Berdiskusi tanpa perlu khawatir tentang identitas terungkap.</p>
                     </div>
-                    <div class="col-sm border rounded" data-aos="fade-left">
-                        <h5 class="text5">Diskusi Terbuka dan Beragam</h5>
-                        <p class="text6">Temukan solusi, bagikan pengalaman, dan berdialog secara positif untuk membangun pengetahuan.</p>
+                    <div className="col-sm border rounded" data-aos="fade-left">
+                        <h5 className="text5">Diskusi Terbuka dan Beragam</h5>
+                        <p className="text6">Temukan solusi, bagikan pengalaman, dan berdialog secara positif untuk membangun pengetahuan.</p>
                     </div>
-                    <div class="col-sm border rounded" data-aos="fade-left">
-                        <h5 class="text5">Sertifikat Penghargaan</h5>
-                        <p class="text6">Jadilah volunteer kesehatan yang aktif berinteraksi dan membangun dampak positif.</p>
+                    <div className="col-sm border rounded" data-aos="fade-left">
+                        <h5 className="text5">Sertifikat Penghargaan</h5>
+                        <p className="text6">Jadilah volunteer kesehatan yang aktif berinteraksi dan membangun dampak positif.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md">
-                    <div class="card-img text-center" >
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg"/>
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg" />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg" />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://i0.wp.com/catatanbunda.id/wp-content/uploads/2021/06/Sangkuriang-1.jpg?resize=1000%2C562&ssl=1" />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png" />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg" />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg"  />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg"  />
-                        <img class="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png" />
+            <div className="row justify-content-center align-items-center">
+                <div className="col-md">
+                    <div className="card-img text-center" >
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg"/>
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg" />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg" />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://i0.wp.com/catatanbunda.id/wp-content/uploads/2021/06/Sangkuriang-1.jpg?resize=1000%2C562&ssl=1" />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png" />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg" />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg"  />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg"  />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png" />
                     </div>
                 </div>
-                <div class="col-md">
-                <div class="card-text text-center">
-                    <p class="fs-5" data-aos="fade-left">Jadilah bagian dari SheTalk dan mulai perjalanan kamu menuju pemahaman yang lebih baik tentang kesehatan reproduksi dan seksual.</p>
-                    <p class="fs-5" data-aos="fade-left">Bergabunglah sekarang untuk diskusi, belajar, dan berbagi pengalaman. Mari kita jaga kesehatan reproduksi dan seksual kita bersama-sama!</p>
+                <div className="col-md">
+                <div className="card-text text-center">
+                    <p className="fs-5" data-aos="fade-left">Jadilah bagian dari SheTalk dan mulai perjalanan kamu menuju pemahaman yang lebih baik tentang kesehatan reproduksi dan seksual.</p>
+                    <p className="fs-5" data-aos="fade-left">Bergabunglah sekarang untuk diskusi, belajar, dan berbagi pengalaman. Mari kita jaga kesehatan reproduksi dan seksual kita bersama-sama!</p>
                 </div>
                 </div>
             </div>
             
-            <div class="card" data-aos="zoom-in">
-                <div class="row align-content-auto justify-content-center">
-                    <div class="col-md text-center" style={{padding: '46px'}}>
-                    <h3 class="card-text fs-2" >Curhat Aman Sehat</h3>
+            <div className="card" data-aos="zoom-in">
+                <div className="row align-content-auto justify-content-center">
+                    <div className="col-md text-center" style={{padding: '46px'}}>
+                    <h3 className="card-text fs-2" >Curhat Aman Sehat</h3>
                     </div>
-                    <div class="col-md text-center" style={{padding: '46px'}}>
+                    <div className="col-md text-center" style={{padding: '46px'}}>
                         <Button variant="danger" className='fs-6' size='lg' onClick={handleModalShow}>
                             Gabung
                         </Button> 
@@ -101,28 +101,28 @@ function LandingPage() {
             </div>
 
             <div className='card-footer' style={{margin:'12px'}}>
-                <div class="row">
-                    <div class="col">
-                        <div class="card-body">
-                        <img class="img-fluid" src={shetalk}/>
+                <div className="row">
+                    <div className="col">
+                        <div className="card-body">
+                        <img className="img-fluid" src={shetalk}/>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card-body">
-                        <img class="img-fluid" src={email}/>
-                        <small class="card-text text-muted">shetalkinfo@gmail.com</small>
+                    <div className="col">
+                        <div className="card-body">
+                        <img className="img-fluid" src={email}/>
+                        <small className="card-text text-muted">shetalkinfo@gmail.com</small>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card-body">
-                        <img class="img-fluid" src={instagram}/>
-                        <small class="card-text text-muted">@shetalk</small>
+                    <div className="col">
+                        <div className="card-body">
+                        <img className="img-fluid" src={instagram}/>
+                        <small className="card-text text-muted">@shetalk</small>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card-body">
-                        <img class="img-fluid" src={tiktok}/>
-                        <small class="card-text text-muted">SheTalk</small>
+                    <div className="col">
+                        <div className="card-body">
+                        <img className="img-fluid" src={tiktok}/>
+                        <small className="card-text text-muted">SheTalk</small>
                         </div>
                     </div>
                 </div>
