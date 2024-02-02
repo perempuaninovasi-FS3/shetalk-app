@@ -3,6 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import SelectTopics from './SelectTopik';
 import { Form } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ModalComponent = () => {
   const [show, setShow] = useState(false);
@@ -17,12 +20,11 @@ const ModalComponent = () => {
 
   return (
     <>
-
       <Button onClick={handleShow} className='border-0 fw-bold py-2' style={{ backgroundColor: '#43d7c2', marginBottom: '8px', fontSize: '80%'}}>
         Mulai Diskusi Baru
       </Button>
 
-      <Modal show={show} onHide={handleClose} size="lg">
+      <Modal show={show} onHide={handleClose} size="xl">
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
 
@@ -66,7 +68,23 @@ const ModalComponent = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                   <Form.Label></Form.Label>
-                  <Form.Control as="textarea" placeholder="katakan sesuatu.." rows={3} />
+                  <CKEditor
+                    editor={ ClassicEditor }
+                    data="<p>ketik disini...</p>"
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event ) => {
+                        console.log( event );
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        // console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        // console.log( 'Focus.', editor );
+                    } }
+                />
                 </Form.Group>
               </Form>
             </div>
