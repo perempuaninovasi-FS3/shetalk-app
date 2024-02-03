@@ -12,12 +12,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Comment, {
         foreignKey: "user_id",
-        as: "Comment",
+        as: "comments",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
       User.hasMany(models.Post, {
         foreignKey: "user_id",
+        as: "posts",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
