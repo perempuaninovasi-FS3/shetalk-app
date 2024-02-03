@@ -5,10 +5,23 @@
 const express = require("express");
 const router = express.Router();
 
+const commentController = require("../controllers/Comments/commentController");
+const verifyAuthMiddleware = require("../middlewares/verifyAuth");
 const verifyApiKeyMiddleware = require("../middlewares/verifyApiKey");
+const checkRoleMiddleware = require("../middlewares/checkRole");
+const validator = require("../validators/");
+// [api/comment?post_id={id post}]
+router.get("/", verifyApiKeyMiddleware, commentController.get_comment);
 
-// [api/posts?page=1{for paginate}]
-router.get("/", function (req, res) {
-  
-});
+// [api/comment?post_id={id post}]
+router.post(
+  "/",
+  [
+    verifyApiKeyMiddleware,
+    verifyAuthMiddleware,
+    checkRoleMiddleware("admin,ahli"),
+    validator.commentValidator("create"),
+  ],
+  commentController.create_new_comment
+);
 module.exports = router;
