@@ -1,9 +1,10 @@
 const jsonResponse = async (res, params) => {
   const { success, status = 200, message, data = null, otherAttr } = params;
   const structure = {
+    success: success,
     message: message,
   };
-  if (data !== null) {
+  if (data != null) {
     structure.data = data;
   }
   if (otherAttr) {
@@ -11,4 +12,5 @@ const jsonResponse = async (res, params) => {
   }
   return await res.status(status).json(structure);
 };
-module.exports = jsonResponse;
+const exported_modules = { jsonResponse };
+module.exports = exported_modules;
