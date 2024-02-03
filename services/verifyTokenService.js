@@ -1,5 +1,5 @@
+require("dotenv").config();
 const { User } = require("../database/models/");
-
 module.exports = async (req, res, next) => {
   // ini gak wajib ada, untuk itu jatuhnya ke dalam services
   req.token = [];
