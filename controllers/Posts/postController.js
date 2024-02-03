@@ -1,6 +1,6 @@
 const slug = require("slug");
 const { Post, Topic, User, Avatar } = require("../../database/models/");
-const jsonResponse = require("../../utils/response.utils");
+const { jsonResponse } = require("../../utils/response.utils");
 const hashMake = require("../../utils/hash.utils");
 const { validationResult } = require("express-validator");
 
@@ -47,9 +47,12 @@ const index = async (req, res) => {
       success: true,
       data: posts,
       otherAttr: {
-        totalItems: count,
-        totalPages: totalPages,
-        currentPage: parseInt(page),
+        paginate: {
+          totalItems: count,
+          perPageSizes: parseInt(size),
+          totalPages: totalPages,
+          currentPage: parseInt(page),
+        },
       },
     });
     // return res.status(200).json({
@@ -69,6 +72,43 @@ const index = async (req, res) => {
 };
 const get = async (req, res) => {
   const { slug } = req.params;
+  console.log(slug);
+  const posts = await Post.findOne({
+    attributes: [
+      "id",
+      "title",
+      "slug",
+      "description",
+      "createdAt",
+      "updatedAt",
+    ],
+    where: {
+      slug: slug,
+    },
+    include: [
+      { model: Topic, as: "topic" },
+      { model: Avatar, as: "avatar" },
+      {
+        model: User,
+        as: "user",
+        required: false,
+        attributes: [
+          "id",
+          "name",
+          "profiles",
+          "role",
+          "createdAt",
+          "updatedAt",
+        ],
+      },
+    ],
+  });
+  return await jsonResponse(res, {
+    status: 200,
+    message: "Data posts berhasil di dapatkan!",
+    success: true,
+    data: posts,
+  });
 };
 
 const create_new_post = async (req, res) => {
