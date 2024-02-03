@@ -7,6 +7,7 @@ const path = require("path");
 
 const userController = require("../controllers/User/userController");
 const verifyAuthMiddleware = require("../middlewares/verifyAuth");
+const validator = require("../validators/");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/profiles");
@@ -35,7 +36,7 @@ const upload = multer({
 
 // [api/user/profile/edit]
 router.put(
-  "/profile/edit",
+  "/me/profile/edit",
   [upload.single("profile"), verifyAuthMiddleware],
 
   userController.edit_user_profile
@@ -48,5 +49,9 @@ router
   .get(verifyAuthMiddleware, userController.get_user_);
 
 // [api/user/edit]
-router.put("/edit", verifyAuthMiddleware, userController.edit_user_);
+router.put(
+  "/me/edit",
+  [validator.userValidator("edit_user"), verifyAuthMiddleware],
+  userController.edit_user_
+);
 module.exports = router;
