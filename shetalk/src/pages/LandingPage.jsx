@@ -3,6 +3,8 @@ import { Modal, Button} from 'react-bootstrap';
 import CreateUserGeneral from '../components/molecules/CreateUserGeneral';
 import Logo from '../components/atoms/Logo';
 import tagbrand from '../assets/img/tag-brand.svg';
+import timun from '../assets/img/timun.svg';
+import nawang from '../assets/img/nawang.svg';
 import shetalk from '../assets/img/shetalk.svg';
 import email from '../assets/img/email.svg';
 import instagram from '../assets/img/instagram.svg';
@@ -69,13 +71,13 @@ function LandingPage() {
                 <div className="col-md">
                     <div className="card-img text-center" >
                         <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg"/>
-                        <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg" />
-                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg" />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'70%', padding: '16px'}} src={timun} />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src={nawang} />
                         <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://i0.wp.com/catatanbunda.id/wp-content/uploads/2021/06/Sangkuriang-1.jpg?resize=1000%2C562&ssl=1" />
                         <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png" />
                         <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://production.listennotes.com/podcasts/riri-cerita-anak/legenda-roro-jonggrang-Dv-rF2UiX87-uAxS5F-J_0n.300x300.jpg" />
-                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/originals/84/2b/fe/842bfe22986d9f51671407cb6912e053.jpg"  />
-                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src="https://i.pinimg.com/736x/fa/a8/96/faa8960cfe14a5339c70aa663ccb52e5.jpg"  />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'50%', padding: '16px'}} src={nawang}  />
+                        <img className="img-fluid" data-aos="zoom-in" style={{height:'200px', width:'200px', borderRadius:'70%', padding: '16px'}} src={timun}  />
                         <img className="img-fluid" data-aos="zoom-in" style={{height:'180px', width:'180px', borderRadius:'50%', padding: '16px'}} src="https://e7.pngegg.com/pngimages/606/242/png-clipart-keong-emas-fairy-tale-child-legend-folklore-ma-am-child-leaf.png" />
                     </div>
                 </div>
