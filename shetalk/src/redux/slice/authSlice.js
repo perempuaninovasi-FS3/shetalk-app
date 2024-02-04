@@ -5,14 +5,31 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (userCredentia
     try {
         const request = await axios.post('http://localhost:8000/api/auth/login', userCredentials)
         const response = await request.data;
-        localStorage.setItem('user', JSON.stringify(response));
+        localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('token', response.token);
         return response;
     } catch (error) {
         console.error(error);
         throw error;
     }
-}
-)
+})
+
+export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
+    try {
+        const token = localStorage.getItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        await axios.post('http://localhost:8000/api/auth/logout', null, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return null;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+});
 
 const authSlice = createSlice({
     name: 'auth',
