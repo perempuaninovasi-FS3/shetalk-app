@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../atoms/Logo';
 import { Dropdown } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import { getUser } from '../../utils/userUtils'
 import { logoutUser } from '../../redux/slice/authSlice';
 
 const Navbar = () => {
-  const [user, setUser] = useState(getUser());
+  const user = getUser();
   const selectedAvatar = useSelector(selectSelectedAvatar);
 
   const dispatch = useDispatch();
