@@ -7,8 +7,12 @@ import PostCard from '../components/molecules/PostCard';
 import { fetchPosts } from '../redux/slice/postSlice';
 import { fetchUsers } from '../redux/slice/userSlice';
 import { dummyAvatar } from '../assets';
+import { getUser } from '../utils/userUtils';
 
 const ProfileAhli = () => {
+
+    const user = getUser();
+
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts.posts);
     const users = useSelector((state) => state.user.user);
@@ -50,7 +54,7 @@ const ProfileAhli = () => {
                                     <div className="profile-header bg-info rounded-top">
                                         <div className="row">
                                             <div className="col">
-                                                <img className="profile-avatar" src={dummyAvatar} alt="Profile Avatar" />
+                                                <img className="profile-avatar" src={user.profile} alt="Profile Avatar" />
                                             </div>
                                             <div className="col">
                                                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -73,9 +77,9 @@ const ProfileAhli = () => {
 
                                     {/* Profile Info */}
                                     <div className="profile-info">
-                                        <h1><strong>Ahliiiiii</strong></h1>
-                                        <p>@username</p>
-                                        <p id="bio">biooooooooooooooooooooooooo ahli ahli ahli</p>
+                                        <h1><strong>{user.name}</strong></h1>
+                                        <p>{user.email}</p>
+                                        {/* <p id="bio">biooooooooooooooooooooooooo ahli ahli ahli</p> */}
                                     </div>
 
                                     {/* Tabs */}
