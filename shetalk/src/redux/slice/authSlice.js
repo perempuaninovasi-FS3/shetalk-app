@@ -41,15 +41,16 @@ const authSlice = createSlice({
                 console.log(state.message);
             })
             .addCase(loginUser.rejected, (state, action) => {
-                const error = action.error || action.payload;
                 state.loading = false;
-
-                if (error.message === 'Request failed with status code 403') {
-                    console.log(error.message)
-                    console.log(error.response)
-                } else if (error.request) {
-                    console.error("No response received from the server. The request might not have been sent.");
-                    state.error = "Tidak dapat terhubung ke server.";
+                if (action.error.message === 'Request failed with status code 403') {
+                    state.error = "Login gagal!, karena telah melakukan login sebelumnya!"
+                    console.log(state.error)
+                } else if (action.error.message === 'Request failed with status code 404') {
+                    state.error = "Login gagal!, email tidak di temukan!";
+                    console.log(state.error)
+                } else if (action.error.message === 'Request failed with status code 422') {
+                    state.error = "Password salah!";
+                    console.log(state.error)
                 } else {
                     console.error("An unexpected error occurred:", error.message);
                     state.error = "Terjadi kesalahan yang tidak terduga.";
