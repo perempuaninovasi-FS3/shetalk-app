@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
 export const loginUser = createAsyncThunk('auth/loginUser', async (userCredentials) => {
     try {
-        const request = await axios.post('http://localhost:8000/api/auth/login', userCredentials)
+        const request = await axios.post(`${API_URL}/api/auth/login`, userCredentials)
         const response = await request.data;
         localStorage.setItem('user', JSON.stringify(response.data));
         localStorage.setItem('token', response.token);
@@ -19,7 +21,7 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
         const token = localStorage.getItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        await axios.post('http://localhost:8000/api/auth/logout', null, {
+        await axios.post(`${API_URL}/api/auth/logout`, null, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
