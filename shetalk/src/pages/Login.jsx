@@ -12,7 +12,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { loading, error } = useSelector((state) => state.auth)
+    const { loading, error } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -93,8 +93,8 @@ function Login() {
                         >
                             {loading ? 'Loading...' : 'Masuk'}
                         </Button>
-                        {error && (
-                            <div className='alert alert-danger' role='alert'>{error}</div>
+                        {error && error.length > 0 && (
+                            <div >{error}</div>
                         )}
                     </Form>
                 </div>
