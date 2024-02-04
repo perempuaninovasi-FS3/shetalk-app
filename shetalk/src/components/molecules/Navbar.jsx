@@ -22,7 +22,7 @@ const Navbar = () => {
               style={{ background: 'none', border: 'none', color: '#FF6565' }}
             >
               <img
-                src={user.profile}
+                src={user.data.profile}
                 alt="Profile"
                 className="rounded-circle me-2"
                 style={{ width: '40px', height: '40px', objectFit: 'cover' }}
