@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { dummyAvatar } from '../../assets';
+import { getUser, getAvatar } from '../../utils/userUtils';
 
 const CommentInput = () => {
+
+  const user = getUser();
+  const avatar = getAvatar();
+
   const [valueComment, setValueComment] = useState('');
 
   const handleChange = (e) => {
@@ -20,7 +24,7 @@ const CommentInput = () => {
 
   return (
     <div className="d-flex align-items-center gap-3 m-md-5 m-2  bg-white ">
-      <img src={dummyAvatar} alt="Profile" className="rounded-circle" style={{ width: '40px', height: '40px' }} />
+      <img src={user ? user.profile : avatar.avatar_img} alt="Profile" className="rounded-circle" style={{ width: '40px', height: '40px' }} />
       <form onSubmit={handleSubmitComment} className="w-100">
         <input type="text" placeholder="Tulis balasan" className=" custome-input border-0 ml-2 w-100  border-bottom " value={valueComment} onChange={handleChange} />
       </form>
