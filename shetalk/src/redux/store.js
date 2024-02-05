@@ -7,6 +7,7 @@ import posts from './slice/postSlice';
 import avatars from './slice/avatarSlice';
 import topics from './slice/topicSlice';
 import auth from './slice/authSlice';
+import comments from './slice/commentSlice'
 
 const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
         posts,
         topics,
         auth,
+        comments,
     },
 });
 

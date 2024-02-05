@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchPostBySlug, selectedPost } from '../redux/slice/postSlice';
-import { dummyAvatar } from '../assets';
+import { fetchCommentsByPostId, getComments } from '../redux/slice/commentSlice';
 import PostCard from '../components/molecules/PostCard';
 import Comment from '../components/atoms/Comment';
 import Navbar from '../components/molecules/Navbar';
@@ -11,15 +11,21 @@ import SideBar from '../components/molecules/Sidebar';
 
 const DetailPost = () => {
 
-  const dispatch = useDispatch();
   const { slug } = useParams();
+  const dispatch = useDispatch();
   const detailPost = useSelector(selectedPost);
-
-  console.log(detailPost)
+  const comments = useSelector(getComments);
 
   useEffect(() => {
     dispatch(fetchPostBySlug(slug));
   }, [dispatch, slug]);
+
+  useEffect(() => {
+    if (detailPost) {
+      dispatch(fetchCommentsByPostId(detailPost.id));
+    }
+  }, [dispatch, detailPost]);
+
 
   if (!detailPost) {
     return <div>Loading...</div>;
@@ -64,8 +70,13 @@ const DetailPost = () => {
 
                   {/* komentar */}
                   <p className="p-3">komentar</p>
-                  <Comment avatar={dummyAvatar} nama="anonim" time="10 menit yang lalu" textComment="Normalnya 7 hari" />
-                  <Comment avatar={dummyAvatar} nama="anonim" time="15 menit yang lalu" textComment="3 hari mungkin" />
+                  {Array.isArray(comments.comments) ? (
+                    comments.comments.map((comment) => (
+                      <Comment key={comment.id} avatar={comment.user.profiles} nama={comment.user.name} time={comment.createdAt} textComment={comment.comment} />
+                    ))
+                  ) : (
+                    <p>Belum ada komentar.</p>
+                  )}
                 </div>
               </div>
             </div>
