@@ -1,12 +1,10 @@
 import CommentInput from '../atoms/CommentInput';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) => {
 
   const [showCommentLocal, setShowCommentLocal] = useState(showComment);
 
-  const navigate = useNavigate();
   const toggleComment = () => {
     setShowCommentLocal(!showCommentLocal);
   };
@@ -27,30 +25,25 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
         </div>
         <div>
           {/* judul dan isi content */}
-          <div onClick={() => navigate('/detail-post')}>
-            <h5 className="custom-text judul-post fw-bold">{judul}</h5>
-            <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{ fontSize: '14px' }}>
-              {topik}
-            </span>
-
-            <span className="pt-md-3  text-content"> {konten}</span>
-          </div>
-          {/* topik */}
+          <h5 className="custom-text judul-post fw-bold">{judul}</h5>
+          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{ fontSize: '14px' }}>
+            {topik}
+          </span>
+          <span className="pt-md-3  text-content"> {konten}</span>
         </div>
 
         <div className="d-flex mt-4 gap-2 justify-content-end">
           {/* save Icon */}
-          <a href="#">
+          <div >
             <svg width="30" height="30" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M24.7917 26.25L17.5 23.0708L10.2083 26.25V7.29167H24.7917M24.7917 4.375H10.2083C9.43478 4.375 8.69291 4.68229 8.14593 5.22927C7.59895 5.77625 7.29166 6.51812 7.29166 7.29167V30.625L17.5 26.25L27.7083 30.625V7.29167C27.7083 6.51812 27.401 5.77625 26.8541 5.22927C26.3071 4.68229 25.5652 4.375 24.7917 4.375Z"
                 fill="#888888"
               />
             </svg>
-          </a>
+          </div>
           {/* comment Icon */}
-          <a
-            href=""
+          <div
             onClick={(e) => {
               e.preventDefault();
               toggleComment();
@@ -65,7 +58,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
                 />
               </g>
             </svg>
-          </a>
+          </div>
         </div>
       </div>
 

@@ -15,7 +15,7 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />} />
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/detail-post' element={<DetailPost />} />
+            <Route path='/post/:slug' element={<DetailPost />} />
             <Route path='/login' element={<Login />} />
             <Route path='/profile-ahli' element={<ProfileAhli />} />
           </Routes>
