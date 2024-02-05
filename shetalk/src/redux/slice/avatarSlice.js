@@ -14,6 +14,10 @@ export const fetchAvatars = createAsyncThunk('avatars/fetchAvatars', async (_, t
     return data.data;
 });
 
+const saveAvatarToSessionStorage = (avatar) => {
+    sessionStorage.setItem('selectedAvatar', JSON.stringify(avatar));
+};
+
 const avatarSlice = createSlice({
     name: 'avatars',
     initialState: {
@@ -25,6 +29,7 @@ const avatarSlice = createSlice({
     reducers: {
         setSelectedAvatar: (state, action) => {
             state.selectedAvatar = action.payload;
+            saveAvatarToSessionStorage(action.payload);
         },
     },
     extraReducers: (builder) => {
@@ -43,7 +48,7 @@ const avatarSlice = createSlice({
     },
 });
 
-export const { setSelectedAvatar, setLoggedInUser } = avatarSlice.actions;
+export const { setSelectedAvatar } = avatarSlice.actions;
 
 export const selectAvatars = (state) => state.avatars.avatars;
 export const selectSelectedAvatar = (state) => state.avatars.selectedAvatar;

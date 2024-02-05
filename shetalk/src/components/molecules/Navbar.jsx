@@ -1,14 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Logo from '../atoms/Logo';
 import { Dropdown } from 'react-bootstrap';
-import { selectSelectedAvatar } from '../../redux/slice/avatarSlice';
-import { getUser } from '../../utils/userUtils'
+import { getUser, getAvatar } from '../../utils/userUtils'
 import { logoutUser } from '../../redux/slice/authSlice';
 
 const Navbar = () => {
   const user = getUser();
-  const selectedAvatar = useSelector(selectSelectedAvatar);
+  const avatar = getAvatar();
 
   const dispatch = useDispatch();
 
@@ -42,10 +41,10 @@ const Navbar = () => {
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          selectedAvatar ? (
+          avatar ? (
             <div className="ml-auto">
               <img
-                src={selectedAvatar.avatar_img}
+                src={avatar.avatar_img}
                 alt="Selected Avatar"
                 className="rounded-circle"
                 style={{ width: '40px', height: '40px', objectFit: 'cover' }}
