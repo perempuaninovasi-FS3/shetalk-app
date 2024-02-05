@@ -1,15 +1,29 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const postSlice = createSlice({
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (_, thunkAPI) => {
+    try {
+        const response = await fetch(`${API_URL}/api/posts`, {
+            headers: {
+                'API_KEY': API_KEY,
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        return data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue({ error: error.message });
+    }
+});
+
+const postsSlice = createSlice({
     name: 'posts',
     initialState: {
         posts: [],
-    },
-    reducers: {
-        setPosts: (state, action) => {
-            state.posts = action.payload;
-        },
+        status: 'idle',
+        error: null,
     },
     extraReducers: (builder) => {
         builder
@@ -22,17 +36,11 @@ const postSlice = createSlice({
             })
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.payload.error;
             });
-    },
+    }
 });
 
-//get all posts
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    const response = await axios.get('https://65a89524219bfa3718673e13.mockapi.io/posts');
-    return response.data;
-});
+export const allPosts = (state) => state.posts.posts;
 
-export const { setPosts } = postSlice.actions;
-export const selectPosts = (state) => state.posts.posts;
-export default postSlice.reducer;
+export default postsSlice.reducer;
