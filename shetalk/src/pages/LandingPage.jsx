@@ -10,7 +10,6 @@ import email from '../assets/img/email.svg';
 import instagram from '../assets/img/instagram.svg';
 import tiktok from '../assets/img/tiktok.svg';
 
-
 function LandingPage() {
     const [showModal, setShowModal] = useState(false);
 

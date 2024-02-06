@@ -3,16 +3,16 @@ import Nav from 'react-bootstrap/Nav';
 
 function NavMobile() {
   const navLinkStyle = {
-    color: 'grey', 
-    textDecoration: 'none', 
+    color: 'grey',
+    textDecoration: 'none',
   };
 
 
 
   return (
-    <Nav variant="underline" defaultActiveKey="#home" className="d-md-none mx-4 h-50">
+    <Nav variant="underline" defaultActiveKey="/dashboard" className="d-md-none justify-content-center h-50 ">
       <Nav.Item>
-        <Nav.Link href="#home" style={navLinkStyle} >
+        <Nav.Link href="/dashboard" style={navLinkStyle} >
           Beranda
         </Nav.Link>
       </Nav.Item>
