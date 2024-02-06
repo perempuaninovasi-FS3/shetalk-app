@@ -27,6 +27,7 @@ function Login() {
                 setEmail('');
                 setPassword('');
                 navigate('/dashboard');
+                alert('Berhasil Login !')
             }
         })
     }
@@ -94,7 +95,7 @@ function Login() {
                             {loading ? 'Loading...' : 'Masuk'}
                         </Button>
                         {error && error.length > 0 && (
-                            <div >{error}</div>
+                            <h6 className='' style={{ color: "red", fontSize: "0.8rem" }}>{error}</h6>
                         )}
                     </Form>
                 </div>
