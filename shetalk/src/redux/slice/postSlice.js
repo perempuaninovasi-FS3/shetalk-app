@@ -28,6 +28,7 @@ export const fetchPostBySlug = createAsyncThunk('posts/fetchPostBySlug', async (
             },
         });
         const data = await response.json();
+        sessionStorage.setItem("detail-post", JSON.stringify(data.data));
         return data.data;
     } catch (error) {
         return thunkAPI.rejectWithValue({ error: error.message });

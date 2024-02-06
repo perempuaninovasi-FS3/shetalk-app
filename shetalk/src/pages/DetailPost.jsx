@@ -22,7 +22,7 @@ const DetailPost = () => {
 
   useEffect(() => {
     if (detailPost) {
-      dispatch(fetchCommentsByPostId(detailPost.id));
+      dispatch(fetchCommentsByPostId());
     }
   }, [dispatch, detailPost]);
 
@@ -70,8 +70,8 @@ const DetailPost = () => {
 
                   {/* komentar */}
                   <p className="p-3">komentar</p>
-                  {Array.isArray(comments.comments) ? (
-                    comments.comments.map((comment) => (
+                  {Array.isArray(comments) ? (
+                    comments.map((comment) => (
                       <Comment key={comment.id} avatar={comment.user.profiles} nama={comment.user.name} time={comment.createdAt} textComment={comment.comment} />
                     ))
                   ) : (
