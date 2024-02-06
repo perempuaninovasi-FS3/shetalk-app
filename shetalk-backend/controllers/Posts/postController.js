@@ -129,6 +129,8 @@ const create_new_post = async (req, res) => {
         .status(422)
         .json({ success: false, message: { errors: errors.array() } });
     }
+    avatar_id = req.body?.avatar_id || req.headers?.avatar_id;
+
     if (
       req.body.hasOwnProperty("avatar_id") ||
       req.headers.hasOwnProperty("avatar_id")
@@ -141,7 +143,6 @@ const create_new_post = async (req, res) => {
         });
       }
     }
-    avatar_id = req.body?.avatar_id || req.headers?.avatar_id;
     if (req.user) {
       user_id = req.user.id;
     }
