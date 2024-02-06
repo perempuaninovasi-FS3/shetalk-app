@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
@@ -33,6 +34,34 @@ export const fetchPostBySlug = createAsyncThunk('posts/fetchPostBySlug', async (
     }
 });
 
+export const createPost = createAsyncThunk('post/createPost', async (post, thunkAPI) => {
+    try {
+        let headers = {
+            'API_KEY': API_KEY,
+            'Content-Type': 'application/json',
+        };
+        const token = localStorage.getItem('token');
+        const avatarString = sessionStorage.getItem('selectedAvatar');
+
+        if (token) {
+            headers.Authorization = `Bearer ${token}`;
+        }
+        if (avatarString) {
+            const avatar = JSON.parse(avatarString);
+            const avatar_id = avatar.id;
+            headers['avatar_id'] = avatar_id;
+        }
+
+        await axios.post(`${API_URL}/api/posts`, post, { headers });
+
+        const fetchPostsData = await thunkAPI.dispatch(fetchPosts());
+        const data = fetchPostsData.payload;
+        return data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue({ error: error.message });
+    }
+});
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
@@ -61,6 +90,15 @@ const postsSlice = createSlice({
             .addCase(fetchPostBySlug.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload.error;
+            })
+            .addCase(createPost.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.posts = action.payload;
+            })
+            .addCase(createPost.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload.error;
+                console.log('gabisa')
             });
     }
 });
