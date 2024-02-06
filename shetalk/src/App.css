@@ -197,6 +197,50 @@ body {
   margin: 0;
 }
 
+
+.text-content {
+  color: grey;
+}
+
+/* layar mobile */
+
+@media only screen and (max-width: 600px) {
+  .judul-post {
+    font-size: 17px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .content-dashboard {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .text-content {
+    font-size: 14px;
+    color: grey;
+  }
+
+  #listKonten {
+
+    width: 95%;
+  }
+}
+
+
+/* layar desktop */
+@media (min-width: 992px) {
+  .sidebar-desktop {
+    position: fixed;
+  }
+
+  .post-desktop {
+    margin-left: 300px;
+  }
+}
+
 /*Landing page*/
 /*part 1*/
 .container-fluid {
@@ -267,46 +311,8 @@ body {
 
 .fs-2 {
   color: white;
+}
 
-  .text-content {
-    color: grey;
-  }
-
-  /* layar mobile */
-
-  @media only screen and (max-width: 600px) {
-    .judul-post {
-      font-size: 17px;
-    }
-
-    .container {
-      padding: 10px;
-    }
-
-    .content-dashboard {
-      padding-top: 0;
-      margin-top: 0;
-    }
-
-    .text-content {
-      font-size: 14px;
-      color: grey;
-    }
-
-    #listKonten {
-
-      width: 95%;
-    }
-  }
-
-
-  /* layar desktop */
-  @media (min-width: 992px) {
-    .sidebar-desktop {
-      position: fixed;
-    }
-
-    .post-desktop {
-      margin-left: 300px;
-    }
-  }
+.text-content {
+  color: grey;
+}
