@@ -5,7 +5,6 @@ import Dashboard from './pages/Dashboard';
 import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import ProfileAhli from './pages/ProfileAhli';
-import ProfileAhli from './pages/ProfileAhli';
 import DetailPost from './pages/DetailPost';
 
 function App() {

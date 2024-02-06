@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../redux/slice/postSlice';
 import { allTopics } from '../../redux/slice/topicSlice';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ModalComponent = () => {
 
@@ -105,13 +107,33 @@ const ModalComponent = () => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label></Form.Label>
-                    <Form.Control
+                    {/* <Form.Control
                       as="textarea"
                       name="description"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="katakan sesuatu.."
                       rows={3}
+                    /> */}
+
+                    <CKEditor
+                      editor={ClassicEditor}
+                      data="<p>ketik disini...</p>"
+                      onReady={editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log('Editor is ready to use!', editor);
+                      }}
+                      onBlur={(event, editor) => {
+                        // console.log( 'Blur.', editor );
+                      }}
+                      onFocus={(event, editor) => {
+                        // console.log( 'Focus.', editor );
+                      }}
+                      as="textarea"
+                      name="description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="katakan sesuatu.."
                     />
                   </Form.Group>
                 </Form>

@@ -10,9 +10,13 @@ lerna-debug.log*
 package-lock.json
 node_modules
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .env
 >>>>>>> a-fe
+=======
+.env
+>>>>>>> d-fe
 dist
 dist-ssr
 *.local
