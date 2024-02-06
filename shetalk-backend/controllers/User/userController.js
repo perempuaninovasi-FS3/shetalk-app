@@ -62,6 +62,7 @@ const get_user_ = async (req, res) => {
         role: req.user.role,
         profile: req.user.profiles,
         sertifikat: req.user.sertifikat,
+        total_answered: req.user.total_answered,
       },
     });
   } catch (error) {
@@ -106,10 +107,10 @@ const edit_user_ = async (req, res) => {
         });
       }
       if (newPassword.length < 6) {
-          return await res.status(422).json({
-            success: false,
-            message: "Password minimal 6 karakter!",
-          });
+        return await res.status(422).json({
+          success: false,
+          message: "Password minimal 6 karakter!",
+        });
       }
       const confirmationNewPassword = req.body.confirmation_new_password;
       if (newPassword != confirmationNewPassword) {

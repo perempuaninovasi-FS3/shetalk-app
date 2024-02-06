@@ -44,8 +44,11 @@ module.exports = (sequelize, DataTypes) => {
       total_answered: {
         type: DataTypes.VIRTUAL,
         get() {
-          if (this.Comment && this.Comment.length) {
-            return this.Comment.length;
+          if (
+            this.getDataValue("comments") &&
+            this.getDataValue("comments").length
+          ) {
+            return this.getDataValue("comments").length;
           } else {
             return 0;
           }
