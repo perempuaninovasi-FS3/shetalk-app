@@ -45,6 +45,26 @@ export const createComment = createAsyncThunk('comment/createComment', async (co
     }
 });
 
+export const deleteComment = createAsyncThunk('comment/deleteComment', async (_, thunkAPI) => {
+    try {
+        const token = localStorage.getItem('token');
+        const comment = JSON.parse(sessionStorage.getItem('selectedComment'));
+        const comment_id = comment.id;
+        await axios.delete(`${API_URL}/api/comment?id=${comment_id}`, {
+            headers: {
+                'API_KEY': API_KEY,
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        });
+        const fetchCommentData = await thunkAPI.dispatch(fetchCommentsByPostId());
+        const data = fetchCommentData.payload;
+        return data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue({ error: error.message });
+    }
+})
+
 const commentSlice = createSlice({
     name: 'comments',
     initialState: {
@@ -70,6 +90,15 @@ const commentSlice = createSlice({
                 state.comments = action.payload;
             })
             .addCase(createComment.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload.error;
+                console.log('gabisa')
+            })
+            .addCase(deleteComment.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.comments = action.payload;
+            })
+            .addCase(deleteComment.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload.error;
                 console.log('gabisa')

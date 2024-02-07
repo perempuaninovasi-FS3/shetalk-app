@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchPostBySlug, selectedPost } from '../redux/slice/postSlice';
-import { fetchCommentsByPostId, getComments } from '../redux/slice/commentSlice';
+import { fetchCommentsByPostId, getComments, deleteComment } from '../redux/slice/commentSlice';
 import PostCard from '../components/molecules/PostCard';
 import Comment from '../components/atoms/Comment';
 import Navbar from '../components/molecules/Navbar';
@@ -19,6 +19,7 @@ const DetailPost = () => {
   const user = getUser();
 
   const [selectedComment, setSelectedComment] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchPostBySlug(slug));
@@ -37,6 +38,19 @@ const DetailPost = () => {
   const handleCommentClick = (comment) => {
     sessionStorage.setItem('selectedComment', JSON.stringify(comment));
     setSelectedComment(comment);
+  };
+
+  const handleDeleteComment = () => {
+    setLoading(true);
+    dispatch(deleteComment())
+      .then(() => {
+        setLoading(false);
+        alert('Komentar berhasil dihapus!');
+      })
+      .catch((error) => {
+        setLoading(false)
+        console.log('Error deleting comment:', error);
+      });
   };
 
   const loggedInUserId = user.id;
@@ -96,7 +110,10 @@ const DetailPost = () => {
 
                         />
                         {(selectedComment && loggedInUserId === selectedCommentUserId && selectedComment.id === comment.id) && (
-                          <button className="btn btn-danger">Hapus</button>
+                          <div>
+                            <button className="btn btn-danger" onClick={handleDeleteComment}>Hapus</button>
+                            <div>{loading ? 'Loading...' : ' '}</div>
+                          </div>
                         )}
                       </div>
                     ))
