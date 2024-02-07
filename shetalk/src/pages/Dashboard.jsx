@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { allPosts } from '../redux/slice/postSlice';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
-import { dummyAvatar } from '../assets';
 import PostCard from '../components/molecules/PostCard';
-import { fetchPosts } from '../redux/slice/postSlice';
-import { fetchUsers } from '../redux/slice/userSlice';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.posts);
-  const users = useSelector((state) => state.user.user);
 
-  useEffect(() => {
-    dispatch(fetchPosts());
-    dispatch(fetchUsers());
-  }, [dispatch]);
+  const posts = useSelector(allPosts);
 
   return (
     <>
@@ -31,12 +24,22 @@ const Dashboard = () => {
               </div>
               <div className="col-md-9 post-desktop">
                 {posts ? (
-                  posts.map((post) => {
-                    const user = Array.isArray(users) ? users.find((user) => user.id === post.user_id) : null;
-                    return <PostCard key={post.id} avatar={user ? user.profile : dummyAvatar} nama={user ? user.username : 'Anonim'} tanggal={post.createdAt} judul={post.title} konten={post.description} topik={post.category} />;
-                  })
+                  posts.map((post) => (
+                    <div key={post.id}>
+                      <Link to={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
+                        <PostCard
+                          avatar={post.user ? post.user.profiles : post.avatar.avatar_img}
+                          nama={post.user ? post.user.name : post.avatar.avatar_name}
+                          tanggal={post.createdAt}
+                          judul={post.title}
+                          konten={<div dangerouslySetInnerHTML={{ __html: post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
+                          topik={post.topic.name}
+                        />
+                      </Link>
+                    </div>
+                  ))
                 ) : (
-                  <p>Loading...</p>
+                  <div>Loading...</div>
                 )}
               </div>
             </div>

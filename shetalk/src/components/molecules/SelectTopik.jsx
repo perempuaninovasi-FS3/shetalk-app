@@ -1,12 +1,12 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { selectTopics } from '../../redux/slice/topicSlice';
+import { allTopics } from '../../redux/slice/topicSlice';
 
 
 function SelectTopics() {
 
-  const topics = useSelector(selectTopics);
+  const topics = useSelector(allTopics);
 
   return (
     <Form>

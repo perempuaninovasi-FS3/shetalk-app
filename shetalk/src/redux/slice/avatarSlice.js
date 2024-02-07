@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:8000/api/avatars';
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
 export const fetchAvatars = createAsyncThunk('avatars/fetchAvatars', async (_, thunkAPI) => {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/api/avatars`, {
         headers: {
             'API_KEY': API_KEY,
             'Content-Type': 'application/json',
@@ -13,6 +13,10 @@ export const fetchAvatars = createAsyncThunk('avatars/fetchAvatars', async (_, t
     const data = await response.json();
     return data.data;
 });
+
+const saveAvatarToSessionStorage = (avatar) => {
+    sessionStorage.setItem('selectedAvatar', JSON.stringify(avatar));
+};
 
 const avatarSlice = createSlice({
     name: 'avatars',
@@ -25,6 +29,7 @@ const avatarSlice = createSlice({
     reducers: {
         setSelectedAvatar: (state, action) => {
             state.selectedAvatar = action.payload;
+            saveAvatarToSessionStorage(action.payload);
         },
     },
     extraReducers: (builder) => {
@@ -43,7 +48,7 @@ const avatarSlice = createSlice({
     },
 });
 
-export const { setSelectedAvatar, setLoggedInUser } = avatarSlice.actions;
+export const { setSelectedAvatar } = avatarSlice.actions;
 
 export const selectAvatars = (state) => state.avatars.avatars;
 export const selectSelectedAvatar = (state) => state.avatars.selectedAvatar;

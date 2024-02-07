@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:8000/api/topics';
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
 export const fetchTopics = createAsyncThunk('topics/fetchTopics', async (_, thunkAPI) => {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${API_URL}/api/topics`, {
             headers: {
                 'API_KEY': API_KEY,
                 'Content-Type': 'application/json',
@@ -42,6 +42,6 @@ const topicsSlice = createSlice({
     },
 });
 
-export const selectTopics = (state) => state.topics.topics;
+export const allTopics = (state) => state.topics.topics;
 
 export default topicsSlice.reducer;

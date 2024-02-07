@@ -11,7 +11,7 @@ const Comment = ({ avatar, nama, time, textComment }) => {
         <div>
           <div className="d-flex align-items-center gap-3 mb-2">
             <p className="mb-0 fw-semibold custom-text fs-6">{nama}</p>
-            <p className="mb-0 text-muted" style={{fontSize: '12px'}}>{time}</p>
+            <p className="mb-0 text-muted" style={{ fontSize: '12px' }}>{time}</p>
           </div>
           <div>
             <p className="text-muted">{textComment}</p>
