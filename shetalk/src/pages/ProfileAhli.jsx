@@ -1,54 +1,66 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal, Tab, Tabs, Form } from 'react-bootstrap';
+import { Button, Modal, Form } from 'react-bootstrap';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
-import { fetchPosts } from '../redux/slice/postSlice';
-import { fetchUsers } from '../redux/slice/userSlice';
-import { dummyAvatar } from '../assets';
-import { getUser } from '../utils/userUtils';
+import { getUser, setUser } from '../utils/userUtils';
+import { editUser } from '../redux/slice/userSlice';
 
 const ProfileAhli = () => {
     const user = getUser();
     const dispatch = useDispatch();
-    const posts = useSelector((state) => state.posts.posts);
-    const users = useSelector((state) => state.user.user);
+
+    // const posts = useSelector((state) => state.posts.posts);
+    // const users = useSelector((state) => state.user.user);
+
     const [activeTab, setActiveTab] = useState('tab1');
     const [activeTabModal, setActiveTabModal] = useState('edit-data');
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+        setEmail(user.email);
+        setName(user.name);
+    };
     const handleLink = (link) => { setActiveTabModal(link) };
-
-    useEffect(() => {
-        dispatch(fetchPosts());
-        dispatch(fetchUsers());
-    }, [dispatch]);
 
     const showTab = (tabId) => {
         setActiveTab(tabId);
     };
 
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [recent_password, setRecent_password] = useState('');
+    const [new_password, setNew_password] = useState('');
+    const [confirmation_new_password, setConfirmation_new_password] = useState('');
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // let post = { title, description, topic_id };
+        let edit = { email, name };
 
-        // try {
-        //   await dispatch(createPost(post));
-        //   setTitle('');
-        //   setDescription('');
-        //   setTopic_id('');
-        //   handleClose();
-        //   alert('Berhasil membuat postingan');
-        // } catch (error) {
-        //   console.error('Gagal membuat postingan:', error);
-        // } finally {
-        //   setLoading(false);
-        // }
+        if (recent_password && new_password && confirmation_new_password) {
+            edit = { ...edit, recent_password, new_password, confirmation_new_password };
+        }
+
+        try {
+            await dispatch(editUser(edit));
+            setUser({ ...user, email, name });
+            setEmail('');
+            setName('');
+            setRecent_password('');
+            setNew_password('');
+            setConfirmation_new_password('');
+            handleClose();
+            alert('Berhasil edit profile');
+        } catch (error) {
+            console.error('Gagal edit profile:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -105,7 +117,7 @@ const ProfileAhli = () => {
                                     <hr className="tab-divider" id="active-tab-line" />
                                     <div id="tab1" className={`tab-content ${activeTab === 'tab1' ? 'active' : ''}`}>
                                         <div id="ahliPost">
-                                            {posts ? (
+                                            {/* {posts ? (
                                                 posts.map((post) => {
                                                     const user = Array.isArray(users) ? users.find((user) => user.id === post.user_id) : null;
                                                     return (
@@ -122,7 +134,7 @@ const ProfileAhli = () => {
                                                 })
                                             ) : (
                                                 <p>Loading...</p>
-                                            )}
+                                            )} */}
                                         </div>
                                     </div>
                                     <div id="tab2" className={`tab-content ${activeTab === 'tab2' ? 'active' : ''}`}>
@@ -163,30 +175,54 @@ const ProfileAhli = () => {
 
                     {activeTabModal === 'edit-data' && (
                         <div className="p-3">
-                            <Form.Group controlId="formBasicName">
-                                <Form.Label>Nama ({user.name})</Form.Label>
-                                <Form.Control type="text" placeholder="Masukkan nama baru" />
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Label>Alamat email ({user.email})</Form.Label>
-                                <Form.Control type="email" placeholder="Masukkan email baru" />
-                            </Form.Group>
+                            <Form>
+                                <Form.Group controlId="formBasicName">
+                                    <Form.Label>Nama ({user.name})</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Masukkan nama baru"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Alamat email ({user.email})</Form.Label>
+                                    <Form.Control
+                                        type="email"
+                                        placeholder="Masukkan email baru"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)} />
+                                </Form.Group>
+                            </Form>
                         </div>
                     )}
                     {activeTabModal === 'edit-password' && (
                         <div className="p-3">
-                            <Form.Group controlId="formOldPassword">
-                                <Form.Label>Password lama</Form.Label>
-                                <Form.Control type="password" placeholder="Masukkan password yang masih anda gunakan" />
-                            </Form.Group>
-                            <Form.Group controlId="formNewPassword">
-                                <Form.Label>Password baru</Form.Label>
-                                <Form.Control type="password" placeholder="Masukkan password baru" />
-                            </Form.Group>
-                            <Form.Group controlId="formConfirmPassword">
-                                <Form.Label>Konfirmasi password baru</Form.Label>
-                                <Form.Control type="password" placeholder="Masukkan lagi password baru anda" />
-                            </Form.Group>
+                            <Form>
+                                <Form.Group controlId="formOldPassword">
+                                    <Form.Label>Password lama</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Masukkan password yang masih anda gunakan"
+                                        value={recent_password}
+                                        onChange={(e) => setRecent_password(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group controlId="formNewPassword">
+                                    <Form.Label>Password baru</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Masukkan password baru"
+                                        value={new_password}
+                                        onChange={(e) => setNew_password(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group controlId="formConfirmPassword">
+                                    <Form.Label>Konfirmasi password baru</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Masukkan lagi password baru anda"
+                                        value={confirmation_new_password}
+                                        onChange={(e) => setConfirmation_new_password(e.target.value)} />
+                                </Form.Group>
+                            </Form>
                         </div>
                     )}
                     {activeTabModal === 'edit-photo' && (
@@ -199,10 +235,12 @@ const ProfileAhli = () => {
                                     style={{ width: '12rem', height: '12rem', margin: '0' }} />
                             </div>
                             <div style={{ padding: '3rem' }}>
-                                <Form.Group>
-                                    <Form.Label>Masukkan foto baru anda disini:</Form.Label>
-                                    <Form.Control type='file' />
-                                </Form.Group>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Label>Masukkan foto baru anda disini:</Form.Label>
+                                        <Form.Control type='file' />
+                                    </Form.Group>
+                                </Form>
                             </div>
                         </div>
                     )}
