@@ -32,7 +32,7 @@ const Dashboard = () => {
                           nama={post.user ? post.user.name : post.avatar.avatar_name}
                           tanggal={post.createdAt}
                           judul={post.title}
-                          konten={post.description}
+                          konten={<div dangerouslySetInnerHTML={{ __html: post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
                           topik={post.topic.name}
                         />
                       </Link>

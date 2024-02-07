@@ -200,6 +200,7 @@ body {
 
 .text-content {
   color: grey;
+  margin: 0 !important;
 }
 
 /* layar mobile */
@@ -219,7 +220,6 @@ body {
   }
 
   .text-content {
-    font-size: 14px;
     color: grey;
   }
 

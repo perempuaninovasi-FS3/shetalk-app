@@ -62,7 +62,7 @@ const DetailPost = () => {
                     nama={detailPost.user ? detailPost.user.name : detailPost.avatar.avatar_name}
                     tanggal={detailPost.createdAt}
                     judul={detailPost.title}
-                    konten={detailPost.description}
+                    konten={<div dangerouslySetInnerHTML={{ __html: detailPost.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
                     topik={detailPost.topic.name}
                     // showComment bernilai default true ketika di detail post
                     showComment={true}

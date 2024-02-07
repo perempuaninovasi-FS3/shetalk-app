@@ -107,35 +107,24 @@ const ModalComponent = () => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label></Form.Label>
-                    {/* <Form.Control
-                      as="textarea"
-                      name="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      placeholder="katakan sesuatu.."
-                      rows={3}
-                    /> */}
-
                     <CKEditor
                       editor={ClassicEditor}
-                      data="<p>ketik disini...</p>"
-                      onReady={editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log('Editor is ready to use!', editor);
+                      data={description}
+                      onChange={(event, editor) => {
+                        const data = editor.getData();
+                        setDescription(data);
                       }}
-                      onBlur={(event, editor) => {
-                        // console.log( 'Blur.', editor );
+                      config={{
+                        enterMode: CKEditor.ENTER_BR,
+                        shiftEnterMode: CKEditor.ENTER_BR,
+                        wordWrap: {
+                          shouldNotWrap: true
+                        }
                       }}
-                      onFocus={(event, editor) => {
-                        // console.log( 'Focus.', editor );
-                      }}
-                      as="textarea"
-                      name="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      placeholder="katakan sesuatu.."
                     />
                   </Form.Group>
+                  <p><strong>Preview :</strong></p>
+                  <div dangerouslySetInnerHTML={{ __html: description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />
                 </Form>
               </div>
             )}
