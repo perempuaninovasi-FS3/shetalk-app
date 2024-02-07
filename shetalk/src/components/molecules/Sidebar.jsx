@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalComponent from './ModalComponent';
+import ModalPost from './ModalPost';
 import Menu from '../atoms/Menu';
 import { IconBeranda, IconJawabPertanyaan, IconTersimpan } from '../../assets';
 import SelectTopics from './SelectTopik';
@@ -13,7 +13,7 @@ const SideBar = () => {
     <>
       <div className="d-flex justify-content-md-start   justify-content-center gap-2   ">
         <div>
-          <ModalComponent />
+          <ModalPost />
         </div>
         <div className="d-block d-md-none">
           <SelectTopics />
