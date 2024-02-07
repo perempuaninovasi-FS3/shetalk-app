@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchPostBySlug, selectedPost } from '../redux/slice/postSlice';
@@ -7,6 +7,7 @@ import PostCard from '../components/molecules/PostCard';
 import Comment from '../components/atoms/Comment';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
+import { getUser } from '../utils/userUtils';
 
 
 const DetailPost = () => {
@@ -15,6 +16,9 @@ const DetailPost = () => {
   const dispatch = useDispatch();
   const detailPost = useSelector(selectedPost);
   const comments = useSelector(getComments);
+  const user = getUser();
+
+  const [selectedComment, setSelectedComment] = useState(null);
 
   useEffect(() => {
     dispatch(fetchPostBySlug(slug));
@@ -26,10 +30,17 @@ const DetailPost = () => {
     }
   }, [dispatch, detailPost]);
 
-
   if (!detailPost) {
     return <div>Loading...</div>;
   }
+
+  const handleCommentClick = (comment) => {
+    sessionStorage.setItem('selectedComment', JSON.stringify(comment));
+    setSelectedComment(comment);
+  };
+
+  const loggedInUserId = user.id;
+  const selectedCommentUserId = selectedComment ? selectedComment.user.id : null;
 
   return (
     <>
@@ -71,8 +82,23 @@ const DetailPost = () => {
                   {/* komentar */}
                   <p className="p-3">komentar</p>
                   {Array.isArray(comments) ? (
-                    comments.map((comment) => (
-                      <Comment key={comment.id} avatar={comment.user.profiles} nama={comment.user.name} time={comment.createdAt} textComment={comment.comment} />
+                    comments.map((comment, index) => (
+                      <div
+                        key={index}
+                        className={`comment-container ${selectedComment && selectedComment.id === comment.id ? 'selected' : ''}`}
+                        onClick={() => handleCommentClick(comment)}>
+                        <Comment
+                          key={comment.id}
+                          avatar={comment.user.profiles}
+                          nama={comment.user.name}
+                          time={comment.createdAt}
+                          textComment={comment.comment}
+
+                        />
+                        {(selectedComment && loggedInUserId === selectedCommentUserId && selectedComment.id === comment.id) && (
+                          <button className="btn btn-danger">Hapus</button>
+                        )}
+                      </div>
                     ))
                   ) : (
                     <p>Belum ada komentar.</p>

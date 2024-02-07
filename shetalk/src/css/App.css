@@ -240,3 +240,18 @@ body {
     margin-left: 300px;
   }
 }
+
+
+/* comment */
+
+.comment-container {
+  cursor: pointer;
+}
+
+.comment-container:hover {
+  background-color: #f2f2f2;
+}
+
+.comment-container.selected {
+  background-color: #f2f2f2;
+}
