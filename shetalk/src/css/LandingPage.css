@@ -33,7 +33,7 @@
 
 .text4 {
     color: #FF6565;
-    padding-bottom: 8rem;
+    padding-bottom: 4rem;
 }
 
 .text5 {
@@ -68,4 +68,9 @@
 
 .fs-2 {
     color: white;
+}
+
+.text-content {
+    color: grey;
+    margin-left: 270px;
 }

@@ -26,10 +26,10 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
         <div>
           {/* judul dan isi content */}
           <h5 className="custom-text judul-post fw-bold">{judul}</h5>
-          <span className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{ fontSize: '14px' }}>
+          <div className="text-content">{konten}</div>
+          <p className="custom-btn fw-bold d-inline-flex text-decoration-none text-white active align-items-center px-2  rounded-2" style={{ fontSize: '14px' }}>
             {topik}
-          </span>
-          <span className="pt-md-3  text-content"> {konten}</span>
+          </p>
         </div>
 
         <div className="d-flex mt-4 gap-2 justify-content-end">

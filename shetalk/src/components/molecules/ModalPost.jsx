@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../redux/slice/postSlice';
 import { allTopics } from '../../redux/slice/topicSlice';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ModalComponent = () => {
 
@@ -105,15 +107,24 @@ const ModalComponent = () => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label></Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      name="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      placeholder="katakan sesuatu.."
-                      rows={3}
+                    <CKEditor
+                      editor={ClassicEditor}
+                      data={description}
+                      onChange={(event, editor) => {
+                        const data = editor.getData();
+                        setDescription(data);
+                      }}
+                      config={{
+                        enterMode: CKEditor.ENTER_BR,
+                        shiftEnterMode: CKEditor.ENTER_BR,
+                        wordWrap: {
+                          shouldNotWrap: true
+                        }
+                      }}
                     />
                   </Form.Group>
+                  <p><strong>Preview :</strong></p>
+                  <div dangerouslySetInnerHTML={{ __html: description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />
                 </Form>
               </div>
             )}
