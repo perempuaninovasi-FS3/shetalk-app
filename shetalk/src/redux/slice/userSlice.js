@@ -20,6 +20,22 @@ export const editUser = createAsyncThunk('edit/editUser', async (edit, thunkAPI)
     }
 });
 
+export const editUserProfile = createAsyncThunk('edit/editUserProfile', async (edit, thunkAPI) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.put(`${API_URL}/api/user/me/profile/edit`, edit, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        });
+        const data = response.data;
+        return data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue({ error: error.message });
+    }
+});
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
