@@ -6,6 +6,7 @@ import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import ProfileAhli from './pages/ProfileAhli';
 import DetailPost from './pages/DetailPost';
+import Sertifikat from './pages/Sertifikat';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/post/:slug' element={<DetailPost />} />
             <Route path='/login' element={<Login />} />
             <Route path='/profile-ahli' element={<ProfileAhli />} />
+            <Route path='/sertifikat' element={<Sertifikat/>} />
           </Routes>
         </BrowserRouter>
       </div>
