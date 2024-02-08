@@ -5,7 +5,7 @@ import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { getUser, setUser } from '../utils/userUtils';
-import { editUser } from '../redux/slice/userSlice';
+import { editUser, editUserProfile, fetchUpdatedUserData } from '../redux/slice/userSlice';
 
 const ProfileAhli = () => {
     const user = getUser();
@@ -36,9 +36,9 @@ const ProfileAhli = () => {
     const [recent_password, setRecent_password] = useState('');
     const [new_password, setNew_password] = useState('');
     const [confirmation_new_password, setConfirmation_new_password] = useState('');
+    const [file, setFile] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         setLoading(true);
         let edit = { email, name };
 
@@ -48,6 +48,7 @@ const ProfileAhli = () => {
 
         try {
             await dispatch(editUser(edit));
+
             setUser({ ...user, email, name });
             setEmail('');
             setName('');
@@ -62,6 +63,28 @@ const ProfileAhli = () => {
             setLoading(false);
         }
     };
+
+    const handleEditPhoto = async () => {
+        setLoading(true);
+
+        try {
+            const formData = new FormData();
+            formData.append('profile', file);
+            await dispatch(editUserProfile(formData));
+
+            const updatedUserData = await dispatch(fetchUpdatedUserData());
+            const updateProfile = updatedUserData.payload.profile;
+
+            setUser({ ...user, profile: updateProfile });
+            setFile('');
+            handleClose();
+            alert('Berhasil edit photo profile');
+        } catch (error) {
+            console.error('Gagal edit profile:', error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <>
@@ -238,7 +261,10 @@ const ProfileAhli = () => {
                                 <Form>
                                     <Form.Group>
                                         <Form.Label>Masukkan foto baru anda disini:</Form.Label>
-                                        <Form.Control type='file' />
+                                        <Form.Control
+                                            type="file"
+                                            onChange={(e) => setFile(e.target.files[0])}
+                                        />
                                     </Form.Group>
                                 </Form>
                             </div>
@@ -249,7 +275,13 @@ const ProfileAhli = () => {
                 <Modal.Footer>
                     <Button
                         type="submit"
-                        onClick={handleSubmit}
+                        onClick={() => {
+                            if (activeTabModal === 'edit-data' || activeTabModal === 'edit-password') {
+                                handleSubmit();
+                            } else if (activeTabModal === 'edit-photo') {
+                                handleEditPhoto();
+                            }
+                        }}
                         style={{
                             backgroundColor: '#43d7c2',
                             border: 'none',

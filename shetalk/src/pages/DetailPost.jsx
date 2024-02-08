@@ -18,6 +18,8 @@ const DetailPost = () => {
   const comments = useSelector(getComments);
   const user = getUser();
 
+  console.log(comments)
+
   const [selectedComment, setSelectedComment] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -30,6 +32,8 @@ const DetailPost = () => {
       dispatch(fetchCommentsByPostId());
     }
   }, [dispatch, detailPost]);
+
+  console.log(detailPost)
 
   if (!detailPost) {
     return <div>Loading...</div>;
