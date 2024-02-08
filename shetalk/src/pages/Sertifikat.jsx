@@ -4,6 +4,7 @@ import '../css/sertif.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Logo from '../components/atoms/Logo';
+import logo1 from '../assets/img/logo1.svg';
 
 function Sertifikat() {
 
@@ -53,7 +54,11 @@ function Sertifikat() {
         <div className='content'>
             <div className='col' style={{paddingTop:'4rem'}}>
                 <div className='row'  >
-                    <div className='text-center' style={{paddingTop:'6rem'}}>
+                    {/*logo sertifikat*/}
+                    <div style={{paddingLeft: '8rem'}}>
+                        <img src={logo1}/>
+                    </div>
+                    <div className='text-center'>
                         <Logo/>
                     </div>
                     <h3 className='text9'>SERTIFIKAT   PENGHARGAAN</h3>
