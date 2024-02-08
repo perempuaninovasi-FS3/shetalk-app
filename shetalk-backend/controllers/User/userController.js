@@ -60,7 +60,7 @@ const get_user_ = async (req, res) => {
         name: req.user.name,
         email: req.user.email,
         role: req.user.role,
-        profile: req.user.profiles,
+        profile: req.user.profile,
         sertifikat: req.user.sertifikat,
         total_answered: req.user.total_answered,
       },

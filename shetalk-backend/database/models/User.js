@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         get() {
           return this.profile == null
             ? `${process.env.APP_URL}/image/no-profile.png`
-            : `${process.env.APP_URL}/image/${this.profile}`;
+            : `${process.env.APP_URL}/image/profiles/${this.profile}`;
         },
       },
       total_answered: {
