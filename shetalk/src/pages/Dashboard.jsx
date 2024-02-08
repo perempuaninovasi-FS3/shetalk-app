@@ -28,7 +28,7 @@ const Dashboard = () => {
                     <div key={post.id}>
                       <Link to={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
                         <PostCard
-                          avatar={post.user ? post.user.profiles : post.avatar.avatar_img}
+                          avatar={post.user ? post.user.profiles : post.avatar.avatar_url}
                           nama={post.user ? post.user.name : post.avatar.avatar_name}
                           tanggal={post.createdAt}
                           judul={post.title}

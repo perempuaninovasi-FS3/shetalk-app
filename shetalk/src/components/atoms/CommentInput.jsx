@@ -32,7 +32,7 @@ const CommentInput = ({ postId }) => {
 
   return (
     <div className="d-flex align-items-center gap-3 m-md-5 m-2  bg-white ">
-      <img src={user ? user.profile : avatar.avatar_img} alt="Profile" className="rounded-circle" style={{ width: '40px', height: '40px' }} />
+      <img src={user ? user.profile : avatar.avatar_url} alt="Profile" className="rounded-circle" style={{ width: '40px', height: '40px' }} />
       <form onSubmit={handleSubmitComment} className="w-100">
         <input type="text" placeholder="Tulis balasan" className=" custome-input border-0 ml-2 w-100  border-bottom " value={comment} onChange={(e) => setComment(e.target.value)} />
         <button type="submit">Kirim</button>

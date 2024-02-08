@@ -44,7 +44,7 @@ const Navbar = () => {
           avatar ? (
             <div className="ml-auto">
               <img
-                src={avatar.avatar_img}
+                src={avatar.avatar_url}
                 alt="Selected Avatar"
                 className="rounded-circle"
                 style={{ width: '40px', height: '40px', objectFit: 'cover' }}

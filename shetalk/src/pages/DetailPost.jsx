@@ -53,7 +53,7 @@ const DetailPost = () => {
       });
   };
 
-  const loggedInUserId = user.id;
+  const loggedInUserId = user?.id;
   const selectedCommentUserId = selectedComment ? selectedComment.user.id : null;
 
   return (
@@ -83,7 +83,7 @@ const DetailPost = () => {
 
                   {/* isi detail post */}
                   <PostCard
-                    avatar={detailPost.user ? detailPost.user.profiles : detailPost.avatar.avatar_img}
+                    avatar={detailPost.user ? detailPost.user.profiles : detailPost.avatar.avatar_url}
                     nama={detailPost.user ? detailPost.user.name : detailPost.avatar.avatar_name}
                     tanggal={detailPost.createdAt}
                     judul={detailPost.title}
