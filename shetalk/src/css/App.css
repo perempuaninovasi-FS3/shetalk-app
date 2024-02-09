@@ -16,9 +16,11 @@ body {
   color: #43d7c2 !important;
 }
 
-.custome-color .menu-sidebar:active {
+.active-menu .menu-sidebar {
   color: #43d7c2 !important;
 }
+
+/*  */
 
 #listKonten {
   width: 100%;

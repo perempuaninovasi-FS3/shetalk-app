@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { allPosts } from '../redux/slice/postSlice';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
 
-  const posts = useSelector(allPosts);
-
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
+  const posts = useSelector(allPosts);
+  const location = useLocation();
+
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const topicParam = urlParams.get('topic');
+    if (topicParam) {
+      setFilteredPosts(posts.filter(post => post.topic.id === topicParam));
+      setSelectedTopic(topicParam);
+    } else {
+      setFilteredPosts(posts);
+      setSelectedTopic(null);
+    }
+  }, [location.search, posts]);
+
 
   return (
     <>
@@ -25,8 +42,8 @@ const Dashboard = () => {
                 <SideBar />
               </div>
               <div className="col-md-9 post-desktop">
-                {posts ? (
-                  posts.map((post) => (
+                {filteredPosts.length > 0 ? (
+                  filteredPosts.map((post) => (
                     <div key={post.id}>
                       <Link to={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
                         <PostCard
