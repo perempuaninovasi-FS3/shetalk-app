@@ -7,7 +7,8 @@ const { validationResult } = require("express-validator");
 const md5 = require("js-md5");
 const index = async (req, res) => {
   try {
-    const { page = 1, size = 10 } = req.query;
+    let { page = 1, size = 10 } = req.query;
+    page = parseInt(page) || 1;
     const offset = (page - 1) * size;
     const limit = size;
     const { count, rows: posts } = await Post.findAndCountAll({

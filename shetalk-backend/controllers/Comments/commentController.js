@@ -15,7 +15,8 @@ const get_comment = async (req, res) => {
         data: [],
       });
     }
-    const { page = 1, size = 10 } = req.query;
+    let { page = 1, size = 10 } = req.query;
+    page = parseInt(page) || 1;
     const offset = (page - 1) * size;
     const limit = size;
     const { count, rows: comments } = await Comment.findAndCountAll({
