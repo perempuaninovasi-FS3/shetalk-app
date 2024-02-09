@@ -22,6 +22,9 @@ const DetailPost = () => {
 
   const [selectedComment, setSelectedComment] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = useSelector(state => state.comments.totalPages);
+  const totalComments = useSelector(state => state.comments.totalComments);
 
   useEffect(() => {
     dispatch(fetchPostBySlug(slug));
@@ -29,9 +32,13 @@ const DetailPost = () => {
 
   useEffect(() => {
     if (detailPost) {
-      dispatch(fetchCommentsByPostId());
+      dispatch(fetchCommentsByPostId(currentPage));
     }
-  }, [dispatch, detailPost]);
+  }, [dispatch, detailPost, currentPage]);
+
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+  };
 
   if (!detailPost) {
     return <div>Loading...</div>;
@@ -96,7 +103,7 @@ const DetailPost = () => {
                   />
 
                   {/* komentar */}
-                  <p className="p-3">komentar</p>
+                  <p className="p-3">komentar ({totalComments})</p>
                   {Array.isArray(comments) ? (
                     comments.map((comment, index) => (
                       <div
@@ -122,6 +129,11 @@ const DetailPost = () => {
                   ) : (
                     <p>Belum ada komentar.</p>
                   )}
+                  <div>
+                    Current Page: {currentPage} | Total Pages: {totalPages}
+                    <button onClick={() => handleChangePage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                    <button onClick={() => handleChangePage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+                  </div>
                 </div>
               </div>
             </div>

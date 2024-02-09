@@ -5,19 +5,19 @@ import { fetchPosts } from './postSlice';
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
-export const fetchCommentsByPostId = createAsyncThunk('comments/fetchCommentsByPostId', async (_, thunkAPI) => {
+export const fetchCommentsByPostId = createAsyncThunk('comments/fetchCommentsByPostId', async (currentPage, thunkAPI) => {
     try {
         const post = sessionStorage.getItem('detail-post');
         const postData = JSON.parse(post);
         const post_id = postData.id;
-        const response = await fetch(`${API_URL}/api/comment?post_id=${post_id}`, {
+        const response = await fetch(`${API_URL}/api/comment?post_id=${post_id}&page=${currentPage}`, {
             headers: {
                 'API_KEY': API_KEY,
                 'Content-Type': 'application/json',
             },
         });
         const data = await response.json();
-        return data.data.comments;
+        return data
     } catch (error) {
         return thunkAPI.rejectWithValue({ error: error.message });
     }
@@ -100,6 +100,9 @@ const commentSlice = createSlice({
         status: 'idle',
         error: null,
         allComments: null,
+        currentPage: 1,
+        totalPages: 1,
+        totalComments: null,
     },
     extraReducers: (builder) => {
         builder
@@ -108,7 +111,10 @@ const commentSlice = createSlice({
             })
             .addCase(fetchCommentsByPostId.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.comments = action.payload;
+                state.comments = action.payload.data.comments;
+                state.currentPage = action.payload.paginate.currentPage;
+                state.totalPages = action.payload.paginate.totalPages;
+                state.totalComments = action.payload.paginate.totalItems;
             })
             .addCase(fetchCommentsByPostId.rejected, (state, action) => {
                 state.status = 'failed';
