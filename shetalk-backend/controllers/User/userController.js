@@ -132,7 +132,7 @@ const edit_user_ = async (req, res) => {
           name: req.body.name,
           email: req.body.email,
           role: users.role,
-          profile: users.profiles,
+          profiles: users.profiles,
           sertifikat: users.sertifikat,
         },
       });
