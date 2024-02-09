@@ -38,8 +38,8 @@ export const createComment = createAsyncThunk('comment/createComment', async (co
             }
         });
 
-        const fetchCommentData = await thunkAPI.dispatch(fetchCommentsByPostId());
-        const data = fetchCommentData.payload;
+        const fetchCommentData = await thunkAPI.dispatch(fetchCommentsByPostId(1));
+        const data = fetchCommentData.payload.data.comments;
         return data;
     } catch (error) {
         return thunkAPI.rejectWithValue({ error: error.message });
