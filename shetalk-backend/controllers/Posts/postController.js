@@ -29,7 +29,7 @@ const index = async (req, res) => {
           attributes: [
             "id",
             "name",
-            "profiles",
+            "profile",
             "role",
             "createdAt",
             "updatedAt",
@@ -95,7 +95,7 @@ const get = async (req, res) => {
         attributes: [
           "id",
           "name",
-          "profiles",
+          "profile",
           "role",
           "createdAt",
           "updatedAt",

@@ -29,7 +29,7 @@ const get_comment = async (req, res) => {
           attributes: [
             "id",
             "name",
-            "profiles",
+            "profile",
             "role",
             "createdAt",
             "updatedAt",
@@ -146,7 +146,7 @@ const delete_comment = async (req, res) => {
     });
   }
 };
-const edit_comment = async (req, res) => {};
+const edit_comment = async (req, res) => { };
 const exported_modules = {
   get_comment,
   create_new_comment,

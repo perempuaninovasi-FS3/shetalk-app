@@ -60,7 +60,7 @@ const get_user_ = async (req, res) => {
         name: req.user.name,
         email: req.user.email,
         role: req.user.role,
-        profiles: req.user.profile,
+        profile: req.user.profile,
         sertifikat: req.user.sertifikat,
         total_answered: req.user.total_answered,
       },
@@ -132,7 +132,7 @@ const edit_user_ = async (req, res) => {
           name: req.body.name,
           email: req.body.email,
           role: users.role,
-          profiles: users.profiles,
+          profile: users.profiles,
           sertifikat: users.sertifikat,
         },
       });
