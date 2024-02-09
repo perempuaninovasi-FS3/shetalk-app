@@ -21,11 +21,14 @@ const Dashboard = () => {
   const totalPages = useSelector(state => state.posts.totalPages);
 
   useEffect(() => {
-    dispatch(fetchPosts(currentPage));
+    if (currentPage) {
+      dispatch(fetchPosts(currentPage));
+    }
   }, [dispatch, currentPage]);
 
   const handleChangePage = (page) => {
     setCurrentPage(page);
+    dispatch(fetchPosts(page));
   };
 
   useEffect(() => {
