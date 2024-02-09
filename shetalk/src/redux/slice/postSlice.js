@@ -4,16 +4,15 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (_, thunkAPI) => {
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (currentPage, thunkAPI) => {
     try {
-        const response = await fetch(`${API_URL}/api/posts`, {
+        const response = await axios.get(`${API_URL}/api/posts?page=${currentPage}`, {
             headers: {
                 'API_KEY': API_KEY,
                 'Content-Type': 'application/json',
             },
         });
-        const data = await response.json();
-        return data.data;
+        return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue({ error: error.message });
     }
@@ -70,6 +69,8 @@ const postsSlice = createSlice({
         selectedPost: null,
         status: 'idle',
         error: null,
+        currentPage: 1,
+        totalPages: 1,
     },
     extraReducers: (builder) => {
         builder
@@ -78,7 +79,9 @@ const postsSlice = createSlice({
             })
             .addCase(fetchPosts.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.posts = action.payload;
+                state.posts = action.payload.data;
+                state.currentPage = action.payload.paginate.currentPage;
+                state.totalPages = action.payload.paginate.totalPages;
             })
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.status = 'failed';

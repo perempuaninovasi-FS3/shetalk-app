@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { allPosts } from '../redux/slice/postSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { allPosts, fetchPosts } from '../redux/slice/postSlice';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
@@ -10,11 +10,23 @@ const Dashboard = () => {
 
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
+  const dispatch = useDispatch();
   const posts = useSelector(allPosts);
   const location = useLocation();
 
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const totalPages = useSelector(state => state.posts.totalPages);
+
+  useEffect(() => {
+    dispatch(fetchPosts(currentPage));
+  }, [dispatch, currentPage]);
+
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -33,7 +45,6 @@ const Dashboard = () => {
       setSelectedTopic(null);
     }
   }, [location.search, posts]);
-
 
   return (
     <>
@@ -66,6 +77,11 @@ const Dashboard = () => {
                 ) : (
                   <div>Loading...</div>
                 )}
+                <div>
+                  Current Page: {currentPage} | Total Pages: {totalPages}
+                  <button onClick={() => handleChangePage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                  <button onClick={() => handleChangePage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+                </div>
               </div>
             </div>
           </div>
