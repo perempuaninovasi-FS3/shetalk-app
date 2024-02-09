@@ -53,13 +53,7 @@ const Dashboard = () => {
                     <div key={post.id}>
                       <Link to={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
                         <PostCard
-                          avatar={
-                            post.user && post.user.profile
-                              ? `${API_URL}/image/profiles/${post.user.profile}`
-                              : post.avatar && post.avatar.avatar_url
-                                ? post.avatar.avatar_url
-                                : `${API_URL}/image/no-profile.png`
-                          }
+                          avatar={post.user && post.user.profile ? `${API_URL}/image/profiles/${post.user.profile}` : post.user ? `${API_URL}/image/no-profile.png` : post.avatar.avatar_url}
                           nama={post.user ? post.user.name : post.avatar.avatar_name}
                           tanggal={post.createdAt}
                           judul={post.title}

@@ -25,11 +25,14 @@ function TopicMenu() {
     return (
         <>
             <h4 className="mb-4" style={{ color: 'rgb(70, 70, 70)' }}>Topics</h4>
-            {topics.map((topic, index) => (
-                <div key={topic.id} onClick={() => handleTopicClick(topic.id)} className={isActive(topic.id) ? 'active-menu' : ''}>
-                    <Topics fillColor={getTopicColor(index)} title={topic.name} />
-                </div>
-            ))}
+            {topics
+                .filter((topic) => topic.id !== '1')
+                .map((topic, index) => (
+                    <div key={topic.id} onClick={() => handleTopicClick(topic.id)} className={isActive(topic.id) ? 'active-menu' : ''}>
+                        <Topics fillColor={getTopicColor(index)} title={topic.name} />
+                    </div>
+                ))
+            }
         </>
     )
 }

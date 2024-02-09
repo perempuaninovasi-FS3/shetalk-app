@@ -85,13 +85,7 @@ const DetailPost = () => {
 
                   {/* isi detail post */}
                   <PostCard
-                    avatar={
-                      detailPost.user && detailPost.user.profile
-                        ? `${API_URL}/image/profiles/${detailPost.user.profile}`
-                        : detailPost.avatar && detailPost.avatar.avatar_url
-                          ? detailPost.avatar.avatar_url
-                          : `${API_URL}/image/no-profile.png`
-                    }
+                    avatar={detailPost.user && detailPost.user.profile ? `${API_URL}/image/profiles/${detailPost.user.profile}` : detailPost.user ? `${API_URL}/image/no-profile.png` : detailPost.avatar.avatar_url}
                     nama={detailPost.user ? detailPost.user.name : detailPost.avatar.avatar_name}
                     tanggal={detailPost.createdAt}
                     judul={detailPost.title}

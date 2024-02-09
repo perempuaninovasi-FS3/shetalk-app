@@ -21,18 +21,18 @@ const ModalComponent = () => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [topic_id, setTopic_id] = useState('');
+  const [topic_id, setTopic_id] = useState('1');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setLoading(true);
+
     let post = { title, description, topic_id };
 
     try {
       await dispatch(createPost(post));
       setTitle('');
       setDescription('');
-      setTopic_id('');
+      setTopic_id('1');
       handleClose();
       alert('Berhasil membuat postingan');
     } catch (error) {
@@ -41,6 +41,7 @@ const ModalComponent = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <>
@@ -132,7 +133,7 @@ const ModalComponent = () => {
 
           <Modal.Footer>
             <Form>
-              <Form.Select name="topic id" value={topic_id} onChange={(e) => setTopic_id(e.target.value)}>
+              <Form.Select name="topic id" value={topic_id} onChange={(e) => setTopic_id(e.target.value)} >
                 {topics.map((topic) => (
                   <option key={topic.id} value={topic.id}>
                     {topic.name}
