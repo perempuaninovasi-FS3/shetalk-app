@@ -19,9 +19,15 @@ const Dashboard = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const topicParam = urlParams.get('topic');
+    const filterParam = urlParams.get('filter');
+
     if (topicParam) {
       setFilteredPosts(posts.filter(post => post.topic.id === topicParam));
       setSelectedTopic(topicParam);
+    } else if (filterParam === 'jawab-pertanyaan') {
+      setFilteredPosts(posts.filter(post => !post.description));
+    } else if (filterParam === 'informasi') {
+      setFilteredPosts(posts.filter(post => post.description));
     } else {
       setFilteredPosts(posts);
       setSelectedTopic(null);
