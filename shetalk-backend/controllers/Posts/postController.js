@@ -171,5 +171,27 @@ const create_new_post = async (req, res) => {
     });
   }
 };
-const exported_modules = { index, get, create_new_post };
+const get_user_posts = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userPosts = await Post.findAll({
+      where: {
+        user_id: userId,
+      },
+    });
+    return jsonResponse(res, {
+      status: 200,
+      message: "Data postingan pengguna berhasil didapatkan!",
+      success: true,
+      data: userPosts,
+    });
+  } catch (error) {
+    return jsonResponse(res, {
+      status: 500,
+      message: error.message || "Server error!",
+      success: false,
+    });
+  }
+};
+const exported_modules = { index, get, create_new_post, get_user_posts };
 module.exports = exported_modules;

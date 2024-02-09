@@ -148,10 +148,24 @@ const delete_comment = async (req, res) => {
   }
 };
 const edit_comment = async (req, res) => { };
+const get_comments_user = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userComments = await Comment.findAll({
+      where: { user_id: userId },
+      include: [{ model: Post, as: 'post' }]
+    });
+    res.status(200).json({ success: true, comments: userComments });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
 const exported_modules = {
   get_comment,
   create_new_comment,
   delete_comment,
   edit_comment,
+  get_comments_user,
 };
 module.exports = exported_modules;
