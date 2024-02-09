@@ -18,7 +18,7 @@ const DetailPost = () => {
   const comments = useSelector(getComments);
   const user = getUser();
 
-  console.log(comments)
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
   const [selectedComment, setSelectedComment] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,8 +32,6 @@ const DetailPost = () => {
       dispatch(fetchCommentsByPostId());
     }
   }, [dispatch, detailPost]);
-
-  console.log(detailPost)
 
   if (!detailPost) {
     return <div>Loading...</div>;
@@ -87,7 +85,13 @@ const DetailPost = () => {
 
                   {/* isi detail post */}
                   <PostCard
-                    avatar={detailPost.user ? detailPost.user.profiles : detailPost.avatar.avatar_url}
+                    avatar={
+                      detailPost.user && detailPost.user.profile
+                        ? `${API_URL}/image/profiles/${detailPost.user.profile}`
+                        : detailPost.avatar && detailPost.avatar.avatar_url
+                          ? detailPost.avatar.avatar_url
+                          : `${API_URL}/image/no-profile.png`
+                    }
                     nama={detailPost.user ? detailPost.user.name : detailPost.avatar.avatar_name}
                     tanggal={detailPost.createdAt}
                     judul={detailPost.title}
@@ -107,7 +111,7 @@ const DetailPost = () => {
                         onClick={() => handleCommentClick(comment)}>
                         <Comment
                           key={comment.id}
-                          avatar={comment.user.profiles}
+                          avatar={comment.user.profile ? `${API_URL}/image/profiles/${comment.user.profile}` : `${API_URL}/image/no-profile.png`}
                           nama={comment.user.name}
                           time={comment.createdAt}
                           textComment={comment.comment}

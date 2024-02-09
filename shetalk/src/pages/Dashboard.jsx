@@ -10,6 +10,8 @@ const Dashboard = () => {
 
   const posts = useSelector(allPosts);
 
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
   return (
     <>
       <div className="">
@@ -28,7 +30,13 @@ const Dashboard = () => {
                     <div key={post.id}>
                       <Link to={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
                         <PostCard
-                          avatar={post.user ? post.user.profiles : post.avatar.avatar_url}
+                          avatar={
+                            post.user && post.user.profile
+                              ? `${API_URL}/image/profiles/${post.user.profile}`
+                              : post.avatar && post.avatar.avatar_url
+                                ? post.avatar.avatar_url
+                                : `${API_URL}/image/no-profile.png`
+                          }
                           nama={post.user ? post.user.name : post.avatar.avatar_name}
                           tanggal={post.createdAt}
                           judul={post.title}
