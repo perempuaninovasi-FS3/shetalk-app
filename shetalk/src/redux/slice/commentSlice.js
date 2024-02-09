@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { fetchPosts } from './postSlice';
+import { fetchUserPosts } from './userSlice';
 
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
@@ -66,40 +66,12 @@ export const deleteComment = createAsyncThunk('comment/deleteComment', async (_,
     }
 })
 
-export const fetchAllComments = createAsyncThunk('comments/fetchAllComments', async (_, thunkAPI) => {
-    try {
-        const dataPosts = await thunkAPI.dispatch(fetchPosts());
-        const posts = dataPosts.payload;
-        const commentsWithPosts = [];
-
-        for (const post of posts) {
-            const response = await fetch(`${API_URL}/api/comment?post_id=${post.id}`, {
-                headers: {
-                    'API_KEY': API_KEY,
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-            const comments = data.data.comments.map(comment => ({
-                ...comment,
-                post: post
-            }));
-            commentsWithPosts.push(...comments);
-        }
-
-        return commentsWithPosts;
-    } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
-    }
-});
-
 const commentSlice = createSlice({
     name: 'comments',
     initialState: {
         comments: [],
         status: 'idle',
         error: null,
-        allComments: null,
         currentPage: 1,
         totalPages: 1,
         totalComments: null,
@@ -138,19 +110,9 @@ const commentSlice = createSlice({
                 state.error = action.payload.error;
                 console.log('gabisa')
             })
-            .addCase(fetchAllComments.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.allComments = action.payload;
-            })
-            .addCase(fetchAllComments.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.payload.error;
-                console.log('gabisa')
-            })
     },
 });
 
 export const getComments = (state) => state.comments.comments;
-export const allComments = (state) => state.comments.allComments;
 
 export default commentSlice.reducer; 

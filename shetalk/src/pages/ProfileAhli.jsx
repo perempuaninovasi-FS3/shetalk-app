@@ -5,32 +5,20 @@ import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { getUser, setUser } from '../utils/userUtils';
-import { editUser, editUserProfile, fetchUpdatedUserData } from '../redux/slice/userSlice';
-import { allPosts } from '../redux/slice/postSlice';
-import { allComments, fetchAllComments } from '../redux/slice/commentSlice';
+import { editUser, editUserProfile, fetchUpdatedUserData, allPostsUser, allCommentsUser } from '../redux/slice/userSlice';
 
 const ProfileAhli = () => {
 
     const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
     const dispatch = useDispatch();
     const user = getUser();
-    const posts = useSelector(allPosts);
-    const comments = useSelector(allComments);
+    const posts = useSelector(allPostsUser);
+    const comments = useSelector(allCommentsUser);
 
-    useEffect(() => {
-        const fetchAllCommentsData = async () => {
-            try {
-                await dispatch(fetchAllComments());
-            } catch (error) {
-                console.error('Failed to fetch comments:', error);
-            }
-        };
-        fetchAllCommentsData();
-    }, [dispatch]);
+    console.log(posts)
 
-    const userPosts = posts && posts.filter(post => post.user && post.user.id === user.id);
-    const userComments = comments && comments.filter(comment => comment.user.id === user.id);
-    console.log(userComments)
+    console.log(comments)
+
 
     const [activeTab, setActiveTab] = useState('tab1');
     const [activeTabModal, setActiveTabModal] = useState('edit-data');
@@ -158,7 +146,7 @@ const ProfileAhli = () => {
                                     <hr className="tab-divider" id="active-tab-line" />
                                     <div id="tab1" className={`tab-content ${activeTab === 'tab1' ? 'active' : ''}`}>
                                         <div id="ahliPost">
-                                            {userPosts ? (
+                                            {/* {userPosts ? (
                                                 userPosts.map((post) => {
                                                     return (
                                                         <PostCard
@@ -180,7 +168,7 @@ const ProfileAhli = () => {
                                                 })
                                             ) : (
                                                 <p>Loading...</p>
-                                            )}
+                                            )} */}
                                         </div>
                                     </div>
                                     <div id="tab2" className={`tab-content ${activeTab === 'tab2' ? 'active' : ''}`}>
