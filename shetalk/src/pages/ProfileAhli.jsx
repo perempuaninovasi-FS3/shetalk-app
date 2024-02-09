@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Navbar from '../components/molecules/Navbar';
@@ -6,13 +6,31 @@ import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { getUser, setUser } from '../utils/userUtils';
 import { editUser, editUserProfile, fetchUpdatedUserData } from '../redux/slice/userSlice';
+import { allPosts } from '../redux/slice/postSlice';
+import { allComments, fetchAllComments } from '../redux/slice/commentSlice';
 
 const ProfileAhli = () => {
-    const user = getUser();
-    const dispatch = useDispatch();
 
-    // const posts = useSelector((state) => state.posts.posts);
-    // const users = useSelector((state) => state.user.user);
+    const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+    const dispatch = useDispatch();
+    const user = getUser();
+    const posts = useSelector(allPosts);
+    const comments = useSelector(allComments);
+
+    useEffect(() => {
+        const fetchAllCommentsData = async () => {
+            try {
+                await dispatch(fetchAllComments());
+            } catch (error) {
+                console.error('Failed to fetch comments:', error);
+            }
+        };
+        fetchAllCommentsData();
+    }, [dispatch]);
+
+    const userPosts = posts && posts.filter(post => post.user && post.user.id === user.id);
+    const userComments = comments && comments.filter(comment => comment.user.id === user.id);
+    console.log(userComments)
 
     const [activeTab, setActiveTab] = useState('tab1');
     const [activeTabModal, setActiveTabModal] = useState('edit-data');
@@ -140,27 +158,33 @@ const ProfileAhli = () => {
                                     <hr className="tab-divider" id="active-tab-line" />
                                     <div id="tab1" className={`tab-content ${activeTab === 'tab1' ? 'active' : ''}`}>
                                         <div id="ahliPost">
-                                            {/* {posts ? (
-                                                posts.map((post) => {
-                                                    const user = Array.isArray(users) ? users.find((user) => user.id === post.user_id) : null;
+                                            {userPosts ? (
+                                                userPosts.map((post) => {
                                                     return (
                                                         <PostCard
                                                             key={post.id}
-                                                            avatar={dummyAvatar}
-                                                            nama="Ahli"
-                                                            tanggal="03/12/2023, 21:25:00"
-                                                            judul="Mengenal HIV/AIDS"
-                                                            konten="HIV adalah virus yang menyerang sistem kekebalan tubuh manusia, mengganggu kemampuannya untuk melawan infeksi dan penyakit. Jika tidak diobati, HIV dapat berkembang menjadi AIDS."
-                                                            topik="HIV/AIDS"
+                                                            avatar={
+                                                                post.user && post.user.profile
+                                                                    ? `${API_URL}/image/profiles/${post.user.profile}`
+                                                                    : post.avatar && post.avatar.avatar_url
+                                                                        ? post.avatar.avatar_url
+                                                                        : `${API_URL}/image/no-profile.png`
+                                                            }
+                                                            nama={post.user ? post.user.name : post.avatar.avatar_name}
+                                                            tanggal={post.createdAt}
+                                                            judul={post.title}
+                                                            konten={<div dangerouslySetInnerHTML={{ __html: post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
+                                                            topik={post.topic.name}
                                                         />
                                                     );
                                                 })
                                             ) : (
                                                 <p>Loading...</p>
-                                            )} */}
+                                            )}
                                         </div>
                                     </div>
                                     <div id="tab2" className={`tab-content ${activeTab === 'tab2' ? 'active' : ''}`}>
+                                        <div>comment user</div>
                                     </div>
                                 </div>
                             </div>
