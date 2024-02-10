@@ -10,6 +10,7 @@ import { allTopics } from '../redux/slice/topicSlice';
 import ModalSertif from '../components/molecules/ModalSertif';
 import formatDate from '../utils/dateUtils';
 import UsersComments from '../components/molecules/UsersComments';
+import emailIcons from '../assets/Icons/email.svg';
 
 const ProfileAhli = () => {
 
@@ -126,7 +127,7 @@ const ProfileAhli = () => {
                                     </div>
                                     <div className="profile-info">
                                         <h1><strong>{user.name}</strong></h1>
-                                        <p>{user.email}</p>
+                                        <p><img src={emailIcons} alt='email' style={{ width: '1.5rem' }} /> {user.email}</p>
                                     </div>
                                     <ul className="tabs">
                                         <li className={`tab ${activeTab === 'tab1' ? 'active' : ''}`} onClick={() => showTab('tab1')} data-tab="tab1">
@@ -196,18 +197,21 @@ const ProfileAhli = () => {
                         <div
                             className={`tab d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeTabModal === 'edit-data' ? 'active' : ''}`}
                             onClick={() => handleLink('edit-data')}
+                            style={{ textAlign: 'center' }}
                         >
                             Edit Data
                         </div>
                         <div
                             className={`tab d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeTabModal === 'edit-password' ? 'active' : ''}`}
                             onClick={() => handleLink('edit-password')}
+                            style={{ textAlign: 'center' }}
                         >
                             Edit Password
                         </div>
                         <div
                             className={`tab d-flex text-decoration-none fs-md-5 align-items-center custom-text-a ${activeTabModal === 'edit-photo' ? 'active' : ''}`}
                             onClick={() => handleLink('edit-photo')}
+                            style={{ textAlign: 'center' }}
                         >
                             Edit Foto Profile
                         </div>
@@ -216,7 +220,7 @@ const ProfileAhli = () => {
                     {activeTabModal === 'edit-data' && (
                         <div className="p-3">
                             <Form>
-                                <Form.Group controlId="formBasicName">
+                                <Form.Group className="mb-3" controlId="formBasicName">
                                     <Form.Label>Nama ({user.name})</Form.Label>
                                     <Form.Control
                                         type="text"
@@ -224,7 +228,7 @@ const ProfileAhli = () => {
                                         value={name}
                                         onChange={(e) => setName(e.target.value)} />
                                 </Form.Group>
-                                <Form.Group controlId="formBasicEmail">
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Alamat email ({user.email})</Form.Label>
                                     <Form.Control
                                         type="email"
@@ -238,7 +242,7 @@ const ProfileAhli = () => {
                     {activeTabModal === 'edit-password' && (
                         <div className="p-3">
                             <Form>
-                                <Form.Group controlId="formOldPassword">
+                                <Form.Group className="mb-3" controlId="formOldPassword">
                                     <Form.Label>Password lama</Form.Label>
                                     <Form.Control
                                         type="password"
@@ -246,7 +250,7 @@ const ProfileAhli = () => {
                                         value={recent_password}
                                         onChange={(e) => setRecent_password(e.target.value)} />
                                 </Form.Group>
-                                <Form.Group controlId="formNewPassword">
+                                <Form.Group className="mb-3" controlId="formNewPassword">
                                     <Form.Label>Password baru</Form.Label>
                                     <Form.Control
                                         type="password"
@@ -254,7 +258,7 @@ const ProfileAhli = () => {
                                         value={new_password}
                                         onChange={(e) => setNew_password(e.target.value)} />
                                 </Form.Group>
-                                <Form.Group controlId="formConfirmPassword">
+                                <Form.Group className="mb-3" controlId="formConfirmPassword">
                                     <Form.Label>Konfirmasi password baru</Form.Label>
                                     <Form.Control
                                         type="password"
@@ -266,15 +270,16 @@ const ProfileAhli = () => {
                         </div>
                     )}
                     {activeTabModal === 'edit-photo' && (
-                        <div className="d-flex justify-content-between align-items-center p-3">
-                            <div style={{ padding: '3rem' }}>
+                        <div className="d-md-flex flex-md-row flex-column justify-content-between align-items-center p-3">
+                            <div className="text-center mb-3 mb-md-0" style={{ padding: '1rem' }}>
                                 <p className='text-center'>Foto lama anda</p>
                                 <img
                                     className="profile-avatar"
                                     src={user.profile} alt="Profile Avatar"
-                                    style={{ width: '12rem', height: '12rem', margin: '0' }} />
+                                    style={{ width: '12rem', height: '12rem', margin: '0 auto' }}
+                                />
                             </div>
-                            <div style={{ padding: '3rem' }}>
+                            <div className="text-center" style={{ padding: '1rem' }}>
                                 <Form>
                                     <Form.Group>
                                         <Form.Label>Masukkan foto baru anda disini:</Form.Label>
