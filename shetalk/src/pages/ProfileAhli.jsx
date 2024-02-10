@@ -8,6 +8,7 @@ import { getUser, setUser } from '../utils/userUtils';
 import { editUser, editUserProfile, fetchUpdatedUserData, allPostsUser, allCommentsUser } from '../redux/slice/userSlice';
 import { allTopics } from '../redux/slice/topicSlice';
 import ModalSertif from '../components/molecules/ModalSertif';
+import formatDate from '../utils/dateUtils';
 
 const ProfileAhli = () => {
 
@@ -146,7 +147,7 @@ const ProfileAhli = () => {
                                                             key={post.id}
                                                             avatar={user.profile}
                                                             nama={user.name}
-                                                            tanggal={post.createdAt}
+                                                            tanggal={formatDate(post.createdAt)}
                                                             judul={post.title}
                                                             konten={<div dangerouslySetInnerHTML={{ __html: post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
                                                             topik={topics.find(topic => topic.id === post.topic_id)?.name || 'Unknown'}

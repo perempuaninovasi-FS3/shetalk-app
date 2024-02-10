@@ -5,6 +5,7 @@ import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { Link, useLocation } from 'react-router-dom';
+import formatDate from '../utils/dateUtils';
 
 const Dashboard = () => {
 
@@ -71,7 +72,7 @@ const Dashboard = () => {
                         <PostCard
                           avatar={post.user && post.user.profile ? `${API_URL}/image/profiles/${post.user.profile}` : post.user ? `${API_URL}/image/no-profile.png` : post.avatar.avatar_url}
                           nama={post.user ? post.user.name : post.avatar.avatar_name}
-                          tanggal={post.createdAt}
+                          tanggal={formatDate(post.createdAt)}
                           judul={post.title}
                           konten={<div dangerouslySetInnerHTML={{ __html: post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
                           topik={post.topic.name}

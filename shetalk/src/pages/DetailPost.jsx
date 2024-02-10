@@ -8,6 +8,7 @@ import Comment from '../components/atoms/Comment';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import { getUser } from '../utils/userUtils';
+import formatDate from '../utils/dateUtils';
 
 
 const DetailPost = () => {
@@ -94,7 +95,7 @@ const DetailPost = () => {
                   <PostCard
                     avatar={detailPost.user && detailPost.user.profile ? `${API_URL}/image/profiles/${detailPost.user.profile}` : detailPost.user ? `${API_URL}/image/no-profile.png` : detailPost.avatar.avatar_url}
                     nama={detailPost.user ? detailPost.user.name : detailPost.avatar.avatar_name}
-                    tanggal={detailPost.createdAt}
+                    tanggal={formatDate(detailPost.createdAt)}
                     judul={detailPost.title}
                     konten={<div dangerouslySetInnerHTML={{ __html: detailPost.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
                     topik={detailPost.topic.name}
@@ -115,7 +116,7 @@ const DetailPost = () => {
                           key={comment.id}
                           avatar={comment.user.profile ? `${API_URL}/image/profiles/${comment.user.profile}` : `${API_URL}/image/no-profile.png`}
                           nama={comment.user.name}
-                          time={comment.createdAt}
+                          time={formatDate(comment.createdAt)}
                           textComment={comment.comment}
 
                         />
