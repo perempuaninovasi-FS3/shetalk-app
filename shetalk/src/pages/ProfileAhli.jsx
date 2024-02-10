@@ -51,14 +51,11 @@ const ProfileAhli = () => {
     const handleSubmit = async () => {
         setLoading(true);
         let edit = { email, name };
-
         if (recent_password && new_password && confirmation_new_password) {
             edit = { ...edit, recent_password, new_password, confirmation_new_password };
         }
-
         try {
             await dispatch(editUser(edit));
-
             setUser({ ...user, email, name });
             setEmail('');
             setName('');
@@ -66,7 +63,6 @@ const ProfileAhli = () => {
             setNew_password('');
             setConfirmation_new_password('');
             handleClose();
-            alert('Berhasil edit profile');
         } catch (error) {
             console.error('Gagal edit profile:', error);
         } finally {
@@ -76,19 +72,15 @@ const ProfileAhli = () => {
 
     const handleEditPhoto = async () => {
         setLoading(true);
-
         try {
             const formData = new FormData();
             formData.append('profile', file);
             await dispatch(editUserProfile(formData));
-
             const updatedUserData = await dispatch(fetchUpdatedUserData());
             const updateProfile = updatedUserData.payload.profile;
-
             setUser({ ...user, profile: updateProfile });
             setFile('');
             handleClose();
-            alert('Berhasil edit photo profile');
         } catch (error) {
             console.error('Gagal edit profile:', error);
         } finally {

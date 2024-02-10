@@ -17,7 +17,12 @@ export const editUser = createAsyncThunk('edit/editUser', async (edit, thunkAPI)
         const data = response.data;
         return data;
     } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+        if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+            const validationErrors = error.response.data.message.errors.map(err => err.msg);
+            return thunkAPI.rejectWithValue({ error: validationErrors });
+        } else {
+            return thunkAPI.rejectWithValue({ error: error.message });
+        }
     }
 });
 
@@ -31,9 +36,16 @@ export const editUserProfile = createAsyncThunk('edit/editUserProfile', async (f
             }
         });
         const data = response.data;
+
+        console.log(data)
         return data;
     } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+        if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+            const validationErrors = error.response.data.message.errors.map(err => err.msg);
+            return thunkAPI.rejectWithValue({ error: validationErrors });
+        } else {
+            return thunkAPI.rejectWithValue({ error: error.message });
+        }
     }
 });
 
@@ -93,6 +105,7 @@ const userSlice = createSlice({
         user: [],
         status: 'idle',
         error: null,
+        message: null,
         userPosts: [],
         userComments: [],
     },
@@ -101,20 +114,24 @@ const userSlice = createSlice({
             .addCase(editUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.user = action.payload;
+                state.message = action.payload.message;
+                alert(state.message);
             })
             .addCase(editUser.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload.error;
-                console.log('gabisa')
+                alert(state.error);
             })
             .addCase(editUserProfile.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.user = action.payload;
+                state.message = action.payload.message;
+                alert(state.message);
             })
             .addCase(editUserProfile.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload.error;
-                console.log('gabisa')
+                alert(state.error);
             })
             .addCase(fetchUpdatedUserData.fulfilled, (state, action) => {
                 state.status = 'succeeded';
