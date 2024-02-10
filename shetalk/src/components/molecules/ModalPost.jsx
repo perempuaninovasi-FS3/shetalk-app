@@ -34,7 +34,6 @@ const ModalComponent = () => {
       setDescription('');
       setTopic_id('1');
       handleClose();
-      alert('Berhasil membuat postingan');
     } catch (error) {
       console.error('Gagal membuat postingan:', error);
     } finally {

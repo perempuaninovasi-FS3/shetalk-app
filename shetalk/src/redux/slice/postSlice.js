@@ -42,7 +42,6 @@ export const createPost = createAsyncThunk('post/createPost', async (post, thunk
         };
         const token = localStorage.getItem('token');
         const avatarString = sessionStorage.getItem('selectedAvatar');
-
         if (token) {
             headers.Authorization = `Bearer ${token}`;
         }
@@ -51,14 +50,17 @@ export const createPost = createAsyncThunk('post/createPost', async (post, thunk
             const avatar_id = avatar.id;
             headers['avatar_id'] = avatar_id;
         }
-
-        await axios.post(`${API_URL}/api/posts`, post, { headers });
-
+        const response = await axios.post(`${API_URL}/api/posts`, post, { headers });
         const fetchPostsData = await thunkAPI.dispatch(fetchPosts(1));
-        const data = fetchPostsData.payload.data;
-        return data;
+        const data = fetchPostsData.payload;
+        return { createdPost: response.data, fetchedPost: data };
     } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+        if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+            const validationErrors = error.response.data.message.errors.map(err => err.msg);
+            return thunkAPI.rejectWithValue({ error: validationErrors });
+        } else {
+            return thunkAPI.rejectWithValue({ error: error.message });
+        }
     }
 });
 
@@ -68,6 +70,7 @@ const postsSlice = createSlice({
         posts: [],
         selectedPost: null,
         status: 'idle',
+        message: null,
         error: null,
         currentPage: 1,
         totalPages: 1,
@@ -97,12 +100,14 @@ const postsSlice = createSlice({
             })
             .addCase(createPost.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.posts = action.payload;
+                state.posts = action.payload.fetchedPost.data;
+                state.message = action.payload.createdPost.message;
+                alert(state.message);
             })
             .addCase(createPost.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload.error;
-                console.log('gabisa')
+                alert(state.error);
             });
     }
 });
