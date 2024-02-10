@@ -30,19 +30,23 @@ export const createComment = createAsyncThunk('comment/createComment', async (co
         const post = sessionStorage.getItem('detail-post');
         const postData = JSON.parse(post);
         const post_id = postData.id;
-        await axios.post(`${API_URL}/api/comment?post_id=${post_id}`, comments, {
+        const response = await axios.post(`${API_URL}/api/comment?post_id=${post_id}`, comments, {
             headers: {
                 'API_KEY': API_KEY,
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         });
-
         const fetchCommentData = await thunkAPI.dispatch(fetchCommentsByPostId(1));
-        const data = fetchCommentData.payload.data.comments;
-        return data;
+        const commentData = fetchCommentData.payload.data;
+        return { createdComment: response.data, fetchedComments: commentData };
     } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+        if (error.response && error.response.data && error.response.data.message && error.response.data.message.errors) {
+            const validationErrors = error.response.data.message.errors.map(err => err.msg);
+            return thunkAPI.rejectWithValue({ error: validationErrors });
+        } else {
+            return thunkAPI.rejectWithValue({ error: error.message });
+        }
     }
 });
 
@@ -71,6 +75,7 @@ const commentSlice = createSlice({
     initialState: {
         comments: [],
         status: 'idle',
+        message: null,
         error: null,
         currentPage: 1,
         totalPages: 1,
@@ -94,12 +99,14 @@ const commentSlice = createSlice({
             })
             .addCase(createComment.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.comments = action.payload;
+                state.comments = action.payload.fetchedComments.comments;
+                state.message = action.payload.createdComment.message;
+                alert(state.message);
             })
             .addCase(createComment.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload.error;
-                console.log('gabisa')
+                alert(state.error)
             })
             .addCase(deleteComment.fulfilled, (state, action) => {
                 state.status = 'succeeded';

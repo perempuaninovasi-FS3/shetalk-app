@@ -32,23 +32,24 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
           </p>
         </div>
 
-        <div className="d-flex mt-4 gap-2 justify-content-end">
-          {/* save Icon */}
-          <div >
-            <svg width="30" height="30" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M24.7917 26.25L17.5 23.0708L10.2083 26.25V7.29167H24.7917M24.7917 4.375H10.2083C9.43478 4.375 8.69291 4.68229 8.14593 5.22927C7.59895 5.77625 7.29166 6.51812 7.29166 7.29167V30.625L17.5 26.25L27.7083 30.625V7.29167C27.7083 6.51812 27.401 5.77625 26.8541 5.22927C26.3071 4.68229 25.5652 4.375 24.7917 4.375Z"
-                fill="#888888"
-              />
-            </svg>
+        <div className="d-flex justify-content-between align-items-center">
+          <div style={{ width: '100%' }}> {/* Mengatur lebar maksimum atau lebar penuh */}
+            {/* Tampilan input komentar */}
+            {showCommentLocal && (
+              <div id="comment">
+                <CommentInput />
+              </div>
+            )}
           </div>
-          {/* comment Icon */}
+
           <div
             onClick={(e) => {
               e.preventDefault();
               toggleComment();
             }}
+            style={{ cursor: 'pointer' }} // Menambahkan kursor pointer
           >
+            {/* Icon komentar */}
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="mdi:message-reply">
                 <path
@@ -60,14 +61,9 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
             </svg>
           </div>
         </div>
-      </div>
 
-      {/* tampilan input komentar */}
-      {showCommentLocal && (
-        <div id="comment" className="my-4">
-          <CommentInput />
-        </div>
-      )}
+
+      </div>
     </>
   );
 };
