@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, Dropdown } from 'react-bootstrap';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { getUser, setUser } from '../utils/userUtils';
 import { editUser, editUserProfile, fetchUpdatedUserData, allPostsUser, allCommentsUser } from '../redux/slice/userSlice';
 import { allTopics } from '../redux/slice/topicSlice';
+import ModalSertif from '../components/molecules/ModalSertif';
 
 const ProfileAhli = () => {
 
@@ -23,6 +24,10 @@ const ProfileAhli = () => {
     const [activeTabModal, setActiveTabModal] = useState('edit-data');
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        dispatch(fetchUpdatedUserData());
+    }, [dispatch]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -112,20 +117,17 @@ const ProfileAhli = () => {
                                             </div>
                                             <div className="col">
                                                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                    <Button
-                                                        className='btn-picks-avatar'
-                                                        style={{
-                                                            backgroundColor: '#43d7c2',
-                                                            border: 'none',
-                                                            marginBottom: '14px',
-                                                            marginTop: '180px',
-                                                            padding: '10px',
-                                                            transition: 'transform 0.3s',
-                                                        }}
-                                                        onClick={handleShow}
-                                                    >
-                                                        Edit Profile
-                                                    </Button>
+                                                    <div style={{ border: 'none', marginBottom: '14px', marginTop: '180px', padding: '10px', }}>
+                                                        <Dropdown>
+                                                            <Dropdown.Toggle style={{ backgroundColor: '#43d7c2', border: 'none', color: 'white' }} >
+                                                                Pilihan
+                                                            </Dropdown.Toggle>
+                                                            <Dropdown.Menu>
+                                                                <Dropdown.Item onClick={handleShow}>Edit Profile</Dropdown.Item>
+                                                                <Dropdown.Item><ModalSertif /></Dropdown.Item>
+                                                            </Dropdown.Menu>
+                                                        </Dropdown>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
