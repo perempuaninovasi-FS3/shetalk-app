@@ -23,7 +23,11 @@ const store = configureStore({
 store.dispatch(fetchAvatars());
 store.dispatch(fetchTopics());
 store.dispatch(fetchPosts());
-store.dispatch(fetchUserPosts());
-store.dispatch(fetchUserComments());
+
+const token = localStorage.getItem('token');
+if (token) {
+    store.dispatch(fetchUserPosts());
+    store.dispatch(fetchUserComments());
+}
 
 export default store;

@@ -3,7 +3,7 @@ import bronzeBadge from '../assets/img/bronzebadge.svg';
 import silverBadge from '../assets/img/silverbadge.svg';
 import goldBadge from '../assets/img/goldbadge.svg';
 
-const user = getUser();
+const user = getUser() || {};
 const totalAnswered = user.total_answered || 0;
 
 let badgeName;

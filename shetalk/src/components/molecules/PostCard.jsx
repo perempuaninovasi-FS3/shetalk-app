@@ -1,12 +1,28 @@
 import CommentInput from '../atoms/CommentInput';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { allPosts } from '../../redux/slice/postSlice';
 
 const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) => {
+
+  const posts = useSelector(allPosts);
 
   const [showCommentLocal, setShowCommentLocal] = useState(showComment);
 
   const toggleComment = () => {
     setShowCommentLocal(!showCommentLocal);
+  };
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      navigate(`/post/${posts.slug}`);
+    } else {
+      toggleComment();
+    }
   };
   return (
     <>
@@ -43,10 +59,7 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
           </div>
 
           <div
-            onClick={(e) => {
-              e.preventDefault();
-              toggleComment();
-            }}
+            onClick={handleClick}
             style={{ cursor: 'pointer' }} // Menambahkan kursor pointer
           >
             {/* Icon komentar */}

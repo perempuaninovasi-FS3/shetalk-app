@@ -40,7 +40,7 @@ const Navbar = () => {
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          avatar ? (
+          avatar && (
             <div className="ml-auto">
               <img
                 src={avatar.avatar_url}
@@ -49,7 +49,7 @@ const Navbar = () => {
                 style={{ width: '40px', height: '40px', objectFit: 'cover' }}
               />
             </div>
-          ) : null
+          )
         )}
       </div>
     </div>

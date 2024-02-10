@@ -27,6 +27,11 @@ const CommentInput = ({ postId }) => {
     }
   };
 
+  const isUserLoggedIn = user;
+  if (!isUserLoggedIn) {
+    return null;
+  }
+
   return (
     <div className="d-flex align-items-center gap-3 mt-md-4 mb-md-2 mx-md-4 bg-white">
       <img src={user ? user.profile : avatar.avatar_url} alt="Profile" className="rounded-circle" style={{ width: '40px', height: '40px' }} />
