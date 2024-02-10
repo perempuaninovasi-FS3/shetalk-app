@@ -21,13 +21,6 @@ function LandingPage() {
     return (
         <>
 
-            {/*Sertifikat*/}
-            <Link to="/sertifikat">
-                <Button className='btn'>
-                    Sertifikat
-                </Button>
-            </Link>
-
             {/*Navbar*/}
             <div className="d-flex shadow-sm  px-md-5 py-md-4 px-4 py-2 bg-body-tertiary rounded">
                 <Logo />

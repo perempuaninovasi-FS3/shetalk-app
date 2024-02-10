@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { getUser } from '../../utils/userUtils';
 import { badgeImage, badgeName } from '../../utils/badgeUtils';
@@ -43,16 +44,20 @@ const ModalSertif = () => {
                             <div style={{ color: '#333', fontSize: '16px', lineHeight: '1.5', padding: '2rem' }}>
                                 <p>Selamat ! Anda telah berhasil mendapatkan {badgeName} {badgeImage && <img src={badgeImage} alt="Badge" style={{ width: '50px', height: '50px' }} />}</p>
                                 <p>Anda juga memperoleh sertifikat atas keaktifan anda</p>
-                                <Button className='btn-picks-avatar'
-                                    style={{
-                                        backgroundColor: '#43d7c2',
-                                        border: 'none',
-                                        marginBottom: '14px',
-                                        marginTop: '20px',
-                                        padding: '10px',
-                                        transition: 'transform 0.3s',
-                                        cursor: 'pointer',
-                                    }}>Lihat Sertifikat</Button>
+                                <Link to="/sertifikat">
+                                    <Button className='btn-picks-avatar'
+                                        style={{
+                                            backgroundColor: '#43d7c2',
+                                            border: 'none',
+                                            marginBottom: '14px',
+                                            marginTop: '20px',
+                                            padding: '10px',
+                                            transition: 'transform 0.3s',
+                                            cursor: 'pointer',
+                                        }}>
+                                        Lihat Sertifikat
+                                    </Button>
+                                </Link>
                             </div>
                         )}
                     </Modal.Body>
