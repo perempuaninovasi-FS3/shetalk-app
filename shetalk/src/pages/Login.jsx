@@ -22,14 +22,18 @@ function Login() {
         let userCredentials = {
             email, password
         }
-        dispatch(loginUser(userCredentials)).then((result) => {
-            if (result.payload) {
-                setEmail('');
-                setPassword('');
-                navigate('/dashboard');
-                alert('Berhasil Login !')
-            }
-        })
+        dispatch(loginUser(userCredentials))
+            .then((result) => {
+                if (result.payload && result.payload.success === true) {
+                    setEmail('');
+                    setPassword('');
+                    navigate('/dashboard');
+                }
+                console.log(result.payload)
+            })
+            .catch((error) => {
+                console.error('Login failed:', error);
+            });
     }
 
     return (
