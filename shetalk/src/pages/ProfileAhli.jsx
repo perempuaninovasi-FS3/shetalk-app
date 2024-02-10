@@ -6,6 +6,7 @@ import SideBar from '../components/molecules/Sidebar';
 import PostCard from '../components/molecules/PostCard';
 import { getUser, setUser } from '../utils/userUtils';
 import { editUser, editUserProfile, fetchUpdatedUserData, allPostsUser, allCommentsUser } from '../redux/slice/userSlice';
+import { allTopics } from '../redux/slice/topicSlice';
 
 const ProfileAhli = () => {
 
@@ -14,11 +15,9 @@ const ProfileAhli = () => {
     const user = getUser();
     const posts = useSelector(allPostsUser);
     const comments = useSelector(allCommentsUser);
-
-    console.log(posts)
+    const topics = useSelector(allTopics);
 
     console.log(comments)
-
 
     const [activeTab, setActiveTab] = useState('tab1');
     const [activeTabModal, setActiveTabModal] = useState('edit-data');
@@ -146,29 +145,23 @@ const ProfileAhli = () => {
                                     <hr className="tab-divider" id="active-tab-line" />
                                     <div id="tab1" className={`tab-content ${activeTab === 'tab1' ? 'active' : ''}`}>
                                         <div id="ahliPost">
-                                            {/* {userPosts ? (
-                                                userPosts.map((post) => {
+                                            {posts ? (
+                                                posts.map((post) => {
                                                     return (
                                                         <PostCard
                                                             key={post.id}
-                                                            avatar={
-                                                                post.user && post.user.profile
-                                                                    ? `${API_URL}/image/profiles/${post.user.profile}`
-                                                                    : post.avatar && post.avatar.avatar_url
-                                                                        ? post.avatar.avatar_url
-                                                                        : `${API_URL}/image/no-profile.png`
-                                                            }
-                                                            nama={post.user ? post.user.name : post.avatar.avatar_name}
+                                                            avatar={user.profile}
+                                                            nama={user.name}
                                                             tanggal={post.createdAt}
                                                             judul={post.title}
                                                             konten={<div dangerouslySetInnerHTML={{ __html: post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
-                                                            topik={post.topic.name}
+                                                            topik={topics.find(topic => topic.id === post.topic_id)?.name || 'Unknown'}
                                                         />
                                                     );
                                                 })
                                             ) : (
                                                 <p>Loading...</p>
-                                            )} */}
+                                            )}
                                         </div>
                                     </div>
                                     <div id="tab2" className={`tab-content ${activeTab === 'tab2' ? 'active' : ''}`}>
