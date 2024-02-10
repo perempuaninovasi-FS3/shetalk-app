@@ -9,6 +9,7 @@ import { editUser, editUserProfile, fetchUpdatedUserData, allPostsUser, allComme
 import { allTopics } from '../redux/slice/topicSlice';
 import ModalSertif from '../components/molecules/ModalSertif';
 import formatDate from '../utils/dateUtils';
+import UsersComments from '../components/molecules/UsersComments';
 
 const ProfileAhli = () => {
 
@@ -18,8 +19,6 @@ const ProfileAhli = () => {
     const posts = useSelector(allPostsUser);
     const comments = useSelector(allCommentsUser);
     const topics = useSelector(allTopics);
-
-    console.log(comments)
 
     const [activeTab, setActiveTab] = useState('tab1');
     const [activeTabModal, setActiveTabModal] = useState('edit-data');
@@ -160,7 +159,25 @@ const ProfileAhli = () => {
                                         </div>
                                     </div>
                                     <div id="tab2" className={`tab-content ${activeTab === 'tab2' ? 'active' : ''}`}>
-                                        <div>comment user</div>
+                                        {comments ? (
+                                            comments.map((comment) => {
+                                                return (
+                                                    <UsersComments
+                                                        key={comment.id}
+                                                        tanggal={formatDate(comment.post.createdAt)}
+                                                        judul={comment.post.title}
+                                                        konten={<div dangerouslySetInnerHTML={{ __html: comment.post.description }} style={{ maxWidth: '100%', overflowX: 'hidden', wordWrap: 'break-word' }} />}
+                                                        topik={topics.find(topic => topic.id === comment.post.topic_id)?.name || 'Unknown'}
+                                                        profile={user.profile}
+                                                        username={user.name}
+                                                        tglComment={formatDate(comment.createdAt)}
+                                                        isiComment={comment.comment}
+                                                    />
+                                                );
+                                            })
+                                        ) : (
+                                            <p>Loading...</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
