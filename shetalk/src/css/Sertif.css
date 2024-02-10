@@ -1,0 +1,21 @@
+
+.content {
+    background-image: url(../assets/img/bg-sertif.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1280px;
+    height: 924px;
+}
+.img-logo {
+    height: 32px;
+    width: 32px;
+}
+.text9 {
+    padding-top: 2rem;
+    text-align: center;
+    color: #47D0BD;
+}
+.text10 {
+    padding-top: 4rem;
+    text-align: center;
+}

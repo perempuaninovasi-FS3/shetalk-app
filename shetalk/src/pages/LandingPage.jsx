@@ -9,7 +9,8 @@ import email from '../assets/img/email.svg';
 import instagram from '../assets/img/instagram.svg';
 import tiktok from '../assets/img/tiktok.svg';
 import AvatarPick from '../components/molecules/AvatarPick';
-import '../css/LandingPage.css'
+import '../css/LandingPage.css';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     const [showModal, setShowModal] = useState(false);
@@ -19,6 +20,14 @@ function LandingPage() {
 
     return (
         <>
+
+            {/*Sertifikat*/}
+            <Link to="/sertifikat">
+                <Button className='btn'>
+                    Sertifikat
+                </Button>
+            </Link>
+
             {/*Navbar*/}
             <div className="d-flex shadow-sm  px-md-5 py-md-4 px-4 py-2 bg-body-tertiary rounded">
                 <Logo />
