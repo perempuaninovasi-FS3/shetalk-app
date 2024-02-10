@@ -108,8 +108,9 @@ const DetailPost = () => {
                     comments.map((comment, index) => (
                       <div
                         key={index}
-                        className={`comment-container ${selectedComment && selectedComment.id === comment.id ? 'selected' : ''}`}
-                        onClick={() => handleCommentClick(comment)}>
+                        className={`comment-container ${selectedComment && selectedComment.id === comment.id ? 'selected' : ''} d-flex align-items-center`}
+                        onClick={() => handleCommentClick(comment)}
+                        style={{ position: 'relative', marginBottom: '10px', paddingRight: '50px' }}>
                         <Comment
                           key={comment.id}
                           avatar={comment.user.profile ? `${API_URL}/image/profiles/${comment.user.profile}` : `${API_URL}/image/no-profile.png`}
@@ -119,7 +120,7 @@ const DetailPost = () => {
 
                         />
                         {(selectedComment && loggedInUserId === selectedCommentUserId && selectedComment.id === comment.id) && (
-                          <div>
+                          <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
                             <button className="btn btn-danger" onClick={handleDeleteComment}>Hapus</button>
                             <div>{loading ? 'Loading...' : ' '}</div>
                           </div>
