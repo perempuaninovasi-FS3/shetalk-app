@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { User } = require("../database/models/");
+const { User, Comment } = require("../database/models/");
 module.exports = async (req, res, next) => {
   req.token = [];
   req.user = [];
@@ -10,7 +10,10 @@ module.exports = async (req, res, next) => {
   if (token) {
     try {
       token = token.trim();
-      const user = await User.findOne({ where: { token: token } });
+      const user = await User.findOne({
+        where: { token: token },
+        include: [{ model: Comment, as: "comments" }],
+      });
       if (!user) {
         // User not found
         return res.status(401).json({
@@ -25,6 +28,7 @@ module.exports = async (req, res, next) => {
         role: user.role,
         profile: user.profiles,
         sertifikat: user.sertifikat,
+        total_answered: user.total_answered,
       };
       req.token = token;
       req.user = data;

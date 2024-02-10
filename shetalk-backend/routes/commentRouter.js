@@ -24,4 +24,19 @@ router.post(
   ],
   commentController.create_new_comment
 );
+
+// [api/comment?post_id={id post}]
+router.delete(
+  "/",
+  [
+    verifyApiKeyMiddleware,
+    verifyAuthMiddleware,
+    checkRoleMiddleware("admin,ahli"),
+  ],
+  commentController.delete_comment
+);
+
+// [api/comment/users]
+router.get('/users', verifyAuthMiddleware, commentController.get_comments_user);
+
 module.exports = router;

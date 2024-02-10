@@ -1,13 +1,6 @@
-const express = require("express");
-const router = express.Router();
-
 const fs = require("fs");
 const multer = require("multer");
 const path = require("path");
-
-const userController = require("../controllers/User/userController");
-const verifyAuthMiddleware = require("../middlewares/verifyAuth");
-const validator = require("../validators/");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/profiles");
@@ -33,25 +26,5 @@ const upload = multer({
     cb(null, true);
   },
 });
-
-// [api/user/profile/edit]
-router.put(
-  "/me/profile/edit",
-  [upload.single("profile"), verifyAuthMiddleware],
-
-  userController.edit_user_profile
-);
-
-// [api/user/me]
-router
-  .route("/me")
-  .post(verifyAuthMiddleware, userController.get_user_)
-  .get(verifyAuthMiddleware, userController.get_user_);
-
-// [api/user/edit]
-router.put(
-  "/me/edit",
-  [validator.userValidator("edit_user"), verifyAuthMiddleware],
-  userController.edit_user_
-);
-module.exports = router;
+const exported_modules = { upload, storage };
+module.exports = exported_modules;

@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const verifyApiKeyMiddleware = require("../middlewares/verifyApiKey");
 const verifyUnrequiredToken = require("../services/verifyTokenService"); // authorize/authorization gak wajib
+const verifyAuthMiddleware = require("../middlewares/verifyAuth");
 const postController = require("../controllers/Posts/postController");
 const validator = require("../validators/");
 
@@ -27,4 +28,10 @@ router.post(
   ],
   postController.create_new_post
 );
+
+// [api/user/posts]
+router.get(
+  "/user/posts", verifyAuthMiddleware, postController.get_user_posts
+);
+
 module.exports = router;
