@@ -130,11 +130,27 @@ const DetailPost = () => {
                   ) : (
                     <p>Belum ada komentar.</p>
                   )}
-                  <div>
-                    Current Page: {currentPage} | Total Pages: {totalPages}
-                    <button onClick={() => handleChangePage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
-                    <button onClick={() => handleChangePage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
-                  </div>
+                  <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-end">
+                      <li className={`page-item ${currentPage === 1 && 'disabled'}`}>
+                        <button className="page-link" onClick={() => handleChangePage(currentPage - 1)} disabled={currentPage === 1} style={{ backgroundColor: currentPage === 1 ? '' : '#43D7C2', color: '#fff', cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}>
+                          Kembali
+                        </button>
+                      </li>
+                      {[...Array(totalPages).keys()].map(page => (
+                        <li key={page + 1} className={`page-item ${currentPage === page + 1 && 'active'}`}>
+                          <button className={`page-link ${currentPage === page + 1 && 'active'}`} onClick={() => handleChangePage(page + 1)} style={{ backgroundColor: currentPage === page + 1 ? '#89eedf' : 'transparent', color: currentPage === page + 1 ? '#fff' : '#000', border: 'none' }}>
+                            {page + 1}
+                          </button>
+                        </li>
+                      ))}
+                      <li className={`page-item ${currentPage === totalPages && 'disabled'}`}>
+                        <button className="page-link" onClick={() => handleChangePage(currentPage + 1)} disabled={currentPage === totalPages} style={{ backgroundColor: currentPage === totalPages ? '' : '#43D7C2', color: '#fff', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}>
+                          Lanjut
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
             </div>

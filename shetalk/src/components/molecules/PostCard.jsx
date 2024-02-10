@@ -18,7 +18,8 @@ const PostCard = ({ avatar, nama, tanggal, judul, konten, topik, showComment }) 
 
   const handleClick = () => {
     const user = localStorage.getItem('user');
-    if (!user) {
+    const isDetailPostPage = location.pathname.includes('/post/');
+    if (!user && !isDetailPostPage) {
       navigate(`/post/${posts.slug}`);
     } else {
       toggleComment();
