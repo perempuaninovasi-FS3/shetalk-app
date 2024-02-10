@@ -6,6 +6,10 @@ export const getUser = () => {
     return user;
 }
 
+export const setUser = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+}
+
 export const getAvatar = () => {
     let avatar = sessionStorage.getItem('selectedAvatar');
     if (avatar) {

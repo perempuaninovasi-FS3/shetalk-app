@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchPostBySlug, selectedPost } from '../redux/slice/postSlice';
-import { fetchCommentsByPostId, getComments } from '../redux/slice/commentSlice';
+import { fetchCommentsByPostId, getComments, deleteComment } from '../redux/slice/commentSlice';
 import PostCard from '../components/molecules/PostCard';
 import Comment from '../components/atoms/Comment';
 import Navbar from '../components/molecules/Navbar';
 import SideBar from '../components/molecules/Sidebar';
+import { getUser } from '../utils/userUtils';
 
 
 const DetailPost = () => {
@@ -15,6 +16,15 @@ const DetailPost = () => {
   const dispatch = useDispatch();
   const detailPost = useSelector(selectedPost);
   const comments = useSelector(getComments);
+  const user = getUser();
+
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
+  const [selectedComment, setSelectedComment] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = useSelector(state => state.comments.totalPages);
+  const totalComments = useSelector(state => state.comments.totalComments);
 
   useEffect(() => {
     dispatch(fetchPostBySlug(slug));
@@ -22,14 +32,38 @@ const DetailPost = () => {
 
   useEffect(() => {
     if (detailPost) {
-      dispatch(fetchCommentsByPostId());
+      dispatch(fetchCommentsByPostId(currentPage));
     }
-  }, [dispatch, detailPost]);
+  }, [dispatch, detailPost, currentPage]);
 
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+  };
 
   if (!detailPost) {
     return <div>Loading...</div>;
   }
+
+  const handleCommentClick = (comment) => {
+    sessionStorage.setItem('selectedComment', JSON.stringify(comment));
+    setSelectedComment(comment);
+  };
+
+  const handleDeleteComment = () => {
+    setLoading(true);
+    dispatch(deleteComment())
+      .then(() => {
+        setLoading(false);
+        alert('Komentar berhasil dihapus!');
+      })
+      .catch((error) => {
+        setLoading(false)
+        console.log('Error deleting comment:', error);
+      });
+  };
+
+  const loggedInUserId = user?.id;
+  const selectedCommentUserId = selectedComment ? selectedComment.user.id : null;
 
   return (
     <>
@@ -58,7 +92,7 @@ const DetailPost = () => {
 
                   {/* isi detail post */}
                   <PostCard
-                    avatar={detailPost.user ? detailPost.user.profiles : detailPost.avatar.avatar_img}
+                    avatar={detailPost.user && detailPost.user.profile ? `${API_URL}/image/profiles/${detailPost.user.profile}` : detailPost.user ? `${API_URL}/image/no-profile.png` : detailPost.avatar.avatar_url}
                     nama={detailPost.user ? detailPost.user.name : detailPost.avatar.avatar_name}
                     tanggal={detailPost.createdAt}
                     judul={detailPost.title}
@@ -69,14 +103,37 @@ const DetailPost = () => {
                   />
 
                   {/* komentar */}
-                  <p className="p-3">komentar</p>
+                  <p className="p-3">komentar ({totalComments})</p>
                   {Array.isArray(comments) ? (
-                    comments.map((comment) => (
-                      <Comment key={comment.id} avatar={comment.user.profiles} nama={comment.user.name} time={comment.createdAt} textComment={comment.comment} />
+                    comments.map((comment, index) => (
+                      <div
+                        key={index}
+                        className={`comment-container ${selectedComment && selectedComment.id === comment.id ? 'selected' : ''}`}
+                        onClick={() => handleCommentClick(comment)}>
+                        <Comment
+                          key={comment.id}
+                          avatar={comment.user.profile ? `${API_URL}/image/profiles/${comment.user.profile}` : `${API_URL}/image/no-profile.png`}
+                          nama={comment.user.name}
+                          time={comment.createdAt}
+                          textComment={comment.comment}
+
+                        />
+                        {(selectedComment && loggedInUserId === selectedCommentUserId && selectedComment.id === comment.id) && (
+                          <div>
+                            <button className="btn btn-danger" onClick={handleDeleteComment}>Hapus</button>
+                            <div>{loading ? 'Loading...' : ' '}</div>
+                          </div>
+                        )}
+                      </div>
                     ))
                   ) : (
                     <p>Belum ada komentar.</p>
                   )}
+                  <div>
+                    Current Page: {currentPage} | Total Pages: {totalPages}
+                    <button onClick={() => handleChangePage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                    <button onClick={() => handleChangePage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+                  </div>
                 </div>
               </div>
             </div>

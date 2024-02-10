@@ -9,8 +9,8 @@ import email from '../assets/img/email.svg';
 import instagram from '../assets/img/instagram.svg';
 import tiktok from '../assets/img/tiktok.svg';
 import AvatarPick from '../components/molecules/AvatarPick';
-import '../css/LandingPage.css';
 import { Link } from 'react-router-dom';
+import '../css/LandingPage.css'
 
 function LandingPage() {
     const [showModal, setShowModal] = useState(false);

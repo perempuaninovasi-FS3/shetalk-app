@@ -16,9 +16,11 @@ body {
   color: #43d7c2 !important;
 }
 
-.custome-color .menu-sidebar:active {
+.active-menu .menu-sidebar {
   color: #43d7c2 !important;
 }
+
+/*  */
 
 #listKonten {
   width: 100%;
@@ -239,4 +241,19 @@ body {
   .post-desktop {
     margin-left: 300px;
   }
+}
+
+
+/* comment */
+
+.comment-container {
+  cursor: pointer;
+}
+
+.comment-container:hover {
+  background-color: #f2f2f2;
+}
+
+.comment-container.selected {
+  background-color: #f2f2f2;
 }

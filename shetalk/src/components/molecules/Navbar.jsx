@@ -36,21 +36,20 @@ const Navbar = () => {
 
             <Dropdown.Menu>
               <Dropdown.Item href={'/profile-ahli'}>Profile</Dropdown.Item>
-              <Dropdown.Item href="#/certificates">Sertifikat</Dropdown.Item>
               <Dropdown.Item onClick={handleLogout} href={'/login'}>Keluar</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          avatar ? (
+          avatar && (
             <div className="ml-auto">
               <img
-                src={avatar.avatar_img}
+                src={avatar.avatar_url}
                 alt="Selected Avatar"
                 className="rounded-circle"
                 style={{ width: '40px', height: '40px', objectFit: 'cover' }}
               />
             </div>
-          ) : null
+          )
         )}
       </div>
     </div>

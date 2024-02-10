@@ -46,7 +46,7 @@ const AvatarPick = () => {
                                 }}
                             >
                                 <img
-                                    src={avatar.avatar_img}
+                                    src={avatar.avatar_url}
                                     alt={`Profile ${id + 1}`}
                                     style={{
                                         width: '100px',
@@ -85,7 +85,7 @@ const AvatarPick = () => {
                                     <span>Lanjut sebagai </span>
                                     <span>{selectedAvatar.avatar_name} </span>
                                     <img
-                                        src={selectedAvatar.avatar_img}
+                                        src={selectedAvatar.avatar_url}
                                         alt="Selected Profile"
                                         style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%' }}
                                     />
