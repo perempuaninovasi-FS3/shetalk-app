@@ -7,10 +7,8 @@ const { validationResult } = require("express-validator");
 const md5 = require("js-md5");
 const index = async (req, res) => {
   try {
-    let { page = 1, size = 10, title } = req.query;
-    const whereClause = title ? { title: { [Op.like]: `%${title}%` } } : {};
+    let { page = 1, size = 10 } = req.query;
     page = parseInt(page) || 1;
-    size = parseInt(size) || 10;
     const offset = (page - 1) * size;
     const limit = size;
     const { count, rows: posts } = await Post.findAndCountAll({
@@ -39,7 +37,6 @@ const index = async (req, res) => {
           ],
         },
       ],
-      where: whereClause,
       offset: parseInt(offset),
       limit: parseInt(limit),
       order: [["createdAt", "DESC"]],
@@ -96,7 +93,14 @@ const get = async (req, res) => {
         model: User,
         as: "user",
         required: false,
-        attributes: ["id", "name", "profile", "role", "createdAt", "updatedAt"],
+        attributes: [
+          "id",
+          "name",
+          "profile",
+          "role",
+          "createdAt",
+          "updatedAt",
+        ],
       },
     ],
   });
