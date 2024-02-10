@@ -80,7 +80,7 @@ const Dashboard = () => {
                     </div>
                   ))
                 ) : (
-                  <div>Loading...</div>
+                  <div>Belum ada postingan terkait</div>
                 )}
                 <div>
                   Current Page: {currentPage} | Total Pages: {totalPages}
