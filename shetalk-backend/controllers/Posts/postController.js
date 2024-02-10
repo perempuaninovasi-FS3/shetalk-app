@@ -3,7 +3,7 @@ const { Post, Topic, User, Avatar } = require("../../database/models/");
 const { jsonResponse } = require("../../utils/response.utils");
 const hashMake = require("../../utils/hash.utils");
 const { validationResult } = require("express-validator");
-
+const { Op } = require("sequelize");
 const md5 = require("js-md5");
 const index = async (req, res) => {
   try {
