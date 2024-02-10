@@ -83,17 +83,17 @@ const create_new_comment = async (req, res) => {
     }
 
     // Active this
-    // const post = await Post.findOne({
-    //   where: { id: post_id, user_id: req.user.id },
-    // });
-    // if (post) {
-    //   return await jsonResponse(res, {
-    //     status: 403,
-    //     success: false,
-    //     message: "Komentar tidak diizinkan di postingan milik sendiri!",
-    //     data: [],
-    //   });
-    // }
+    const post = await Post.findOne({
+      where: { id: post_id, user_id: req.user.id },
+    });
+    if (post) {
+      return await jsonResponse(res, {
+        status: 403,
+        success: false,
+        message: "Komentar tidak diizinkan di postingan milik sendiri!",
+        data: [],
+      });
+    }
 
     let data = {
       post_id: post_id,
