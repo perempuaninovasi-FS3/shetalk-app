@@ -15,11 +15,9 @@ const SideBar = () => {
   const isActive = (filter) => {
     const urlParams = new URLSearchParams(location.search);
     const currentFilter = urlParams.get('filter');
-
     if (!filter) {
       return !currentFilter;
     }
-
     return currentFilter === filter;
   };
 

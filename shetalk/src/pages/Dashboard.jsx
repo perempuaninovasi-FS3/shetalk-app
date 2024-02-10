@@ -37,8 +37,10 @@ const Dashboard = () => {
     const filterParam = urlParams.get('filter');
 
     if (topicParam) {
-      setFilteredPosts(posts.filter(post => post.topic.id === parseInt(topicParam)));
-      setSelectedTopic(parseInt(topicParam));
+      setFilteredPosts(posts.filter(post => post.topic.id === topicParam));
+      setSelectedTopic(topicParam);
+      // setFilteredPosts(posts.filter(post => post.topic.id === parseInt(topicParam)));
+      // setSelectedTopic(parseInt(topicParam));
     } else if (filterParam === 'jawab-pertanyaan') {
       setFilteredPosts(posts.filter(post => !post.description));
     } else if (filterParam === 'informasi') {
