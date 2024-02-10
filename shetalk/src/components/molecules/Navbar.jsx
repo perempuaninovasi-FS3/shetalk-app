@@ -36,7 +36,6 @@ const Navbar = () => {
 
             <Dropdown.Menu>
               <Dropdown.Item href={'/profile-ahli'}>Profile</Dropdown.Item>
-              <Dropdown.Item href="#/certificates">Sertifikat</Dropdown.Item>
               <Dropdown.Item onClick={handleLogout} href={'/login'}>Keluar</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
