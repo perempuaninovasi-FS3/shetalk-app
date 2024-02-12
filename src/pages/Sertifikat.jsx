@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import '../css/sertif.css';
+import '../css/Sertif.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Logo from '../components/atoms/Logo';

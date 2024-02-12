@@ -13,10 +13,6 @@ import { Link } from 'react-router-dom';
 import '../css/LandingPage.css'
 
 function LandingPage() {
-    const [showModal, setShowModal] = useState(false);
-
-    const handleModalShow = () => setShowModal(true);
-    const handleModalClose = () => setShowModal(false);
 
     return (
         <>
@@ -97,9 +93,7 @@ function LandingPage() {
                         <h3 className="card-text fs-2" >Curhat Aman Sehat</h3>
                     </div>
                     <div className="col-md text-center" style={{ padding: '46px' }}>
-                        <Button variant="danger" className='fs-6' size='lg' onClick={handleModalShow}>
-                            Gabung
-                        </Button>
+                        <AvatarPick />
                     </div>
                 </div>
             </div>
@@ -131,15 +125,6 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-
-            <Modal show={showModal} onHide={handleModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Avatar</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <AvatarPick closeModal={handleModalClose} />
-                </Modal.Body>
-            </Modal>
         </>
     );
 }
