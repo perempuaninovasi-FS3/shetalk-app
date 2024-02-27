@@ -14,8 +14,6 @@
   status = 200
 
 [[redirects]]
-  from = "/"
-  to = "/profile-ahli"
+  from = "/profile-ahli"
+  to = "/index.html"
   status = 200
-
-  
