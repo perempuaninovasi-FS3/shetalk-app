@@ -36,13 +36,6 @@ function Login() {
       });
   };
 
-  // Objek untuk media query
-  const mediaQueryStyles = {
-    "@media (maxWidth: 992px)": {
-      width: "90vw",
-    },
-  };
-
   return (
     <div
       className="container-fluid"
