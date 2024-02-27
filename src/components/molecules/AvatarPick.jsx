@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
 const AvatarPick = () => {
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -84,7 +85,7 @@ const AvatarPick = () => {
                     }}
                   >
                     <img
-                      src={avatar.avatar_url}
+                      src={`${API_URL}${avatar.avatar_url}`}
                       alt={`Profile ${id + 1}`}
                       style={{
                         width: "100px",
@@ -124,7 +125,7 @@ const AvatarPick = () => {
                         <span>Lanjut sebagai </span>
                         <span>{selectedAvatar.avatar_name} </span>
                         <img
-                          src={selectedAvatar.avatar_url}
+                          src={`${API_URL}${selectedAvatar.avatar_url}`}
                           alt="Selected Profile"
                           style={{
                             width: "30px",
