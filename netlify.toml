@@ -12,3 +12,8 @@
   from = "/"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/profile-ahli"
+  to = "/index.html"
+  status = 200
