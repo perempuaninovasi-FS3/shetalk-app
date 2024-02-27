@@ -47,6 +47,18 @@ function LandingPage() {
       hiddenElementsY.forEach((el) => observerY.unobserve(el));
     };
   }, []);
+
+  const handleClickLinkIG = () => {
+    window.open(
+      "https://www.instagram.com/shetalk.id?igsh=MXA3MjEwc2NvM21pcg==",
+      "_blank"
+    );
+  };
+
+  const handleClickLinkEmail = () => {
+    window.open("mailto:shetalk.info@gmail.com", "_blank");
+  };
+
   return (
     <>
       {/* <!-- navbar --> */}
@@ -209,13 +221,24 @@ function LandingPage() {
             height="24"
             className="d-inline-block align-text-top px-lg-4 mb-3"
           />
-          <p className="costume-p mb-3">shetalksinfo@shetalk.com</p>
+          <p
+            className="costume-p mb-3"
+            onClick={handleClickLinkEmail}
+            style={{ cursor: "pointer" }}
+          >
+            shetalk.info@gmail.com
+          </p>
           <div className="mb-3">
-            <a href="tautan-email" className="text-decoration-none">
+            <a
+              href=""
+              className="text-decoration-none"
+              onClick={handleClickLinkEmail}
+            >
               <img src={email} alt="email" />
             </a>
             <a
-              href="tautan-instagram"
+              onClick={handleClickLinkIG}
+              href=""
               className="text-decoration-none"
               style={{ paddingLeft: "4px" }}
             >
