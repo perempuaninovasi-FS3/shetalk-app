@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
-import Logo from "../components/atoms/Logo";
-import tagbrand from "../assets/img/tag-brand.svg";
-import timun from "../assets/img/timun.svg";
-import nawang from "../assets/img/nawang.svg";
 import shetalk from "../assets/img/shetalk.svg";
 import email from "../assets/img/fluent_mail-28-filled.svg";
 import instagram from "../assets/img/ri_instagram-fill.svg";
-import tiktok from "../assets/img/tiktok.svg";
 import AvatarPick from "../components/molecules/AvatarPick";
-import { Link } from "react-router-dom";
 import "../css/LandingPage.css";
 import stiker01 from "../assets/img/sticker01.svg";
 import shetalkDb from "../assets/img/shetalk-db.png";
@@ -166,10 +159,10 @@ function LandingPage() {
       <div className="mt-5 mb-5">
         <div className="container mt-5">
           <div className="row">
-            <div className="col-lg-6 mt-5">
+            <div className="col-lg-6 mt-5 hiddenY">
               <img src={peopleava} alt="avatar-profile" className="img-fluid" />
             </div>
-            <div className="col-lg-6 text-center">
+            <div className="col-lg-6 text-center hiddenX">
               <p className="fs-5 costume-p-text text-end">
                 Jadilah bagian dari SheTalk dan mulailah perjalanan kamu menuju
                 pemahaman yang lebih baik tentang kesehatan reproduksi dan
@@ -187,7 +180,7 @@ function LandingPage() {
       {/* <!-- end section 2 --> */}
 
       {/* <!-- start section 3 --> */}
-      <div className="container">
+      <div className="container hiddenX">
         <div className="costume-bot-bg d-flex justify-content-center align-items-center position-relative rounded-4">
           <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center w-100 px-2 px-lg-5 ">
             <h1 className="text-white mb-5 mb-lg-0 fs-4">
