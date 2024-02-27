@@ -62,8 +62,8 @@ export const deleteComment = createAsyncThunk('comment/deleteComment', async (_,
                 'Content-Type': 'application/json',
             }
         });
-        const fetchCommentData = await thunkAPI.dispatch(fetchCommentsByPostId());
-        const data = fetchCommentData.payload;
+        const fetchCommentData = await thunkAPI.dispatch(fetchCommentsByPostId(1));
+        const data = fetchCommentData.payload.data;
         return data;
     } catch (error) {
         return thunkAPI.rejectWithValue({ error: error.message });
@@ -110,7 +110,7 @@ const commentSlice = createSlice({
             })
             .addCase(deleteComment.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.comments = action.payload;
+                state.comments = action.payload.comments;
             })
             .addCase(deleteComment.rejected, (state, action) => {
                 state.status = 'failed';
