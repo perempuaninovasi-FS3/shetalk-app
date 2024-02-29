@@ -75,7 +75,7 @@ const ModalComponent = () => {
                 }`}
                 onClick={() => handleLink("kiriman")}
               >
-                Buat Kiriman
+                Tambah Informasi
               </div>
             </div>
 
