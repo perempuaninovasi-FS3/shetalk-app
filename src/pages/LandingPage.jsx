@@ -73,6 +73,7 @@ function LandingPage() {
               className="d-inline-block align-text-top px-lg-4"
             />
           </a>
+          <AvatarPick />
         </div>
       </nav>
       {/* <!-- start section 1 --> */}
